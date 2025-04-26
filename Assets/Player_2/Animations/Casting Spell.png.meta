@@ -1,0 +1,967 @@
+fileFormatVersion: 2
+guid: f5015e9949d88ab49b0f7587b95f07cd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6981291116899086746
+    second: Casting Spell_0
+  - first:
+      213: -3053417645822906965
+    second: Casting Spell_1
+  - first:
+      213: -6013862014294878980
+    second: Casting Spell_2
+  - first:
+      213: 6543886965480112973
+    second: Casting Spell_3
+  - first:
+      213: -657461072389909590
+    second: Casting Spell_4
+  - first:
+      213: -3646761929647873874
+    second: Casting Spell_5
+  - first:
+      213: -2909465381228037118
+    second: Casting Spell_6
+  - first:
+      213: 7388462545512936342
+    second: Casting Spell_7
+  - first:
+      213: -7383286557773532769
+    second: Casting Spell_8
+  - first:
+      213: -2366692772552882375
+    second: Casting Spell_9
+  - first:
+      213: 4761320499247764363
+    second: Casting Spell_10
+  - first:
+      213: -513393668214206041
+    second: Casting Spell_11
+  - first:
+      213: -1805094212622722547
+    second: Casting Spell_12
+  - first:
+      213: -1902972368365713995
+    second: Casting Spell_13
+  - first:
+      213: 8665792496217756486
+    second: Casting Spell_14
+  - first:
+      213: 8479502502423527314
+    second: Casting Spell_15
+  - first:
+      213: -8368463292515190343
+    second: Casting Spell_16
+  - first:
+      213: 7434049054842469149
+    second: Casting Spell_17
+  - first:
+      213: 2134383985341046779
+    second: Casting Spell_18
+  - first:
+      213: -3853185516943166473
+    second: Casting Spell_19
+  - first:
+      213: 4163868104667020739
+    second: Casting Spell_20
+  - first:
+      213: -3979290374449115447
+    second: Casting Spell_21
+  - first:
+      213: -8439625660751407017
+    second: Casting Spell_22
+  - first:
+      213: -2925047970125846319
+    second: Casting Spell_23
+  - first:
+      213: 67377048806206136
+    second: Casting Spell_24
+  - first:
+      213: 2815885841005850358
+    second: Casting Spell_25
+  - first:
+      213: -8165807764872675058
+    second: Casting Spell_26
+  - first:
+      213: 1256748413377388103
+    second: Casting Spell_27
+  - first:
+      213: -4765971980065919215
+    second: Casting Spell_28
+  - first:
+      213: 5971972142751650420
+    second: Casting Spell_29
+  - first:
+      213: -6625789379518797521
+    second: Casting Spell_30
+  - first:
+      213: -8616988394101207739
+    second: Casting Spell_31
+  - first:
+      213: 4330643348831879955
+    second: Casting Spell_32
+  - first:
+      213: -4573360359778463319
+    second: Casting Spell_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Casting Spell_0
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 95
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a913c58484782e060800000000000000
+      internalID: 6981291116899086746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_1
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 122
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bade0dd24d410a5d0800000000000000
+      internalID: -3053417645822906965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_2
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 118
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf41dbd5c587a8ca0800000000000000
+      internalID: -6013862014294878980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_3
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 116
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4340cb268e80da50800000000000000
+      internalID: 6543886965480112973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_4
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 111
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa35d8653aa30e6f0800000000000000
+      internalID: -657461072389909590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_5
+      rect:
+        serializedVersion: 2
+        x: 950
+        y: 112
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea0abeaa859146dc0800000000000000
+      internalID: -3646761929647873874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_6
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 120
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20c3b9996a08f97d0800000000000000
+      internalID: -2909465381228037118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_7
+      rect:
+        serializedVersion: 2
+        x: 1077
+        y: 121
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 693b3951a87198660800000000000000
+      internalID: 7388462545512936342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_8
+      rect:
+        serializedVersion: 2
+        x: 1081
+        y: 95
+        width: 15
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f91fdf87efb498990800000000000000
+      internalID: -7383286557773532769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_9
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 122
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 937408f6671d72fd0800000000000000
+      internalID: -2366692772552882375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_10
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 118
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b83d27b74cb931240800000000000000
+      internalID: 4761320499247764363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_11
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 0
+        width: 23
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a15828cd2f00e8f0800000000000000
+      internalID: -513393668214206041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_12
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 109
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0a528e906403f6e0800000000000000
+      internalID: -1805094212622722547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_13
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 109
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b58d2e96b84795e0800000000000000
+      internalID: -1902972368365713995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_14
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 89
+        width: 19
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6431e4aac54134870800000000000000
+      internalID: 8665792496217756486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_15
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 97
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29f7df0899e3da570800000000000000
+      internalID: 8479502502423527314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_16
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 0
+        width: 23
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b97cb539fe3ddb80800000000000000
+      internalID: -8368463292515190343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_17
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 109
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1bb6b46a3c0b2760800000000000000
+      internalID: 7434049054842469149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_18
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 109
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bff198c1deade9d10800000000000000
+      internalID: 2134383985341046779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_19
+      rect:
+        serializedVersion: 2
+        x: 1209
+        y: 93
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f33ce8ff2cb68ac0800000000000000
+      internalID: -3853185516943166473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_20
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 85
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cdb146eaf709c930800000000000000
+      internalID: 4163868104667020739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_21
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 96
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ce44d4dc78b6c8c0800000000000000
+      internalID: -3979290374449115447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_22
+      rect:
+        serializedVersion: 2
+        x: 1077
+        y: 99
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75814a53d2d60ea80800000000000000
+      internalID: -8439625660751407017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_23
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 23
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d8eba56e542867d0800000000000000
+      internalID: -2925047970125846319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_24
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 0
+        width: 23
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8baab14a11f5fe000800000000000000
+      internalID: 67377048806206136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_25
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 0
+        width: 23
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fea431d049041720800000000000000
+      internalID: 2815885841005850358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_26
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 86
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0143a62a193dae80800000000000000
+      internalID: -8165807764872675058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_27
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 0
+        width: 23
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74e156ff50ed07110800000000000000
+      internalID: 1256748413377388103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_28
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 0
+        width: 23
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11fa4be3cbddbddb0800000000000000
+      internalID: -4765971980065919215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_29
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 85
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4729d31e505b0e250800000000000000
+      internalID: 5971972142751650420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_30
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 0
+        width: 23
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f29e93d0aa77c04a0800000000000000
+      internalID: -6625789379518797521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_31
+      rect:
+        serializedVersion: 2
+        x: 1082
+        y: 86
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54d0fe7d5be4a6880800000000000000
+      internalID: -8616988394101207739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_32
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 0
+        width: 23
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31348085e29891c30800000000000000
+      internalID: 4330643348831879955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Casting Spell_33
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 0
+        width: 33
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a15d85cbf82880c0800000000000000
+      internalID: -4573360359778463319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

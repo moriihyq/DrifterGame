@@ -1,0 +1,3392 @@
+fileFormatVersion: 2
+guid: 3478cc7cf3fe744448df381928ea7bb1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -559940569574153760
+    second: Motion_animations_3_Spritelist_0
+  - first:
+      213: 834101674981107271
+    second: Motion_animations_3_Spritelist_1
+  - first:
+      213: 6781380817869517808
+    second: Motion_animations_3_Spritelist_2
+  - first:
+      213: 433284199810415351
+    second: Motion_animations_3_Spritelist_3
+  - first:
+      213: -3607093312716588697
+    second: Motion_animations_3_Spritelist_4
+  - first:
+      213: 2994537267064019839
+    second: Motion_animations_3_Spritelist_5
+  - first:
+      213: 5574274976387415495
+    second: Motion_animations_3_Spritelist_6
+  - first:
+      213: -1729117613765584431
+    second: Motion_animations_3_Spritelist_7
+  - first:
+      213: 9164705210275234658
+    second: Motion_animations_3_Spritelist_8
+  - first:
+      213: 6948494077926254271
+    second: Motion_animations_3_Spritelist_9
+  - first:
+      213: -5708784342685850419
+    second: Motion_animations_3_Spritelist_10
+  - first:
+      213: -1885503126423161591
+    second: Motion_animations_3_Spritelist_11
+  - first:
+      213: 3491913637096467141
+    second: Motion_animations_3_Spritelist_12
+  - first:
+      213: 8831325114450620946
+    second: Motion_animations_3_Spritelist_13
+  - first:
+      213: 2093340691995132173
+    second: Motion_animations_3_Spritelist_14
+  - first:
+      213: 4243187334422815188
+    second: Motion_animations_3_Spritelist_15
+  - first:
+      213: 3801815292844946856
+    second: Motion_animations_3_Spritelist_16
+  - first:
+      213: 3990205635999923156
+    second: Motion_animations_3_Spritelist_17
+  - first:
+      213: -3718208210152118583
+    second: Motion_animations_3_Spritelist_18
+  - first:
+      213: 4208614995000440513
+    second: Motion_animations_3_Spritelist_19
+  - first:
+      213: 2763883281092592668
+    second: Motion_animations_3_Spritelist_20
+  - first:
+      213: -1652032570753363258
+    second: Motion_animations_3_Spritelist_21
+  - first:
+      213: -4974007751068287607
+    second: Motion_animations_3_Spritelist_22
+  - first:
+      213: -5190409708784707468
+    second: Motion_animations_3_Spritelist_23
+  - first:
+      213: 5221415152693547022
+    second: Motion_animations_3_Spritelist_24
+  - first:
+      213: -3245769171664145764
+    second: Motion_animations_3_Spritelist_25
+  - first:
+      213: 3235702066525657168
+    second: Motion_animations_3_Spritelist_26
+  - first:
+      213: -8345982101337771592
+    second: Motion_animations_3_Spritelist_27
+  - first:
+      213: -6564718352646776481
+    second: Motion_animations_3_Spritelist_28
+  - first:
+      213: 2415052171191207433
+    second: Motion_animations_3_Spritelist_29
+  - first:
+      213: 7213989587757147525
+    second: Motion_animations_3_Spritelist_30
+  - first:
+      213: -2806846731991208397
+    second: Motion_animations_3_Spritelist_31
+  - first:
+      213: -7844805781406360889
+    second: Motion_animations_3_Spritelist_32
+  - first:
+      213: 5268472157368697505
+    second: Motion_animations_3_Spritelist_33
+  - first:
+      213: 4333861293684968834
+    second: Motion_animations_3_Spritelist_34
+  - first:
+      213: -7157344191389158209
+    second: Motion_animations_3_Spritelist_35
+  - first:
+      213: 6156529725801431718
+    second: Motion_animations_3_Spritelist_36
+  - first:
+      213: -2651028643203286119
+    second: Motion_animations_3_Spritelist_37
+  - first:
+      213: -1306869817369123577
+    second: Motion_animations_3_Spritelist_38
+  - first:
+      213: -4157327242783551844
+    second: Motion_animations_3_Spritelist_39
+  - first:
+      213: 1741057245468002339
+    second: Motion_animations_3_Spritelist_40
+  - first:
+      213: -699704101919101046
+    second: Motion_animations_3_Spritelist_41
+  - first:
+      213: 331294474078090984
+    second: Motion_animations_3_Spritelist_42
+  - first:
+      213: -7705693047720882569
+    second: Motion_animations_3_Spritelist_43
+  - first:
+      213: -7447606408953256405
+    second: Motion_animations_3_Spritelist_44
+  - first:
+      213: -5180556903896830719
+    second: Motion_animations_3_Spritelist_45
+  - first:
+      213: 307763690444325840
+    second: Motion_animations_3_Spritelist_46
+  - first:
+      213: -6800473571669063994
+    second: Motion_animations_3_Spritelist_47
+  - first:
+      213: -8429782114979396968
+    second: Motion_animations_3_Spritelist_48
+  - first:
+      213: 5283148046903049427
+    second: Motion_animations_3_Spritelist_49
+  - first:
+      213: 1770601398886965072
+    second: Motion_animations_3_Spritelist_50
+  - first:
+      213: -4050982311458343019
+    second: Motion_animations_3_Spritelist_51
+  - first:
+      213: -1539778698719395689
+    second: Motion_animations_3_Spritelist_52
+  - first:
+      213: -7821251108110603853
+    second: Motion_animations_3_Spritelist_53
+  - first:
+      213: -2476349396568490551
+    second: Motion_animations_3_Spritelist_54
+  - first:
+      213: -6470987837111214730
+    second: Motion_animations_3_Spritelist_55
+  - first:
+      213: 140536979609992001
+    second: Motion_animations_3_Spritelist_56
+  - first:
+      213: 5886019907597421060
+    second: Motion_animations_3_Spritelist_57
+  - first:
+      213: 4276701100695295620
+    second: Motion_animations_3_Spritelist_58
+  - first:
+      213: -1350282743913067033
+    second: Motion_animations_3_Spritelist_59
+  - first:
+      213: 6531438425291907659
+    second: Motion_animations_3_Spritelist_60
+  - first:
+      213: -4818428701302276958
+    second: Motion_animations_3_Spritelist_61
+  - first:
+      213: 6853450641752784368
+    second: Motion_animations_3_Spritelist_62
+  - first:
+      213: -6430170882758951924
+    second: Motion_animations_3_Spritelist_63
+  - first:
+      213: -6554018312843005716
+    second: Motion_animations_3_Spritelist_64
+  - first:
+      213: -1918318591031770701
+    second: Motion_animations_3_Spritelist_65
+  - first:
+      213: -6578880603070082829
+    second: Motion_animations_3_Spritelist_66
+  - first:
+      213: -686413861799967608
+    second: Motion_animations_3_Spritelist_67
+  - first:
+      213: -6655182217510257928
+    second: Motion_animations_3_Spritelist_68
+  - first:
+      213: -2758479344199678458
+    second: Motion_animations_3_Spritelist_69
+  - first:
+      213: -5726416657761980707
+    second: Motion_animations_3_Spritelist_70
+  - first:
+      213: -2640237556409992478
+    second: Motion_animations_3_Spritelist_71
+  - first:
+      213: -5230111252131843347
+    second: Motion_animations_3_Spritelist_72
+  - first:
+      213: 1511406205330616460
+    second: Motion_animations_3_Spritelist_73
+  - first:
+      213: 3632898668745525540
+    second: Motion_animations_3_Spritelist_74
+  - first:
+      213: -9065830212448752646
+    second: Motion_animations_3_Spritelist_75
+  - first:
+      213: -2832441641674149272
+    second: Motion_animations_3_Spritelist_76
+  - first:
+      213: 8212198107747374425
+    second: Motion_animations_3_Spritelist_77
+  - first:
+      213: 4263255911156944028
+    second: Motion_animations_3_Spritelist_78
+  - first:
+      213: -1039139908680922349
+    second: Motion_animations_3_Spritelist_79
+  - first:
+      213: 1115345194010920155
+    second: Motion_animations_3_Spritelist_80
+  - first:
+      213: 2637398012845125930
+    second: Motion_animations_3_Spritelist_81
+  - first:
+      213: 9201593391738115278
+    second: Motion_animations_3_Spritelist_82
+  - first:
+      213: 8016382068683769176
+    second: Motion_animations_3_Spritelist_83
+  - first:
+      213: -8440796846332055938
+    second: Motion_animations_3_Spritelist_84
+  - first:
+      213: 5499642330541804030
+    second: Motion_animations_3_Spritelist_85
+  - first:
+      213: -2940346235480614266
+    second: Motion_animations_3_Spritelist_86
+  - first:
+      213: -1795009960105432833
+    second: Motion_animations_3_Spritelist_87
+  - first:
+      213: -2322646765722579250
+    second: Motion_animations_3_Spritelist_88
+  - first:
+      213: -6681664836936486502
+    second: Motion_animations_3_Spritelist_89
+  - first:
+      213: -1510870558190877693
+    second: Motion_animations_3_Spritelist_90
+  - first:
+      213: -5212885813854875161
+    second: Motion_animations_3_Spritelist_91
+  - first:
+      213: -7077920871906972201
+    second: Motion_animations_3_Spritelist_92
+  - first:
+      213: -4792750186377489167
+    second: Motion_animations_3_Spritelist_93
+  - first:
+      213: -6488383847870475686
+    second: Motion_animations_3_Spritelist_94
+  - first:
+      213: 5269412212684620577
+    second: Motion_animations_3_Spritelist_95
+  - first:
+      213: 2121308926668606916
+    second: Motion_animations_3_Spritelist_96
+  - first:
+      213: -8708195187092384025
+    second: Motion_animations_3_Spritelist_97
+  - first:
+      213: 29233648059621483
+    second: Motion_animations_3_Spritelist_98
+  - first:
+      213: 9019476731859087287
+    second: Motion_animations_3_Spritelist_99
+  - first:
+      213: -1414176670628517349
+    second: Motion_animations_3_Spritelist_100
+  - first:
+      213: 2811233124188832371
+    second: Motion_animations_3_Spritelist_101
+  - first:
+      213: -1561110084625688570
+    second: Motion_animations_3_Spritelist_102
+  - first:
+      213: -8228182594662231353
+    second: Motion_animations_3_Spritelist_103
+  - first:
+      213: -2176141115583340594
+    second: Motion_animations_3_Spritelist_104
+  - first:
+      213: 5589636107956052498
+    second: Motion_animations_3_Spritelist_105
+  - first:
+      213: 6174373966061078741
+    second: Motion_animations_3_Spritelist_106
+  - first:
+      213: 2266825389022210023
+    second: Motion_animations_3_Spritelist_107
+  - first:
+      213: 8895836573895418816
+    second: Motion_animations_3_Spritelist_108
+  - first:
+      213: 2597313690574456381
+    second: Motion_animations_3_Spritelist_109
+  - first:
+      213: 2670799990447375182
+    second: Motion_animations_3_Spritelist_110
+  - first:
+      213: -3801132227713377771
+    second: Motion_animations_3_Spritelist_111
+  - first:
+      213: -5145773331357525108
+    second: Motion_animations_3_Spritelist_112
+  - first:
+      213: -3492838773893618200
+    second: Motion_animations_3_Spritelist_113
+  - first:
+      213: -4704812800271362043
+    second: Motion_animations_3_Spritelist_114
+  - first:
+      213: -2095480572498014078
+    second: Motion_animations_3_Spritelist_115
+  - first:
+      213: -6650046106086486426
+    second: Motion_animations_3_Spritelist_116
+  - first:
+      213: -3493697662876139239
+    second: Motion_animations_3_Spritelist_117
+  - first:
+      213: 8736295282959104502
+    second: Motion_animations_3_Spritelist_118
+  - first:
+      213: 1588565890605647150
+    second: Motion_animations_3_Spritelist_119
+  - first:
+      213: 6388023871444838496
+    second: Motion_animations_3_Spritelist_120
+  - first:
+      213: -9202869804364614511
+    second: Motion_animations_3_Spritelist_121
+  - first:
+      213: -8469866729124306798
+    second: Motion_animations_3_Spritelist_122
+  - first:
+      213: 3947709283656372635
+    second: Motion_animations_3_Spritelist_123
+  - first:
+      213: 8920164066509128382
+    second: Motion_animations_3_Spritelist_124
+  - first:
+      213: 8624943907268910130
+    second: Motion_animations_3_Spritelist_125
+  - first:
+      213: -7104180369263599535
+    second: Motion_animations_3_Spritelist_126
+  - first:
+      213: -1734859997681977877
+    second: Motion_animations_3_Spritelist_127
+  - first:
+      213: -3136643651747297874
+    second: Motion_animations_3_Spritelist_128
+  - first:
+      213: 5687953004046102269
+    second: Motion_animations_3_Spritelist_129
+  - first:
+      213: -6158823744390592548
+    second: Motion_animations_3_Spritelist_130
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_0
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 1153
+        width: 42
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e1e337c401ba38f0800000000000000
+      internalID: -559940569574153760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_1
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 1153
+        width: 58
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 746aecbdd03539b00800000000000000
+      internalID: 834101674981107271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_2
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 1153
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f3b2cfaced4c1e50800000000000000
+      internalID: 6781380817869517808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_3
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 1153
+        width: 47
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fa3d702fa5530600800000000000000
+      internalID: 433284199810415351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_4
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 1153
+        width: 59
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76937d74eb701fdc0800000000000000
+      internalID: -3607093312716588697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_5
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 1153
+        width: 59
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7b150657cbbe8920800000000000000
+      internalID: 2994537267064019839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_6
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 1153
+        width: 59
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cdbbe7ae8dcb5d40800000000000000
+      internalID: 5574274976387415495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_7
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 1153
+        width: 59
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d991a801b0f008e0800000000000000
+      internalID: -1729117613765584431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_8
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 1153
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26380a105d29f2f70800000000000000
+      internalID: 9164705210275234658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_9
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 1153
+        width: 55
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb623b69c820e6060800000000000000
+      internalID: 6948494077926254271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_10
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 1153
+        width: 59
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc4e5e203e256c0b0800000000000000
+      internalID: -5708784342685850419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_11
+      rect:
+        serializedVersion: 2
+        x: 1180
+        y: 1153
+        width: 59
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 905b8a675e855d5e0800000000000000
+      internalID: -1885503126423161591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_12
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 1023
+        width: 40
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ca2a75b3f4c57030800000000000000
+      internalID: 3491913637096467141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_13
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 1023
+        width: 51
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 212b0d6b66b2f8a70800000000000000
+      internalID: 8831325114450620946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_14
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 1023
+        width: 55
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d018d34b44a0d0d10800000000000000
+      internalID: 2093340691995132173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_15
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 1023
+        width: 40
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d165b73664d2ea30800000000000000
+      internalID: 4243187334422815188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_16
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 1023
+        width: 47
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a5bbafadd2c2c430800000000000000
+      internalID: 3801815292844946856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_17
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 1023
+        width: 47
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4db798a82ee006730800000000000000
+      internalID: 3990205635999923156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_18
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 1023
+        width: 56
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c621f03555466cc0800000000000000
+      internalID: -3718208210152118583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_19
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 1023
+        width: 87
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c6326d2a01086a30800000000000000
+      internalID: 4208614995000440513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_20
+      rect:
+        serializedVersion: 2
+        x: 1025
+        y: 1023
+        width: 117
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c144a2253394b5620800000000000000
+      internalID: 2763883281092592668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_21
+      rect:
+        serializedVersion: 2
+        x: 1226
+        y: 1023
+        width: 44
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c2ded6312dc219e0800000000000000
+      internalID: -1652032570753363258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_22
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 1045
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98df887cd46c8fab0800000000000000
+      internalID: -4974007751068287607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_23
+      rect:
+        serializedVersion: 2
+        x: 1391
+        y: 943
+        width: 133
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 478162daed5f7f7b0800000000000000
+      internalID: -5190409708784707468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_24
+      rect:
+        serializedVersion: 2
+        x: 1505
+        y: 1048
+        width: 29
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e001429ca61367840800000000000000
+      internalID: 5221415152693547022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_25
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 1028
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c927b0c9226b4f2d0800000000000000
+      internalID: -3245769171664145764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_26
+      rect:
+        serializedVersion: 2
+        x: 1263
+        y: 1031
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0585242d2e587ec20800000000000000
+      internalID: 3235702066525657168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_27
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 948
+        width: 10
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b17efb6f7d1d2c80800000000000000
+      internalID: -8345982101337771592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_28
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 958
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f59500c807f65e4a0800000000000000
+      internalID: -6564718352646776481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_29
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 952
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90643e9772df38120800000000000000
+      internalID: 2415052171191207433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_30
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 962
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 585a1a70f4d3d1460800000000000000
+      internalID: 7213989587757147525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_31
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 964
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33ea2b0c4c31c09d0800000000000000
+      internalID: -2806846731991208397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_32
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 959
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cad75394b6a12390800000000000000
+      internalID: -7844805781406360889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_33
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 967
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a24ff8738f5d1940800000000000000
+      internalID: 5268472157368697505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_34
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 961
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28d48e382e7f42c30800000000000000
+      internalID: 4333861293684968834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_35
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 895
+        width: 59
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb43b0111610cac90800000000000000
+      internalID: -7157344191389158209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_36
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 895
+        width: 62
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a2078bba23607550800000000000000
+      internalID: 6156529725801431718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_37
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 895
+        width: 80
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99b7b78ae77a53bd0800000000000000
+      internalID: -2651028643203286119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_38
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 895
+        width: 66
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 705a80043d01ddde0800000000000000
+      internalID: -1306869817369123577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_39
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 951
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9e05de26e43e46c0800000000000000
+      internalID: -4157327242783551844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_40
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 895
+        width: 62
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3288db9175a792810800000000000000
+      internalID: 1741057245468002339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_41
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 956
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8f6a3593d62a46f0800000000000000
+      internalID: -699704101919101046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_42
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 895
+        width: 57
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e67973a19ef89400800000000000000
+      internalID: 331294474078090984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_43
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 948
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77e4666eff0ef0590800000000000000
+      internalID: -7705693047720882569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_44
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 895
+        width: 57
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b262b6f1e69c4a890800000000000000
+      internalID: -7447606408953256405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_45
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 954
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10d288491f6fa18b0800000000000000
+      internalID: -5180556903896830719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_46
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 952
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d382b32275654400800000000000000
+      internalID: 307763690444325840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_47
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 895
+        width: 57
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c6cb38215ddf91a0800000000000000
+      internalID: -6800473571669063994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_48
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 955
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89246be44d5630b80800000000000000
+      internalID: -8429782114979396968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_49
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 933
+        width: 13
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dc74774823815940800000000000000
+      internalID: 5283148046903049427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_50
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 895
+        width: 57
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05f977b5790729810800000000000000
+      internalID: 1770601398886965072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_51
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 895
+        width: 57
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 597722efc0508c7c0800000000000000
+      internalID: -4050982311458343019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_52
+      rect:
+        serializedVersion: 2
+        x: 1316
+        y: 953
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7900e1e7e6b91aae0800000000000000
+      internalID: -1539778698719395689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_53
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 944
+        width: 36
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b9efe15e85557390800000000000000
+      internalID: -7821251108110603853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_54
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 939
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cd38c5185d32add0800000000000000
+      internalID: -2476349396568490551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_55
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 941
+        width: 29
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67ddc1fc8de6236a0800000000000000
+      internalID: -6470987837111214730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_56
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 946
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14bb57b63a943f100800000000000000
+      internalID: 140536979609992001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_57
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 939
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40ac835abe75fa150800000000000000
+      internalID: 5886019907597421060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_58
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 931
+        width: 19
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 486177dfdf4e95b30800000000000000
+      internalID: 4276701100695295620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_59
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 936
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7edc8be9ff4d24de0800000000000000
+      internalID: -1350282743913067033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_60
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 932
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b426cdb84a454aa50800000000000000
+      internalID: 6531438425291907659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_61
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 931
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2acb45310a0812db0800000000000000
+      internalID: -4818428701302276958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_62
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 935
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fdf85b2c095c1f50800000000000000
+      internalID: 6853450641752784368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_63
+      rect:
+        serializedVersion: 2
+        x: 982
+        y: 935
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0cb71096a173c6a0800000000000000
+      internalID: -6430170882758951924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_64
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 767
+        width: 54
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce07693b1137b05a0800000000000000
+      internalID: -6554018312843005716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_65
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 767
+        width: 55
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b10687b763c065e0800000000000000
+      internalID: -1918318591031770701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_66
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 767
+        width: 49
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f0dc4aa2fe13b4a0800000000000000
+      internalID: -6578880603070082829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_67
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 767
+        width: 42
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 884428eba3e5976f0800000000000000
+      internalID: -686413861799967608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_68
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 767
+        width: 43
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fafdc9a80b04a3a0800000000000000
+      internalID: -6655182217510257928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_69
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 824
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 606c9b8c6a9e7b9d0800000000000000
+      internalID: -2758479344199678458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_70
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 767
+        width: 51
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddea73eb36ea780b0800000000000000
+      internalID: -5726416657761980707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_71
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 767
+        width: 70
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ea79875eedfb5bd0800000000000000
+      internalID: -2640237556409992478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_72
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 767
+        width: 74
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de278e8c689ea67b0800000000000000
+      internalID: -5230111252131843347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_73
+      rect:
+        serializedVersion: 2
+        x: 1065
+        y: 767
+        width: 51
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c807d0c9fe799f410800000000000000
+      internalID: 1511406205330616460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_74
+      rect:
+        serializedVersion: 2
+        x: 1114
+        y: 817
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 429019f5716aa6230800000000000000
+      internalID: 3632898668745525540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_75
+      rect:
+        serializedVersion: 2
+        x: 1193
+        y: 767
+        width: 51
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afbecf06473bf2280800000000000000
+      internalID: -9065830212448752646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_76
+      rect:
+        serializedVersion: 2
+        x: 1241
+        y: 829
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 862fcf4755521b8d0800000000000000
+      internalID: -2832441641674149272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_77
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 767
+        width: 66
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 955da6d3ba697f170800000000000000
+      internalID: 8212198107747374425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_78
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 639
+        width: 140
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9c081bd9a02a2b30800000000000000
+      internalID: 4263255911156944028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_79
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 698
+        width: 28
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31b442732cb3491f0800000000000000
+      internalID: -1039139908680922349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_80
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 709
+        width: 39
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd4c5fa6b808a7f00800000000000000
+      internalID: 1115345194010920155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_81
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 725
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2174f6e48be99420800000000000000
+      internalID: 2637398012845125930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_82
+      rect:
+        serializedVersion: 2
+        x: 997
+        y: 696
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec4d12a0070a2bf70800000000000000
+      internalID: 9201593391738115278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_83
+      rect:
+        serializedVersion: 2
+        x: 1046
+        y: 723
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85505b3d409ef3f60800000000000000
+      internalID: 8016382068683769176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_84
+      rect:
+        serializedVersion: 2
+        x: 1054
+        y: 721
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7ee3215df34cda80800000000000000
+      internalID: -8440796846332055938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_85
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 729
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef945afaf87a25c40800000000000000
+      internalID: 5499642330541804030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_86
+      rect:
+        serializedVersion: 2
+        x: 1112
+        y: 724
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68a558d6daac137d0800000000000000
+      internalID: -2940346235480614266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_87
+      rect:
+        serializedVersion: 2
+        x: 1116
+        y: 730
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff8a0af93f7d617e0800000000000000
+      internalID: -1795009960105432833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_88
+      rect:
+        serializedVersion: 2
+        x: 1125
+        y: 722
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ece456e821d44cfd0800000000000000
+      internalID: -2322646765722579250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_89
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 639
+        width: 122
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a91be265b35f543a0800000000000000
+      internalID: -6681664836936486502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_90
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 719
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 304cf657b3f480be0800000000000000
+      internalID: -1510870558190877693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_91
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 712
+        width: 22
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e1d18aa8fb18a7b0800000000000000
+      internalID: -5212885813854875161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_92
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 721
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dd69a9a77c26cd90800000000000000
+      internalID: -7077920871906972201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_93
+      rect:
+        serializedVersion: 2
+        x: 1034
+        y: 687
+        width: 18
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f458cb391bbc7db0800000000000000
+      internalID: -4792750186377489167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_94
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 708
+        width: 26
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a525c4d6441a4f5a0800000000000000
+      internalID: -6488383847870475686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_95
+      rect:
+        serializedVersion: 2
+        x: 1090
+        y: 717
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1230c282d76b02940800000000000000
+      internalID: 5269412212684620577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_96
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 715
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cd82f8ca37607d10800000000000000
+      internalID: 2121308926668606916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_97
+      rect:
+        serializedVersion: 2
+        x: 1136
+        y: 707
+        width: 10
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e697968d96462780800000000000000
+      internalID: -8708195187092384025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_98
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 639
+        width: 112
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b60251819dbd76000800000000000000
+      internalID: 29233648059621483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_99
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 695
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bfac56ec4e9b2d70800000000000000
+      internalID: 9019476731859087287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_100
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 695
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1aea898fc5df5ce0800000000000000
+      internalID: -1414176670628517349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_101
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 705
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3724614c1a1830720800000000000000
+      internalID: 2811233124188832371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_102
+      rect:
+        serializedVersion: 2
+        x: 1049
+        y: 710
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6081b9e26a2d55ae0800000000000000
+      internalID: -1561110084625688570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_103
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 705
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c21b12668f9fcd80800000000000000
+      internalID: -8228182594662231353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_104
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 639
+        width: 29
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecf58806f2bccc1e0800000000000000
+      internalID: -2176141115583340594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_105
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 639
+        width: 32
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 212ea6ecc60629d40800000000000000
+      internalID: 5589636107956052498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_106
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 639
+        width: 66
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d88d7da868cfa550800000000000000
+      internalID: 6174373966061078741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_107
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 639
+        width: 66
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e761806ea1657f10800000000000000
+      internalID: 2266825389022210023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_108
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 680
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c3e6f65b3c547b70800000000000000
+      internalID: 8895836573895418816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_109
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 692
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3603f85a038b0420800000000000000
+      internalID: 2597313690574456381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_110
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 687
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e438bb8d076901520800000000000000
+      internalID: 2670799990447375182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_111
+      rect:
+        serializedVersion: 2
+        x: 915
+        y: 697
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51adadec06aaf3bc0800000000000000
+      internalID: -3801132227713377771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_112
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 639
+        width: 111
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8b91c92b6a8698b0800000000000000
+      internalID: -5145773331357525108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_113
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 695
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e52c5814a1f68fc0800000000000000
+      internalID: -3492838773893618200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_114
+      rect:
+        serializedVersion: 2
+        x: 1015
+        y: 682
+        width: 13
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5085d117fa525beb0800000000000000
+      internalID: -4704812800271362043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_115
+      rect:
+        serializedVersion: 2
+        x: 1025
+        y: 688
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 280168a858b5be2e0800000000000000
+      internalID: -2095480572498014078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_116
+      rect:
+        serializedVersion: 2
+        x: 1027
+        y: 670
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66ecebacc4a46b3a0800000000000000
+      internalID: -6650046106086486426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_117
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 639
+        width: 89
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 911c7ab6c74e38fc0800000000000000
+      internalID: -3493697662876139239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_118
+      rect:
+        serializedVersion: 2
+        x: 1116
+        y: 690
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f9b2b1e54e8d3970800000000000000
+      internalID: 8736295282959104502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_119
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 696
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e250adbc248bb0610800000000000000
+      internalID: 1588565890605647150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_120
+      rect:
+        serializedVersion: 2
+        x: 1141
+        y: 686
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0686f2aadd1d6a850800000000000000
+      internalID: 6388023871444838496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_121
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 662
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 194bdacfba6d84080800000000000000
+      internalID: -9202869804364614511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_122
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 671
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29065abc51df47a80800000000000000
+      internalID: -8469866729124306798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_123
+      rect:
+        serializedVersion: 2
+        x: 1141
+        y: 674
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9199d87da419c630800000000000000
+      internalID: 3947709283656372635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_124
+      rect:
+        serializedVersion: 2
+        x: 1145
+        y: 668
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb20b7a15f9cacb70800000000000000
+      internalID: 8920164066509128382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_125
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 660
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23cde6869c4f1b770800000000000000
+      internalID: 8624943907268910130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_126
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 661
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1506dbdf791e86d90800000000000000
+      internalID: -7104180369263599535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_127
+      rect:
+        serializedVersion: 2
+        x: 1046
+        y: 662
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be57127160a8ce7e0800000000000000
+      internalID: -1734859997681977877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_128
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 659
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea54e96a7376874d0800000000000000
+      internalID: -3136643651747297874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_129
+      rect:
+        serializedVersion: 2
+        x: 1134
+        y: 665
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfea8410f1bafee40800000000000000
+      internalID: 5687953004046102269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Motion_animations_3_Spritelist_130
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 649
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd78b517f66778aa0800000000000000
+      internalID: -6158823744390592548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
