@@ -584,7 +584,26 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Health_Regeneration_0: -4664769529106221091
+      Health_Regeneration_1: 6036709250747765774
+      Health_Regeneration_10: -1217634319219064469
+      Health_Regeneration_11: 975591982326064186
+      Health_Regeneration_12: -3294867598565412990
+      Health_Regeneration_13: 421528324576892928
+      Health_Regeneration_14: -1038851268361119888
+      Health_Regeneration_15: -2995426255567073183
+      Health_Regeneration_16: 4718289355572379931
+      Health_Regeneration_17: -4370486260013379613
+      Health_Regeneration_18: 6244538339205589377
+      Health_Regeneration_2: 337653047477788083
+      Health_Regeneration_3: -3518341989965698713
+      Health_Regeneration_4: 1999423144551186317
+      Health_Regeneration_5: -7426560456852174238
+      Health_Regeneration_6: -6768480369503174056
+      Health_Regeneration_7: 6086222828533465158
+      Health_Regeneration_8: -8151655522727157530
+      Health_Regeneration_9: -7579581612927807963
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

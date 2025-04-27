@@ -284,7 +284,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Dodge_0: -4693932192084691647
+      Dodge_1: 580201186502188825
+      Dodge_2: 4460542276255532956
+      Dodge_3: 1730446865317092105
+      Dodge_4: 1115645805419215141
+      Dodge_5: 5357242938776701687
+      Dodge_6: 67131846637942637
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

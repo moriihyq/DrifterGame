@@ -909,7 +909,39 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NumbersMap_0: -8476845736522639505
+      NumbersMap_1: 8734004327277478532
+      NumbersMap_10: -6526855892431259360
+      NumbersMap_11: -6130199647905977333
+      NumbersMap_12: 9001394482544022055
+      NumbersMap_13: -4022480136100972514
+      NumbersMap_14: 2174453519699185636
+      NumbersMap_15: 5431923427268388580
+      NumbersMap_16: 1883490791233954343
+      NumbersMap_17: 4258645181863521675
+      NumbersMap_18: 2463991869621780986
+      NumbersMap_19: 1025185918358386668
+      NumbersMap_2: 318129914132210791
+      NumbersMap_20: -4458833784491782094
+      NumbersMap_21: -6587043779764809195
+      NumbersMap_22: -6075254460570950187
+      NumbersMap_23: -4947302510430999899
+      NumbersMap_24: -3005886877181856632
+      NumbersMap_25: -2181822462382119880
+      NumbersMap_26: 1410519964599750542
+      NumbersMap_27: 2702998830465748024
+      NumbersMap_28: -5642467123298383556
+      NumbersMap_29: 274902949619673079
+      NumbersMap_3: 4131985095376725502
+      NumbersMap_30: -6235067858426369928
+      NumbersMap_31: 1502501485157030873
+      NumbersMap_4: -1539590981349941800
+      NumbersMap_5: 7493875761664378392
+      NumbersMap_6: -3721487449420681523
+      NumbersMap_7: -6952990278602945875
+      NumbersMap_8: 6496733324908802158
+      NumbersMap_9: -1691800213941392007
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

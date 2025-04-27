@@ -359,7 +359,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Power_Boost_0: -2482873273282263645
+      Power_Boost_1: -7317189149145463396
+      Power_Boost_2: -8710594962727534665
+      Power_Boost_3: 1946606772235751230
+      Power_Boost_4: 3431378691864254632
+      Power_Boost_5: -3549937031867663836
+      Power_Boost_6: 6116333976465320886
+      Power_Boost_7: 8203437492177415070
+      Power_Boost_8: -3915922742841242470
+      Power_Boost_9: -653950393648045503
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

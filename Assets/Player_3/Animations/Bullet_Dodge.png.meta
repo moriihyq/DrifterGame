@@ -234,7 +234,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bullet_Dodge_0: -4599746485825725043
+      Bullet_Dodge_1: -7127676917412048720
+      Bullet_Dodge_2: -2156885596668144769
+      Bullet_Dodge_3: 2074554628257359040
+      Bullet_Dodge_4: 3006316720510834853
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

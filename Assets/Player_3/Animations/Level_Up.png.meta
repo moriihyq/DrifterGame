@@ -609,7 +609,27 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Level_Up_0: -6385278325952038588
+      Level_Up_1: -2298864653967172995
+      Level_Up_10: 7580064162394801741
+      Level_Up_11: 2382949487796431718
+      Level_Up_12: -824421704039143983
+      Level_Up_13: -7405723766740500134
+      Level_Up_14: 634098460618284680
+      Level_Up_15: 8191896703973508072
+      Level_Up_16: 1043833145293651710
+      Level_Up_17: 3593481387668616301
+      Level_Up_18: 6350487635334402409
+      Level_Up_19: 413351939120226082
+      Level_Up_2: 3616724517635931573
+      Level_Up_3: -7958025055631852466
+      Level_Up_4: -8700515777267520225
+      Level_Up_5: -1189141793395575289
+      Level_Up_6: 7157298580951349258
+      Level_Up_7: 1721125298916261574
+      Level_Up_8: 3198816789826011944
+      Level_Up_9: -3888086421516522957
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

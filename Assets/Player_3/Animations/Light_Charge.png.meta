@@ -534,7 +534,24 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Light_Charge_0: -6827826447056955657
+      Light_Charge_1: 5767183883060826249
+      Light_Charge_10: -1432628953882091350
+      Light_Charge_11: -1090401854323975118
+      Light_Charge_12: 4042819244752781448
+      Light_Charge_13: 3346530480608883428
+      Light_Charge_14: -5114777446318761825
+      Light_Charge_15: 1571729258057381854
+      Light_Charge_16: -1548420978217002202
+      Light_Charge_2: 2758426829264207549
+      Light_Charge_3: -6040574860801435826
+      Light_Charge_4: 6159025712640457784
+      Light_Charge_5: 997844546840703920
+      Light_Charge_6: 6435718217474513821
+      Light_Charge_7: 7018636997757864139
+      Light_Charge_8: 5209012611113822916
+      Light_Charge_9: -2928975577809299402
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

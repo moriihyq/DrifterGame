@@ -309,7 +309,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Resurrection_0: 1889491400329184283
+      Resurrection_1: -4742577295923178606
+      Resurrection_2: 5566004580615951144
+      Resurrection_3: -2829277540843620574
+      Resurrection_4: -6145508682513531251
+      Resurrection_5: 4480199864849230628
+      Resurrection_6: 8438834039102251544
+      Resurrection_7: -7481668834893051502
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
