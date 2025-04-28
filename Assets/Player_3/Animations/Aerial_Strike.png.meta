@@ -384,7 +384,18 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Aerial_Strike_0: 5588411812783944474
+      Aerial_Strike_1: 5478578675711891347
+      Aerial_Strike_10: -1630185823883934196
+      Aerial_Strike_2: 5022629832779400331
+      Aerial_Strike_3: -8890578304327016453
+      Aerial_Strike_4: 1409584545501453431
+      Aerial_Strike_5: -470871196181085839
+      Aerial_Strike_6: 2426136645347254948
+      Aerial_Strike_7: -1505275794288058264
+      Aerial_Strike_8: 5558245025685177640
+      Aerial_Strike_9: 2784868292056654615
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

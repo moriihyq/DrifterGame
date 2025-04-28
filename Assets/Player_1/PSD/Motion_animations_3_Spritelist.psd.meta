@@ -959,7 +959,41 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Motion_animations_3_Spritelist_0: -559940569574153760
+      Motion_animations_3_Spritelist_1: 834101674981107271
+      Motion_animations_3_Spritelist_10: -5708784342685850419
+      Motion_animations_3_Spritelist_11: -1885503126423161591
+      Motion_animations_3_Spritelist_12: 3491913637096467141
+      Motion_animations_3_Spritelist_13: 8831325114450620946
+      Motion_animations_3_Spritelist_14: 2093340691995132173
+      Motion_animations_3_Spritelist_15: 4243187334422815188
+      Motion_animations_3_Spritelist_16: 3801815292844946856
+      Motion_animations_3_Spritelist_17: 3990205635999923156
+      Motion_animations_3_Spritelist_18: -3718208210152118583
+      Motion_animations_3_Spritelist_19: 4208614995000440513
+      Motion_animations_3_Spritelist_2: 6781380817869517808
+      Motion_animations_3_Spritelist_20: 2763883281092592668
+      Motion_animations_3_Spritelist_21: -1652032570753363258
+      Motion_animations_3_Spritelist_22: -4974007751068287607
+      Motion_animations_3_Spritelist_23: -5190409708784707468
+      Motion_animations_3_Spritelist_24: 5221415152693547022
+      Motion_animations_3_Spritelist_25: -3245769171664145764
+      Motion_animations_3_Spritelist_26: 3235702066525657168
+      Motion_animations_3_Spritelist_27: -8345982101337771592
+      Motion_animations_3_Spritelist_28: -6564718352646776481
+      Motion_animations_3_Spritelist_29: 2415052171191207433
+      Motion_animations_3_Spritelist_3: 433284199810415351
+      Motion_animations_3_Spritelist_30: 7213989587757147525
+      Motion_animations_3_Spritelist_31: -2806846731991208397
+      Motion_animations_3_Spritelist_32: -7844805781406360889
+      Motion_animations_3_Spritelist_33: 5268472157368697505
+      Motion_animations_3_Spritelist_4: -3607093312716588697
+      Motion_animations_3_Spritelist_5: 2994537267064019839
+      Motion_animations_3_Spritelist_6: 5574274976387415495
+      Motion_animations_3_Spritelist_7: -1729117613765584431
+      Motion_animations_3_Spritelist_8: 9164705210275234658
+      Motion_animations_3_Spritelist_9: 6948494077926254271
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

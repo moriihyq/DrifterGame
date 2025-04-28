@@ -359,7 +359,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Aerial_Charge_0: 5320527039392479292
+      Aerial_Charge_1: 288687773953406351
+      Aerial_Charge_2: 6127282710691526340
+      Aerial_Charge_3: 3752553181177152218
+      Aerial_Charge_4: 816583650272702629
+      Aerial_Charge_5: -9009403012740813367
+      Aerial_Charge_6: -6625300488435893127
+      Aerial_Charge_7: -8961156548256243255
+      Aerial_Charge_8: -8327253850643982620
+      Aerial_Charge_9: 8171678057707477063
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

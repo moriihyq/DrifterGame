@@ -684,7 +684,30 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Magic_Shield_0: 1574610775758209067
+      Magic_Shield_1: 4730185143634535482
+      Magic_Shield_10: 872405728149118772
+      Magic_Shield_11: 1070620733306262425
+      Magic_Shield_12: -4235390847991136484
+      Magic_Shield_13: -6060053800069011788
+      Magic_Shield_14: 8579321841871287445
+      Magic_Shield_15: -2507067247223008262
+      Magic_Shield_16: -2766654700200399003
+      Magic_Shield_17: -5551491437172739080
+      Magic_Shield_18: -3560700410949374232
+      Magic_Shield_19: -7616319840431243162
+      Magic_Shield_2: -145902593964218484
+      Magic_Shield_20: 2753329229832713763
+      Magic_Shield_21: -388611544791951296
+      Magic_Shield_22: -7120609302185423807
+      Magic_Shield_3: -2217343616387957803
+      Magic_Shield_4: -8240110080092444905
+      Magic_Shield_5: -8948120651598594279
+      Magic_Shield_6: -3925117649140383812
+      Magic_Shield_7: 3601512388889351630
+      Magic_Shield_8: 4609934166479012001
+      Magic_Shield_9: -5594975622694702743
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

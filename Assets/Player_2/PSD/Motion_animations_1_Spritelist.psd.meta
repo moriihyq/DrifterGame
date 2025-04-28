@@ -1559,7 +1559,65 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Motion_animations_1_Spritelist_0: 1867427339911463749
+      Motion_animations_1_Spritelist_1: -8690760895269930202
+      Motion_animations_1_Spritelist_10: -3023300084602883594
+      Motion_animations_1_Spritelist_11: 7687364556291834745
+      Motion_animations_1_Spritelist_12: 1478009476742104425
+      Motion_animations_1_Spritelist_13: 5952437246761791231
+      Motion_animations_1_Spritelist_14: -7851414570009035239
+      Motion_animations_1_Spritelist_15: -6059252910312492037
+      Motion_animations_1_Spritelist_16: 4300668985434014195
+      Motion_animations_1_Spritelist_17: -2375353070948467527
+      Motion_animations_1_Spritelist_18: 760324378799066839
+      Motion_animations_1_Spritelist_19: 4942993157063883540
+      Motion_animations_1_Spritelist_2: -3997793511489631075
+      Motion_animations_1_Spritelist_20: 2848159033087593136
+      Motion_animations_1_Spritelist_21: 530211999495164603
+      Motion_animations_1_Spritelist_22: 7939937828770646548
+      Motion_animations_1_Spritelist_23: 1772466199469444758
+      Motion_animations_1_Spritelist_24: -1818305780829591762
+      Motion_animations_1_Spritelist_25: -4581185613456300461
+      Motion_animations_1_Spritelist_26: -8917736344018180534
+      Motion_animations_1_Spritelist_27: -5650038519054277887
+      Motion_animations_1_Spritelist_28: 171866202634931034
+      Motion_animations_1_Spritelist_29: -5027784084386409206
+      Motion_animations_1_Spritelist_3: -840595138753597787
+      Motion_animations_1_Spritelist_30: -1524461507979417566
+      Motion_animations_1_Spritelist_31: 8762837746910770242
+      Motion_animations_1_Spritelist_32: -8402832940098509065
+      Motion_animations_1_Spritelist_33: 6302916912868025301
+      Motion_animations_1_Spritelist_34: 6390612989098167457
+      Motion_animations_1_Spritelist_35: 7348255857721624254
+      Motion_animations_1_Spritelist_36: -3875093255667423305
+      Motion_animations_1_Spritelist_37: 8424507931436725564
+      Motion_animations_1_Spritelist_38: -4267610251623685790
+      Motion_animations_1_Spritelist_39: -2252080422195400706
+      Motion_animations_1_Spritelist_4: -2357731857836519698
+      Motion_animations_1_Spritelist_40: -1853157283015409271
+      Motion_animations_1_Spritelist_41: 2172840235664558177
+      Motion_animations_1_Spritelist_42: -7172947415504718510
+      Motion_animations_1_Spritelist_43: -2923700100345959710
+      Motion_animations_1_Spritelist_44: 3765929040674933198
+      Motion_animations_1_Spritelist_45: 6769098528610902936
+      Motion_animations_1_Spritelist_46: -290623522573271028
+      Motion_animations_1_Spritelist_47: -2832399209300540178
+      Motion_animations_1_Spritelist_48: -145556574231413474
+      Motion_animations_1_Spritelist_49: 403307432806776767
+      Motion_animations_1_Spritelist_5: 5934300147436930825
+      Motion_animations_1_Spritelist_50: 1065476693365703964
+      Motion_animations_1_Spritelist_51: -3543396969865412986
+      Motion_animations_1_Spritelist_52: 4181611622812731220
+      Motion_animations_1_Spritelist_53: 5787648219395610916
+      Motion_animations_1_Spritelist_54: -8098146302943920419
+      Motion_animations_1_Spritelist_55: 6801472792992662375
+      Motion_animations_1_Spritelist_56: 8419535513253678288
+      Motion_animations_1_Spritelist_57: -115976527617239999
+      Motion_animations_1_Spritelist_6: -4154686628023263654
+      Motion_animations_1_Spritelist_7: -1750646506887950905
+      Motion_animations_1_Spritelist_8: -7543983162725102329
+      Motion_animations_1_Spritelist_9: 3337964531640375669
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

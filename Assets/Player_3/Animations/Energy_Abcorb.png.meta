@@ -759,7 +759,33 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Energy_Abcorb_0: 1546985989388467852
+      Energy_Abcorb_1: 3292064298072724053
+      Energy_Abcorb_10: 2112228319855152452
+      Energy_Abcorb_11: -4419773408568278528
+      Energy_Abcorb_12: 4274209710230416041
+      Energy_Abcorb_13: 6402143880690027072
+      Energy_Abcorb_14: -1574264345989938637
+      Energy_Abcorb_15: 1763726994646667074
+      Energy_Abcorb_16: 2388099180464772317
+      Energy_Abcorb_17: 73527567581766852
+      Energy_Abcorb_18: 124512663552265236
+      Energy_Abcorb_19: 3166819362848434683
+      Energy_Abcorb_2: -7371412063413048579
+      Energy_Abcorb_20: 8259310040100155184
+      Energy_Abcorb_21: -1978798542426079627
+      Energy_Abcorb_22: 3149756897528438317
+      Energy_Abcorb_23: -1518248743437739565
+      Energy_Abcorb_24: -8666485457672392369
+      Energy_Abcorb_25: 1064274534670131530
+      Energy_Abcorb_3: 2224207410491718325
+      Energy_Abcorb_4: -6947530000402302238
+      Energy_Abcorb_5: 7114996453819623279
+      Energy_Abcorb_6: -7593178789700227040
+      Energy_Abcorb_7: 6627594728157467969
+      Energy_Abcorb_8: -2119668203966743545
+      Energy_Abcorb_9: -783070818649349995
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
