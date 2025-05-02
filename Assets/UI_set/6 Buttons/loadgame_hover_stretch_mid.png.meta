@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      loadgame_hover_stretch_mid_0: 1186766300038783197
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
