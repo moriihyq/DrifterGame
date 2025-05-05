@@ -459,7 +459,21 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Fire_Kick_0: -3669661426506544809
+      Fire_Kick_1: 6493538103788315173
+      Fire_Kick_10: 4090844901939388834
+      Fire_Kick_11: 7894165241396598271
+      Fire_Kick_12: -7780485919805615451
+      Fire_Kick_13: 6979528468283523753
+      Fire_Kick_2: 3791138981267656391
+      Fire_Kick_3: -2664463405944207965
+      Fire_Kick_4: -7017314961994028389
+      Fire_Kick_5: -1102124211493645866
+      Fire_Kick_6: 3138407134482794794
+      Fire_Kick_7: -8786945255737349281
+      Fire_Kick_8: 2810880497445188537
+      Fire_Kick_9: 6441835105896067373
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

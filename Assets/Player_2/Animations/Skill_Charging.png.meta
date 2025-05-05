@@ -259,7 +259,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Skill_Charging_0: 5394793933455341867
+      Skill_Charging_1: 792897732018090445
+      Skill_Charging_2: 5481548242709602660
+      Skill_Charging_3: -6003649694056343845
+      Skill_Charging_4: 5350710402747492833
+      Skill_Charging_5: 569985406083014443
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

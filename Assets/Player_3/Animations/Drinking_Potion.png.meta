@@ -309,7 +309,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Drinking_Potion_0: -2404784629481505001
+      Drinking_Potion_1: -316838243185205632
+      Drinking_Potion_2: -4803348410467949570
+      Drinking_Potion_3: -3157898282586559847
+      Drinking_Potion_4: -8321252611196173925
+      Drinking_Potion_5: 3772673591273567063
+      Drinking_Potion_6: 3022314485471415291
+      Drinking_Potion_7: 5531448768733599862
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

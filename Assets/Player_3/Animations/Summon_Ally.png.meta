@@ -459,7 +459,21 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Summon_Ally_0: 8857176311997114554
+      Summon_Ally_1: -1794733268261994206
+      Summon_Ally_10: 5304610587703282546
+      Summon_Ally_11: -6092218943717178133
+      Summon_Ally_12: 7483141509364635996
+      Summon_Ally_13: 8159841380669817018
+      Summon_Ally_2: 3495942947583190981
+      Summon_Ally_3: 7782353606994232522
+      Summon_Ally_4: 6583873423511032259
+      Summon_Ally_5: -2518399821496469172
+      Summon_Ally_6: 6705189542267792290
+      Summon_Ally_7: -3808635044996434438
+      Summon_Ally_8: 6710519309596886825
+      Summon_Ally_9: -5702887891444777258
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
