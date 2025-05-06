@@ -2,93 +2,131 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f; // 移动速度
-    public float jumpForce = 10f; // 跳跃力度
-    public int money = 0;
+    [Header("组件引用")]
+    [SerializeField] private Rigidbody2D rb;
 
-    private Rigidbody2D rb;
-    private bool isGrounded; // 是否在地面上
+    [Header("移动参数")]
+    [SerializeField] private float moveSpeed = 7f;
+
+    [Header("跳跃参数")]
+    [SerializeField] private float jumpForce = 14f;
+    [SerializeField] private Transform groundCheckPoint;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float groundCheckRadius = 0.2f;
+
+    [Header("二段跳参数")] // <--- 新增部分 ---
+    [SerializeField] private int maxJumps = 2; // 最大跳跃次数（1为普通跳，2为二段跳）
+    [SerializeField] private float airJumpForceMultiplier = 1f; // 空中跳跃力度乘数 (1表示与地面跳跃力度相同)
+    private int jumpsRemaining; // 当前剩余跳跃次数   <--- 新增变量 ---
+
+    // 私有变量
     private float horizontalInput;
-
-    // 用于地面检测
-    public Transform groundCheck; // 在Player下创建一个空物体作为脚底位置
-    public LayerMask groundLayer; // 设置哪些层是地面
-    public float groundCheckRadius = 0.2f; // 检测范围半径
+    private bool isGrounded;
+    private bool isFacingRight = true;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>(); // 获取刚体组件
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+        if (rb == null) Debug.LogError("错误：PlayerMovement 脚本未能找到 Rigidbody2D 组件！", gameObject);
+        if (groundCheckPoint == null) Debug.LogError("错误：PlayerMovement 脚本需要一个 Ground Check Point！", gameObject);
+        if (groundLayer == 0) Debug.LogWarning("警告：PlayerMovement 脚本的 Ground Layer 未设置。", gameObject);
+
+        jumpsRemaining = maxJumps; // 初始化剩余跳跃次数 <--- 新增初始化 ---
     }
 
     void Update()
     {
-        // 获取水平输入 (-1, 0, 1)
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        // 地面检测 (画一个看不见的圆圈在脚底，看是否碰到地面层)
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-        // 跳跃 (只有在地面上才能跳)
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        // --- 修改跳跃逻辑 ---
+        if (Input.GetButtonDown("Jump"))
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce); // 使用速度改变更直接
-            // 或者使用 AddForce: rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            AttemptJump(); // 调用尝试跳跃的方法
         }
 
-        // (可选) 简单的翻转角色朝向
-        Flip();
+        FlipCharacter();
     }
 
     void FixedUpdate()
     {
-        // 物理相关的移动放在 FixedUpdate 中
-        // 使用速度控制左右移动
+        bool wasGrounded = isGrounded; // 记录上一帧是否在地面
+        CheckIfGrounded();
+
+        // 如果从空中落到地面，或者刚开始时在地面，重置跳跃次数
+        if (isGrounded && !wasGrounded) // 刚接触地面
+        {
+            jumpsRemaining = maxJumps;
+            Debug.Log("刚接触地面，跳跃次数重置为: " + jumpsRemaining);
+        }
+        else if (isGrounded && jumpsRemaining < maxJumps && rb.linearVelocity.y <= 0.01f) // 确保已经在地面上稳定一段时间才重置(防止刚跳起就重置)
+        {
+             jumpsRemaining = maxJumps;
+             // Debug.Log("已在地面，跳跃次数重置为: " + jumpsRemaining); // 这个可能会频繁打印，酌情开启
+        }
+
+
         rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
+    }
+
+    void CheckIfGrounded()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, groundLayer);
+    }
+
+    // --- 新增尝试跳跃的方法 ---
+    void AttemptJump()
+    {
+        if (jumpsRemaining > 0)
+        {
+            float currentJumpForce = jumpForce;
+            if (!isGrounded && jumpsRemaining < maxJumps) // 如果是空中跳跃 (jumpsRemaining < maxJumps 暗示不是第一次跳)
+            {
+                currentJumpForce *= airJumpForceMultiplier; // 应用空中跳跃力度乘数
+                Debug.Log("执行空中跳跃！剩余次数（跳跃前）: " + jumpsRemaining + ", 力度: " + currentJumpForce);
+            }
+            else if (isGrounded) // 如果是地面跳跃
+            {
+                Debug.Log("执行地面跳跃！剩余次数（跳跃前）: " + jumpsRemaining + ", 力度: " + currentJumpForce);
+            }
+
+            // 为了让二段跳感觉更可控，通常会在施加新的向上力之前，先将Y轴速度清零或减小
+            // 这样可以避免上一次跳跃的剩余向上的速度与本次跳跃的力叠加过高，或者向下速度过大导致跳不起来
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f); // 将垂直速度清零，确保每次跳跃高度一致
+
+            rb.AddForce(Vector2.up * currentJumpForce, ForceMode2D.Impulse);
+            jumpsRemaining--; // 减少一次剩余跳跃次数
+
+            // 重要：在跳跃后，立即将isGrounded设为false（即使地面检测可能下一帧才更新）
+            // 这样可以防止在同一帧内因为isGrounded仍然为true而连续执行多次跳跃（如果跳跃键按住时间稍长）。
+            // 但这只是一种处理方式，更好的方式是确保GetButtonDown只在按下的那一帧触发。
+            // isGrounded = false; // 这行可以考虑是否需要，通常GetButtonDown已经处理了单次触发
+
+            Debug.Log("跳跃后，剩余次数: " + jumpsRemaining);
+        }
+        else
+        {
+            Debug.Log("无法跳跃，剩余跳跃次数为 0。");
+        }
+    }
+
+    void FlipCharacter()
+    {
+        if (horizontalInput > 0 && !isFacingRight) Flip();
+        else if (horizontalInput < 0 && isFacingRight) Flip();
     }
 
     void Flip()
     {
-         // 根据移动方向翻转角色 Transform 的 scale.x
-        if (horizontalInput > 0)
-        {
-            transform.localScale = new Vector3(1, 1, 1); // 面向右
-        }
-        else if (horizontalInput < 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1); // 面向左
-        }
-        // 如果 horizontalInput 为 0，则保持当前朝向
+        isFacingRight = !isFacingRight;
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
     }
 
-    // (可选) 在 Scene 视图中绘制地面检测范围，方便调试
     void OnDrawGizmosSelected()
     {
-        if (groundCheck != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
-        }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        // 检查碰到的物体是否带有 "Coin" 标签
-        if (other.gameObject.CompareTag("Coin"))
-        {
-            // 1. 增加金钱计数
-            money++;
-
-            // 2. 在控制台显示消息 (用于测试和调试)
-            Debug.Log("金钱+1! 当前总数: " + money);
-
-            // --- 可选：在此处添加更新 UI 显示的代码 ---
-            // UpdateMoneyUI(money); // 例如调用一个更新 UI 的函数
-
-            // 3. 销毁碰到的金币 GameObject，使其消失
-            Destroy(other.gameObject);
-        }
-        // 你可以在这里添加更多的 else if 条件来处理与其他类型触发器的碰撞
-        // else if (other.gameObject.CompareTag("PowerUp")) { ... }
-        // else if (other.gameObject.CompareTag("Hazard")) { ... }
+        if (groundCheckPoint == null) return;
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(groundCheckPoint.position, groundCheckRadius);
     }
 }
