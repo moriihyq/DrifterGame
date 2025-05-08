@@ -8,12 +8,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - BackgroundLayer
+  - Ground
   - Water
   - UI
   - UIMaskLayer
   - ForegroundUILayer
-  - 
+  - wallLayer
   - 
   - 
   - 

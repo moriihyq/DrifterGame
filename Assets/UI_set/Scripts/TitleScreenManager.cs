@@ -25,6 +25,12 @@ public class TitleScreenManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        // 使用新的 API 替换弃用的 FindObjectOfType
+        audioManager = Object.FindFirstObjectByType<AudioVolumeManager>();
+    }
+
     // 公开方法，用于绑定到"开始游戏"按钮的 OnClick 事件
     public void StartGame()
     {
