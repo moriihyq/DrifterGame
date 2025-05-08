@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -40,6 +41,21 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 548934533
+    locked: 0
+  - name: plantforms
+    uniqueID: 4117331223
+    locked: 0
+  - name: decoration
+    uniqueID: 4114558519
+    locked: 0
+  - name: hazard
+    uniqueID: 749891649
+    locked: 0
+  - name: UI
+    uniqueID: 3728276119
     locked: 0
   m_RenderingLayers:
   - Default
