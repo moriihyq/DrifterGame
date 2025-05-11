@@ -266,6 +266,7 @@ public class AudioVolumeManager : MonoBehaviour
     {
         try
         {
+            // 立即应用音量，确保实时响应
             ApplyVolume(value);
 
             // 保存音量设置
@@ -314,13 +315,13 @@ public class AudioVolumeManager : MonoBehaviour
             
             if (displayAsInteger)
             {
-                // 显示为整数
+                // 显示为整数，确保实时更新
                 int volumePercent = Mathf.RoundToInt(volume * 100);
                 volumeText = volumePercent.ToString();
             }
             else
             {
-                // 显示为小数
+                // 显示为小数，确保实时更新
                 volumeText = (volume * 100).ToString("F0");
             }
             
@@ -330,8 +331,14 @@ public class AudioVolumeManager : MonoBehaviour
                 volumeText += "%";
             }
             
-            // 设置文本
+            // 设置文本，确保UI立即更新
             volumeValueText.text = volumeText;
+            
+            // 强制刷新 UI，确保立即可见
+            if (volumeValueText.gameObject.activeInHierarchy)
+            {
+                Canvas.ForceUpdateCanvases();
+            }
         }
     }
 
