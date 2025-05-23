@@ -431,4 +431,29 @@ public class AudioVolumeManager : MonoBehaviour
     {
         ConfigureSlider();
     }
+    
+    // 获取当前音量值
+    public float GetCurrentVolume()
+    {
+        if (volumeSlider != null)
+        {
+            return volumeSlider.value;
+        }
+        else if (musicSource != null)
+        {
+            return musicSource.volume;
+        }
+        else if (sfxSource != null)
+        {
+            return sfxSource.volume;
+        }
+        
+        return 0f;
+    }
+    
+    // 检查是否静音
+    public bool IsMuted()
+    {
+        return GetCurrentVolume() <= 0f;
+    }
 } 
