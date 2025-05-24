@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
+<<<<<<< HEAD
   tags: []
+=======
+  tags:
+  - Coin
+>>>>>>> 5ae11aed366df67d629c55ed0e155e4b545658f9
   layers:
   - Default
   - TransparentFX
@@ -41,5 +46,26 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+<<<<<<< HEAD
+=======
+  - name: background
+    uniqueID: 548934533
+    locked: 0
+  - name: plantforms
+    uniqueID: 4117331223
+    locked: 0
+  - name: decoration
+    uniqueID: 4114558519
+    locked: 0
+  - name: darkness
+    uniqueID: 543326857
+    locked: 0
+  - name: hazard
+    uniqueID: 749891649
+    locked: 0
+  - name: UI
+    uniqueID: 3728276119
+    locked: 0
+>>>>>>> 5ae11aed366df67d629c55ed0e155e4b545658f9
   m_RenderingLayers:
   - Default

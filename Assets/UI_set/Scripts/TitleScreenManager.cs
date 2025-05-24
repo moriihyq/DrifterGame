@@ -25,6 +25,7 @@ public class TitleScreenManager : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     void Start()
     {
         // 使用新的 API 替换弃用的 FindObjectOfType
@@ -56,6 +57,8 @@ public class TitleScreenManager : MonoBehaviour
         }
     }
 
+=======
+>>>>>>> 5ae11aed366df67d629c55ed0e155e4b545658f9
     // 公开方法，用于绑定到"开始游戏"按钮的 OnClick 事件
     public void StartGame()
     {
@@ -69,6 +72,7 @@ public class TitleScreenManager : MonoBehaviour
     // 公开方法，用于绑定到"选项"按钮的 OnClick 事件
     public void OpenOptions()
     {
+<<<<<<< HEAD
         Debug.Log("尝试打开选项菜单...");
         if (optionsPanel != null)
         {
@@ -109,6 +113,16 @@ public class TitleScreenManager : MonoBehaviour
             {
                 Debug.LogError("无法找到选项面板！请在 Inspector 中设置引用或确保场景中存在名为'OptionsMenPanel'的对象。");
             }
+=======
+        Debug.Log("打开选项菜单");
+        if (optionsPanel != null)
+        {
+            optionsPanel.SetActive(true); // 显示选项菜单面板
+        }
+        else
+        {
+            Debug.LogWarning("选项面板未分配！请在 Inspector 中设置引用。");
+>>>>>>> 5ae11aed366df67d629c55ed0e155e4b545658f9
         }
     }
 
