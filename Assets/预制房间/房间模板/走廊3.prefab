@@ -1,83 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &392778602157894916
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7086619954977893032}
-  - component: {fileID: 8505730568734980997}
-  m_Layer: 0
-  m_Name: "\u6D4B\u8BD51\uFF08\u975E\u6700\u7EC8\uFF09"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7086619954977893032
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 392778602157894916}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9256048, y: 4.1182065, z: 0.4097301}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7189149127452244713}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8505730568734980997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 392778602157894916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11725bdbb93631241b38951f78cae60c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 4
-  EnableDiagnostics: 0
-  FixedLevelGraphConfig:
-    LevelGraph: {fileID: 11400000, guid: feaa50a2f83ec354fa2c052eecf6d577, type: 2}
-    UseCorridors: 1
-  GeneratorConfig:
-    RootGameObject: {fileID: 0}
-    Timeout: 10000
-    RepeatModeOverride: 0
-    MinimumRoomDistance: 1
-    RoomTemplatePrefabMode: 0
-  PostProcessConfig:
-    InitializeSharedTilemaps: 1
-    TilemapLayersStructure: 0
-    TilemapLayersHandler: {fileID: 0}
-    TilemapLayersExample: {fileID: 0}
-    TilemapMaterial: {fileID: 0}
-    CopyTilesToSharedTilemaps: 1
-    CenterGrid: 1
-    DisableRoomTemplatesRenderers: 1
-    DisableRoomTemplatesColliders: 1
-    AnalyzeLevelStructure: 1
-  CustomPostProcessTasks: []
-  OtherConfig:
-    UseRandomSeed: 1
-    RandomGeneratorSeed: 0
-    GenerateOnStart: 1
-  AdvancedConfig:
-    ThrowExceptionsImmediately: 0
-  UseRandomSeed: 1
-  RandomGeneratorSeed: 0
-  GenerateOn: 2
-  ThrowExceptionsImmediately: 0
-  DisableCustomPostProcessing: 0
 --- !u!1 &506276466872777638
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +451,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2629704407498655880}
-  - {fileID: 7086619954977893032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7307580114808574002
