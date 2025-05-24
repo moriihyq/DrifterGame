@@ -29,6 +29,9 @@ public class TitleScreenManager : MonoBehaviour
 
     void Start()
     {
+        // 确保SaveManager存在
+        GameInitializer.EnsureManagersExist();
+        
         // 使用新的 API 替换弃用的 FindObjectOfType
         audioManager = Object.FindFirstObjectByType<AudioVolumeManager>();
         
@@ -78,7 +81,14 @@ public class TitleScreenManager : MonoBehaviour
     // 公开方法，用于绑定到"开始游戏"按钮的 OnClick 事件
     public void StartGame()
     {
-        Debug.Log("开始加载游戏场景: " + gameSceneName);
+        Debug.Log("开始新游戏，清除所有存档并加载游戏场景: " + gameSceneName);
+        
+        // 清除自动存档槽位（槽位0）以确保是新游戏
+        if (SaveManager.Instance != null)
+        {
+            SaveManager.Instance.DeleteSave(0);
+        }
+        
         // 异步加载场景可以防止卡顿，并可以显示加载进度条（如果需要）
         // SceneManager.LoadSceneAsync(gameSceneName);
         // 简单直接加载：

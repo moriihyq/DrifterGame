@@ -1,202 +1,310 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
-    private static SaveManager instance;
-    public static SaveManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<SaveManager>();
-                if (instance == null)
-                {
-                    GameObject go = new GameObject("SaveManager");
-                    instance = go.AddComponent<SaveManager>();
-                    DontDestroyOnLoad(go);
-                }
-            }
-            return instance;
-        }
-    }
-
-    private const int MAX_SAVE_SLOTS = 5; // 最多5个存档位
+    public static SaveManager Instance { get; private set; }
+    
     private string saveDirectory;
-    private float gameStartTime;
+    private const string SAVE_FILE_PREFIX = "save_";
+    private const string SAVE_FILE_EXTENSION = ".json";
+    private const int MAX_SAVE_SLOTS = 3;
+    
+    // 自动存档设置
+    [Header("自动存档设置")]
+    public float autoSaveInterval = 60f; // 每60秒自动存档一次
+    private float autoSaveTimer;
+    private bool isAutoSaveEnabled = true;
+    
+    // UI引用
+    [Header("UI引用")]
+    public SaveMessageUI saveMessageUI; // 存档成功提示UI
+    public float messageDisplayTime = 2f;
     
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            InitializeSaveSystem();
+        }
+        else
         {
             Destroy(gameObject);
-            return;
         }
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-        
+    }
+    
+    private void InitializeSaveSystem()
+    {
         // 创建存档目录
-        saveDirectory = Path.Combine(Application.persistentDataPath, "SaveGames");
+        saveDirectory = Path.Combine(Application.persistentDataPath, "Saves");
         if (!Directory.Exists(saveDirectory))
         {
             Directory.CreateDirectory(saveDirectory);
         }
         
-        gameStartTime = Time.time;
-    }
-
-    // 保存游戏到指定槽位
-    public void SaveGame(int slot, string saveName = null)
-    {
-        if (slot < 0 || slot >= MAX_SAVE_SLOTS)
-        {
-            Debug.LogError("无效的存档槽位: " + slot);
-            return;
-        }
-
-        SaveData saveData = new SaveData();
-        saveData.saveSlot = slot;
-        saveData.saveName = saveName ?? $"存档 {slot + 1}";
-        saveData.saveTime = DateTime.Now;
-        saveData.playTime = Time.time - gameStartTime;
-        saveData.currentScene = SceneManager.GetActiveScene().name;
-
-        // 获取玩家数据
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            saveData.playerPosition = player.transform.position;
-            
-            // 尝试获取玩家组件数据
-            var playerController = player.GetComponent<PlayerController>();
-            if (playerController != null)
-            {
-                saveData.playerHealth = playerController.currentHealth;
-                // PlayerController中暂时没有money属性，先使用默认值
-                saveData.playerMoney = 0;
-            }
-        }
-
-        // 保存到文件
-        string json = JsonUtility.ToJson(saveData, true);
-        string filePath = GetSaveFilePath(slot);
-        File.WriteAllText(filePath, json);
-        
-        Debug.Log($"游戏已保存到槽位 {slot + 1}");
-    }
-
-    // 加载指定槽位的游戏
-    public void LoadGame(int slot)
-    {
-        if (slot < 0 || slot >= MAX_SAVE_SLOTS)
-        {
-            Debug.LogError("无效的存档槽位: " + slot);
-            return;
-        }
-
-        string filePath = GetSaveFilePath(slot);
-        if (!File.Exists(filePath))
-        {
-            Debug.LogError($"槽位 {slot + 1} 没有存档");
-            return;
-        }
-
-        string json = File.ReadAllText(filePath);
-        SaveData saveData = JsonUtility.FromJson<SaveData>(json);
-
-        // 加载场景
-        SceneManager.LoadScene(saveData.currentScene);
-        
-        // 场景加载完成后恢复游戏数据
-        SceneManager.sceneLoaded += OnSceneLoadedForSave;
-        
-        // 临时存储要恢复的数据
-        tempSaveData = saveData;
+        Debug.Log($"存档目录: {saveDirectory}");
     }
     
-    private SaveData tempSaveData;
-
-    private void OnSceneLoadedForSave(Scene scene, LoadSceneMode mode)
+    private void Update()
     {
-        // 只执行一次
-        SceneManager.sceneLoaded -= OnSceneLoadedForSave;
-        
-        if (tempSaveData == null) return;
-
-        // 恢复玩家位置和数据
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        // 自动存档计时
+        if (isAutoSaveEnabled && SceneManager.GetActiveScene().name != "MainMenuScene")
         {
-            player.transform.position = tempSaveData.playerPosition;
-            
-            var playerController = player.GetComponent<PlayerController>();
-            if (playerController != null)
+            autoSaveTimer += Time.deltaTime;
+            if (autoSaveTimer >= autoSaveInterval)
             {
-                playerController.currentHealth = tempSaveData.playerHealth;
-                // PlayerController中暂时没有money属性，跳过恢复
+                AutoSave();
+                autoSaveTimer = 0f;
             }
         }
-
-        gameStartTime = Time.time - tempSaveData.playTime;
-        Debug.Log($"游戏已从槽位 {tempSaveData.saveSlot + 1} 加载");
+    }
+    
+    public void SaveGame(int slotIndex)
+    {
+        if (slotIndex < 0 || slotIndex >= MAX_SAVE_SLOTS)
+        {
+            Debug.LogError($"无效的存档槽位: {slotIndex}");
+            return;
+        }
         
-        tempSaveData = null;
+        GameData gameData = CollectGameData();
+        gameData.saveName = $"存档 {slotIndex + 1}";
+        
+        string fileName = $"{SAVE_FILE_PREFIX}{slotIndex}{SAVE_FILE_EXTENSION}";
+        string filePath = Path.Combine(saveDirectory, fileName);
+        
+        try
+        {
+            string json = JsonUtility.ToJson(gameData, true);
+            File.WriteAllText(filePath, json);
+            Debug.Log($"游戏已保存到槽位 {slotIndex}");
+            ShowSaveMessage("游戏已保存");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"保存游戏失败: {e.Message}");
+            ShowSaveMessage("保存失败", true);
+        }
     }
-
-    // 检查槽位是否有存档
-    public bool HasSaveInSlot(int slot)
+    
+    public void AutoSave()
     {
-        if (slot < 0 || slot >= MAX_SAVE_SLOTS) return false;
-        return File.Exists(GetSaveFilePath(slot));
+        // 找到最近使用的存档槽位或使用第一个槽位
+        int slotToUse = GetAutoSaveSlot();
+        SaveGame(slotToUse);
+        Debug.Log("自动存档完成");
     }
-
-    // 获取所有存档信息
-    public List<SaveData> GetAllSaves()
+    
+    private int GetAutoSaveSlot()
     {
-        List<SaveData> saves = new List<SaveData>();
+        // 这里可以实现更复杂的逻辑，比如找到最近使用的槽位
+        // 现在简单地使用第一个槽位
+        return 0;
+    }
+    
+    public GameData LoadGame(int slotIndex)
+    {
+        if (slotIndex < 0 || slotIndex >= MAX_SAVE_SLOTS)
+        {
+            Debug.LogError($"无效的存档槽位: {slotIndex}");
+            return null;
+        }
+        
+        string fileName = $"{SAVE_FILE_PREFIX}{slotIndex}{SAVE_FILE_EXTENSION}";
+        string filePath = Path.Combine(saveDirectory, fileName);
+        
+        if (File.Exists(filePath))
+        {
+            try
+            {
+                string json = File.ReadAllText(filePath);
+                GameData gameData = JsonUtility.FromJson<GameData>(json);
+                Debug.Log($"从槽位 {slotIndex} 加载游戏");
+                return gameData;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"加载游戏失败: {e.Message}");
+                return null;
+            }
+        }
+        else
+        {
+            Debug.Log($"槽位 {slotIndex} 没有存档");
+            return null;
+        }
+    }
+    
+    public void LoadGameAndApply(int slotIndex)
+    {
+        GameData gameData = LoadGame(slotIndex);
+        if (gameData != null)
+        {
+            StartCoroutine(LoadGameCoroutine(gameData));
+        }
+    }
+    
+    private System.Collections.IEnumerator LoadGameCoroutine(GameData gameData)
+    {
+        // 加载场景
+        if (SceneManager.GetActiveScene().name != gameData.sceneName)
+        {
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(gameData.sceneName);
+            while (!asyncLoad.isDone)
+            {
+                yield return null;
+            }
+        }
+        
+        // 等待一帧确保场景完全加载
+        yield return null;
+        
+        // 应用存档数据
+        ApplyGameData(gameData);
+    }
+    
+    private GameData CollectGameData()
+    {
+        GameData gameData = new GameData();
+        gameData.sceneName = SceneManager.GetActiveScene().name;
+        
+        // 收集玩家数据
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player != null)
+        {
+            gameData.playerData = new PlayerData
+            {
+                currentHealth = player.currentHealth,
+                maxHealth = player.maxHealth,
+                position = player.transform.position,
+                isFacingRight = !player.GetComponent<SpriteRenderer>().flipX
+            };
+        }
+        
+        // 收集敌人数据
+        gameData.enemiesData = new List<EnemyData>();
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemyObj in enemies)
+        {
+            EnemyBase enemy = enemyObj.GetComponent<EnemyBase>();
+            if (enemy != null && enemy.isActive)
+            {
+                gameData.enemiesData.Add(enemy.GetEnemyData());
+            }
+        }
+        
+        return gameData;
+    }
+    
+    private void ApplyGameData(GameData gameData)
+    {
+        // 应用玩家数据
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player != null && gameData.playerData != null)
+        {
+            player.currentHealth = gameData.playerData.currentHealth;
+            player.maxHealth = gameData.playerData.maxHealth;
+            player.transform.position = gameData.playerData.position;
+            player.GetComponent<SpriteRenderer>().flipX = !gameData.playerData.isFacingRight;
+        }
+        
+        // 应用敌人数据
+        // 这里需要根据你的敌人系统来实现
+        // 例如：通过敌人管理器重新生成敌人，或者寻找场景中的敌人并更新它们的状态
+    }
+    
+    public List<SaveInfo> GetAllSaveInfos()
+    {
+        List<SaveInfo> saveInfos = new List<SaveInfo>();
         
         for (int i = 0; i < MAX_SAVE_SLOTS; i++)
         {
-            string filePath = GetSaveFilePath(i);
+            string fileName = $"{SAVE_FILE_PREFIX}{i}{SAVE_FILE_EXTENSION}";
+            string filePath = Path.Combine(saveDirectory, fileName);
+            
             if (File.Exists(filePath))
             {
-                string json = File.ReadAllText(filePath);
-                SaveData saveData = JsonUtility.FromJson<SaveData>(json);
-                saves.Add(saveData);
+                try
+                {
+                    string json = File.ReadAllText(filePath);
+                    GameData gameData = JsonUtility.FromJson<GameData>(json);
+                    
+                    SaveInfo info = new SaveInfo
+                    {
+                        slotIndex = i,
+                        saveName = gameData.saveName,
+                        saveTime = gameData.saveTime,
+                        sceneName = gameData.sceneName,
+                        playerHealth = gameData.playerData.currentHealth,
+                        playTime = gameData.progressData.playTime
+                    };
+                    
+                    saveInfos.Add(info);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"读取存档信息失败: {e.Message}");
+                }
             }
             else
             {
-                saves.Add(null); // 空槽位
+                // 空槽位
+                SaveInfo info = new SaveInfo
+                {
+                    slotIndex = i,
+                    saveName = $"空槽位 {i + 1}",
+                    isEmpty = true
+                };
+                saveInfos.Add(info);
             }
         }
         
-        return saves;
+        return saveInfos;
     }
-
-    // 删除指定槽位的存档
-    public void DeleteSave(int slot)
+    
+    public void DeleteSave(int slotIndex)
     {
-        if (slot < 0 || slot >= MAX_SAVE_SLOTS) return;
+        string fileName = $"{SAVE_FILE_PREFIX}{slotIndex}{SAVE_FILE_EXTENSION}";
+        string filePath = Path.Combine(saveDirectory, fileName);
         
-        string filePath = GetSaveFilePath(slot);
         if (File.Exists(filePath))
         {
             File.Delete(filePath);
-            Debug.Log($"槽位 {slot + 1} 的存档已删除");
+            Debug.Log($"删除槽位 {slotIndex} 的存档");
         }
     }
-
-    private string GetSaveFilePath(int slot)
+    
+    private void ShowSaveMessage(string message, bool isError = false)
     {
-        return Path.Combine(saveDirectory, $"save_slot_{slot}.json");
+        if (saveMessageUI != null)
+        {
+            saveMessageUI.ShowMessage(message, isError);
+        }
     }
-
-    public int GetMaxSaveSlots()
+    
+    public void SetAutoSaveEnabled(bool enabled)
     {
-        return MAX_SAVE_SLOTS;
+        isAutoSaveEnabled = enabled;
+        if (!enabled)
+        {
+            autoSaveTimer = 0f;
+        }
     }
+}
+
+[System.Serializable]
+public class SaveInfo
+{
+    public int slotIndex;
+    public string saveName;
+    public DateTime saveTime;
+    public string sceneName;
+    public int playerHealth;
+    public float playTime;
+    public bool isEmpty;
 } 
