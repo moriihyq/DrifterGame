@@ -25,40 +25,6 @@ public class TitleScreenManager : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
-    void Start()
-    {
-        // 使用新的 API 替换弃用的 FindObjectOfType
-        audioManager = Object.FindFirstObjectByType<AudioVolumeManager>();
-        
-        // 如果选项面板还没有被分配，尝试通过名称查找
-        if (optionsPanel == null)
-        {
-            // 先尝试查找名为"OptionsMenPanel"的对象（注意拼写错误）
-            optionsPanel = GameObject.Find("OptionsMenPanel");
-            
-            // 如果仍未找到，尝试查找名为"OptionsPanel"的对象
-            if (optionsPanel == null)
-            {
-                optionsPanel = GameObject.Find("OptionsPanel");
-            }
-            
-            // 如果还是没找到，输出错误日志
-            if (optionsPanel == null)
-            {
-                Debug.LogError("无法找到选项面板！请确保场景中存在'OptionsMenPanel'或'OptionsPanel'对象。");
-            }
-            else
-            {
-                // 确保找到的面板初始状态为隐藏
-                optionsPanel.SetActive(false);
-                Debug.Log("已找到选项面板：" + optionsPanel.name);
-            }
-        }
-    }
-
-=======
->>>>>>> 5ae11aed366df67d629c55ed0e155e4b545658f9
     // 公开方法，用于绑定到"开始游戏"按钮的 OnClick 事件
     public void StartGame()
     {
@@ -72,48 +38,6 @@ public class TitleScreenManager : MonoBehaviour
     // 公开方法，用于绑定到"选项"按钮的 OnClick 事件
     public void OpenOptions()
     {
-<<<<<<< HEAD
-        Debug.Log("尝试打开选项菜单...");
-        if (optionsPanel != null)
-        {
-            Debug.Log("找到选项面板: " + optionsPanel.name + "，正在激活...");
-            // 先确保面板存在并且是非激活状态
-            if (!optionsPanel.activeInHierarchy)
-            {
-                optionsPanel.SetActive(true); // 显示选项菜单面板
-                Debug.Log("选项面板已激活");
-                
-                // 尝试找到和重置音量滑动条
-                var volumeManager = FindObjectOfType<AudioVolumeManager>();
-                if (volumeManager != null)
-                {
-                    volumeManager.ResetSliderInteraction();
-                }
-            }
-            else
-            {
-                Debug.LogWarning("选项面板已经处于激活状态，不需要再次激活");
-            }
-        }
-        else
-        {
-            // 如果optionsPanel为空，尝试重新查找
-            Debug.LogWarning("选项面板未分配！尝试重新查找...");
-            
-            // 尝试查找名为"OptionsMenPanel"的对象（注意拼写错误）
-            optionsPanel = GameObject.Find("OptionsMenPanel");
-            
-            // 如果找到了，激活它
-            if (optionsPanel != null)
-            {
-                Debug.Log("找到选项面板: " + optionsPanel.name + "，正在激活...");
-                optionsPanel.SetActive(true);
-            }
-            else
-            {
-                Debug.LogError("无法找到选项面板！请在 Inspector 中设置引用或确保场景中存在名为'OptionsMenPanel'的对象。");
-            }
-=======
         Debug.Log("打开选项菜单");
         if (optionsPanel != null)
         {
@@ -122,7 +46,6 @@ public class TitleScreenManager : MonoBehaviour
         else
         {
             Debug.LogWarning("选项面板未分配！请在 Inspector 中设置引用。");
->>>>>>> 5ae11aed366df67d629c55ed0e155e4b545658f9
         }
     }
 
