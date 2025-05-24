@@ -32,11 +32,8 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private SpriteRenderer sr;
     private PlayerJumpManager jumpManager;
-    private RollingManager rollingManager;
-
-    public bool isGrounded { get; private set; }
+    private RollingManager rollingManager;    public bool isGrounded { get; private set; }
     private bool isCrouching;
-    private bool isRolling;
     private bool isClimbing;
     private bool isTouchingWall;
     private float moveInput;
@@ -49,15 +46,12 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         jumpManager = GetComponent<PlayerJumpManager>();
         rollingManager = GetComponent<RollingManager>();
-    }
-
-    void Update()
+    }    void Update()
     {
         moveInput = Input.GetAxisRaw("Horizontal");
         HandleMovement();
         HandleJump();
         HandleCrouch();
-        HandleRoll();
         HandleClimb();
         UpdateAnimator();
     }
@@ -113,19 +107,7 @@ public class PlayerController : MonoBehaviour
             isCrouching = true;
         if (Input.GetKeyUp(KeyCode.S))
             isCrouching = false;
-    }
-
-    void HandleRoll()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftControl) && isGrounded && !isRolling)
-        {
-            isRolling = true;
-            float rollDir = sr.flipX ? -1 : 1;
-            rb.linearVelocity = new Vector2(rollDir * rollSpeed, rb.linearVelocity.y);
-            Invoke("EndRoll", 0.5f);
-        }
-    }
-    void EndRoll() { isRolling = false; }
+    }    // 移除了HandleRoll方法，现在由RollingManager处理
 
     void HandleClimb()
     {
@@ -155,13 +137,12 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isRunning", isRunningValue);
 
         // Debug logs for verification
-        Debug.Log($"Animator Parameters - Speed: {speedValue}, isRunning: {isRunningValue}");
-
-        animator.SetBool("isGrounded", isGrounded);
+        Debug.Log($"Animator Parameters - Speed: {speedValue}, isRunning: {isRunningValue}");        animator.SetBool("isGrounded", isGrounded);
         animator.SetBool("isCrouching", isCrouching);
-        animator.SetBool("isRolling", isRolling);
         animator.SetBool("isClimbing", isClimbing);
         animator.SetFloat("VerticalVelocity", rb.linearVelocity.y);
+        
+        // Rolling状态由RollingManager控制
     }
 
     void FixedUpdate()

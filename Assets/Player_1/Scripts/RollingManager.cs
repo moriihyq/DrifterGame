@@ -59,9 +59,7 @@ public class RollingManager : MonoBehaviour
         {
             StartRoll();
         }
-    }
-
-    void StartRoll()
+    }    void StartRoll()
     {
         if (!canRoll || isRolling) return;
 
@@ -78,20 +76,21 @@ public class RollingManager : MonoBehaviour
         // 设置为跑步状态
         animator.SetBool("isRunning", true);
         
-        // 重要：完全重置当前速度
-        rb.linearVelocity = Vector2.zero;
-        rb.linearVelocity = new Vector2(rollDirection * rollSpeed, 0f);
+        // 根据当前是否在跑步来设置初始翻滚速度
+        float initialRollSpeed = wasRunning ? rollSpeed * 1.5f : rollSpeed;
+        rb.linearVelocity = new Vector2(rollDirection * initialRollSpeed, rb.linearVelocity.y);
         
         // 触发翻滚动画
         animator.SetTrigger("rolling");
-    }
-
-    void UpdateRoll()
+    }    void UpdateRoll()
     {
         currentRollTime += Time.deltaTime;
         
-        // 在翻滚过程中保持速度并确保始终处于跑步状态
-        rb.linearVelocity = new Vector2(rollDirection * rollSpeed, 0f);
+        // 在翻滚过程中根据是否在跑步状态来设置速度
+        float currentRollSpeed = wasRunning ? rollSpeed * 1.5f : rollSpeed;
+        rb.linearVelocity = new Vector2(rollDirection * currentRollSpeed, rb.linearVelocity.y);
+        
+        // 保持跑步动画状态
         animator.SetBool("isRunning", true);
 
         // 检查翻滚是否结束
