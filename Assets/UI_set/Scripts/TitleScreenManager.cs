@@ -7,6 +7,8 @@ public class TitleScreenManager : MonoBehaviour
     public string gameSceneName = "YourGameSceneName"; // !!! 修改为你实际的游戏场景名称 !!!
     public string mainMenuSceneName = "MainMenuScene"; // 主菜单场景名称
     public GameObject optionsPanel; // 选项菜单面板的引用
+    public GameObject loadGamePanel; // 添加LoadGamePanel引用
+    public GameObject mainUIPanel; // 添加主UI面板引用
     
     // 音频控制相关
     [Header("音频控制")]
@@ -54,6 +56,23 @@ public class TitleScreenManager : MonoBehaviour
                 Debug.Log("已找到选项面板：" + optionsPanel.name);
             }
         }
+        
+        // 查找LoadGamePanel
+        if (loadGamePanel == null)
+        {
+            loadGamePanel = GameObject.Find("LoadGamePanel");
+            if (loadGamePanel != null)
+            {
+                loadGamePanel.SetActive(false);
+                Debug.Log("已找到LoadGamePanel");
+            }
+        }
+        
+        // 查找MainUIPanel
+        if (mainUIPanel == null)
+        {
+            mainUIPanel = GameObject.Find("MainUIPanel");
+        }
     }
 
     // 公开方法，用于绑定到"开始游戏"按钮的 OnClick 事件
@@ -64,6 +83,29 @@ public class TitleScreenManager : MonoBehaviour
         // SceneManager.LoadSceneAsync(gameSceneName);
         // 简单直接加载：
         SceneManager.LoadScene(gameSceneName);
+    }
+    
+    // 公开方法，用于绑定到"读取游戏"按钮的 OnClick 事件
+    public void OpenLoadGame()
+    {
+        Debug.Log("打开读档界面");
+        if (loadGamePanel != null)
+        {
+            loadGamePanel.SetActive(true);
+            if (mainUIPanel != null)
+                mainUIPanel.SetActive(false);
+                
+            // 刷新存档列表
+            var loadGameManager = loadGamePanel.GetComponent<LoadGamePanelManager>();
+            if (loadGameManager != null)
+            {
+                loadGameManager.RefreshSaveSlots();
+            }
+        }
+        else
+        {
+            Debug.LogError("LoadGamePanel未找到！");
+        }
     }
 
     // 公开方法，用于绑定到"选项"按钮的 OnClick 事件
