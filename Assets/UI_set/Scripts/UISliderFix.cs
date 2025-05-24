@@ -205,17 +205,12 @@ public class UISliderFix : MonoBehaviour
             normalizedPosition = 1 - normalizedPosition;
         }
         
-<<<<<<< HEAD
         // 设置滑动条值，确保UI和音量立即更新
         targetSlider.value = normalizedPosition;
         
         // 在拖动过程中直接更新UI和音量，确保实时响应
         ForceUpdateUI(normalizedPosition);
         UpdateVolume(normalizedPosition);
-=======
-        // 设置滑动条值
-        targetSlider.value = normalizedPosition;
->>>>>>> 5ae11aed366df67d629c55ed0e155e4b545658f9
     }
 
     private void OnSliderValueChanged(float value)
@@ -258,15 +253,12 @@ public class UISliderFix : MonoBehaviour
         {
             int percentage = Mathf.RoundToInt(value * 100);
             volumeText.text = string.Format(valueFormat, percentage);
-<<<<<<< HEAD
             
             // 强制刷新UI，确保文本立即更新
             if (volumeText.gameObject.activeInHierarchy)
             {
                 Canvas.ForceUpdateCanvases();
             }
-=======
->>>>>>> 5ae11aed366df67d629c55ed0e155e4b545658f9
         }
 
         // 更新滑动条填充图像
@@ -363,11 +355,7 @@ public class UISliderFix : MonoBehaviour
 
     private void UpdateVolume(float volume)
     {
-<<<<<<< HEAD
         // 更新音频源音量，确保立即生效
-=======
-        // 更新音频源音量
->>>>>>> 5ae11aed366df67d629c55ed0e155e4b545658f9
         if (musicSource != null)
         {
             musicSource.volume = volume;
@@ -377,14 +365,11 @@ public class UISliderFix : MonoBehaviour
         {
             sfxSource.volume = volume;
         }
-<<<<<<< HEAD
         
         // 保存音量设置，确保保存最新的值
         lastVolume = volume;
         PlayerPrefs.SetFloat("GameVolume", volume);
         PlayerPrefs.Save();
-=======
->>>>>>> 5ae11aed366df67d629c55ed0e155e4b545658f9
     }
     
     // 公共方法，允许外部重置并更新UI

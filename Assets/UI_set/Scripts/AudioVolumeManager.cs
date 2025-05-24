@@ -266,10 +266,7 @@ public class AudioVolumeManager : MonoBehaviour
     {
         try
         {
-<<<<<<< HEAD
             // 立即应用音量，确保实时响应
-=======
->>>>>>> 5ae11aed366df67d629c55ed0e155e4b545658f9
             ApplyVolume(value);
 
             // 保存音量设置
@@ -318,21 +315,13 @@ public class AudioVolumeManager : MonoBehaviour
             
             if (displayAsInteger)
             {
-<<<<<<< HEAD
                 // 显示为整数，确保实时更新
-=======
-                // 显示为整数
->>>>>>> 5ae11aed366df67d629c55ed0e155e4b545658f9
                 int volumePercent = Mathf.RoundToInt(volume * 100);
                 volumeText = volumePercent.ToString();
             }
             else
             {
-<<<<<<< HEAD
                 // 显示为小数，确保实时更新
-=======
-                // 显示为小数
->>>>>>> 5ae11aed366df67d629c55ed0e155e4b545658f9
                 volumeText = (volume * 100).ToString("F0");
             }
             
@@ -342,7 +331,6 @@ public class AudioVolumeManager : MonoBehaviour
                 volumeText += "%";
             }
             
-<<<<<<< HEAD
             // 设置文本，确保UI立即更新
             volumeValueText.text = volumeText;
             
@@ -351,10 +339,6 @@ public class AudioVolumeManager : MonoBehaviour
             {
                 Canvas.ForceUpdateCanvases();
             }
-=======
-            // 设置文本
-            volumeValueText.text = volumeText;
->>>>>>> 5ae11aed366df67d629c55ed0e155e4b545658f9
         }
     }
 
