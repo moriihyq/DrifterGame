@@ -19,7 +19,12 @@ public class RollingManager : MonoBehaviour
     private float rollCooldownTimer = 0f;
     private float currentRollTime = 0f;
     private float rollDirection = 0f;
-    private bool wasRunning = false;     // 记录翻滚前是否在跑步
+    private bool wasMoving = false;      // 记录翻滚前是否在移动
+
+    // 动画参数名称常量
+    private readonly int SpeedHash = Animator.StringToHash("Speed");
+    private readonly int RollTriggerHash = Animator.StringToHash("Roll");     // 修改为Roll
+    private readonly int IsRollingHash = Animator.StringToHash("IsRolling"); // 添加IsRolling参数
 
     void Start()
     {
@@ -37,6 +42,12 @@ public class RollingManager : MonoBehaviour
         if (isRolling)
         {
             UpdateRoll();
+        }
+
+        // 调试信息
+        if (Input.GetMouseButtonDown(1))
+        {
+            Debug.Log($"右键按下 - canRoll: {canRoll}, isRolling: {isRolling}, isGrounded: {playerController.isGrounded}");
         }
     }
 
@@ -59,12 +70,14 @@ public class RollingManager : MonoBehaviour
         {
             StartRoll();
         }
-    }    void StartRoll()
+    }
+
+    void StartRoll()
     {
         if (!canRoll || isRolling) return;
 
-        // 记录当前是否在跑步
-        wasRunning = animator.GetBool("isRunning");
+        // 记录当前移动状态
+        wasMoving = animator.GetFloat(SpeedHash) > 0.1f;
         
         isRolling = true;
         canRoll = false;
@@ -73,28 +86,30 @@ public class RollingManager : MonoBehaviour
         // 设置翻滚方向
         rollDirection = spriteRenderer.flipX ? -1f : 1f;
         
-        // 设置为跑步状态
-        animator.SetBool("isRunning", true);
+        // 设置动画状态
+        animator.SetBool(IsRollingHash, true);
+        animator.SetTrigger(RollTriggerHash);
         
-        // 根据当前是否在跑步来设置初始翻滚速度
-        float initialRollSpeed = wasRunning ? rollSpeed * 1.5f : rollSpeed;
-        rb.linearVelocity = new Vector2(rollDirection * initialRollSpeed, rb.linearVelocity.y);
+        // 设置翻滚速度
+        rb.linearVelocity = new Vector2(rollDirection * rollSpeed, rb.linearVelocity.y);
         
-        // 触发翻滚动画
-        animator.SetTrigger("rolling");
-    }    void UpdateRoll()
+        // 调试信息
+        Debug.Log("开始翻滚");
+    }
+
+    void UpdateRoll()
     {
         currentRollTime += Time.deltaTime;
         
-        // 在翻滚过程中根据是否在跑步状态来设置速度
-        float currentRollSpeed = wasRunning ? rollSpeed * 1.5f : rollSpeed;
-        rb.linearVelocity = new Vector2(rollDirection * currentRollSpeed, rb.linearVelocity.y);
-        
-        // 保持跑步动画状态
-        animator.SetBool("isRunning", true);
+        // 保持翻滚速度
+        rb.linearVelocity = new Vector2(rollDirection * rollSpeed, rb.linearVelocity.y);
 
-        // 检查翻滚是否结束
-        if (currentRollTime >= rollDuration)
+        // 获取当前动画状态信息
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        
+        // 检查是否在Roll状态且动画播放完成
+        if (currentRollTime >= rollDuration || 
+            (stateInfo.IsTag("Roll") && stateInfo.normalizedTime >= 1.0f))
         {
             EndRoll();
         }
@@ -103,10 +118,16 @@ public class RollingManager : MonoBehaviour
     void EndRoll()
     {
         isRolling = false;
-        rb.linearVelocity = Vector2.zero;
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         
-        // 恢复到之前的跑步状态
-        animator.SetBool("isRunning", wasRunning);
+        // 重置动画状态
+        animator.SetBool(IsRollingHash, false);
+        
+        // 恢复移动状态
+        animator.SetFloat(SpeedHash, wasMoving ? 4f : 0f);
+        
+        // 调试信息
+        Debug.Log("结束翻滚");
     }
 
     public bool IsRolling()
