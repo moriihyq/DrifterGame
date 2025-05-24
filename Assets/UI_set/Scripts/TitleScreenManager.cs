@@ -121,46 +121,14 @@ public class TitleScreenManager : MonoBehaviour
     // 公开方法，用于绑定到"选项"按钮的 OnClick 事件
     public void OpenOptions()
     {
-        Debug.Log("尝试打开选项菜单...");
+        Debug.Log("打开选项菜单");
         if (optionsPanel != null)
         {
-            Debug.Log("找到选项面板: " + optionsPanel.name + "，正在激活...");
-            // 先确保面板存在并且是非激活状态
-            if (!optionsPanel.activeInHierarchy)
-            {
-                optionsPanel.SetActive(true); // 显示选项菜单面板
-                Debug.Log("选项面板已激活");
-                
-                // 尝试找到和重置音量滑动条
-                var volumeManager = FindObjectOfType<AudioVolumeManager>();
-                if (volumeManager != null)
-                {
-                    volumeManager.ResetSliderInteraction();
-                }
-            }
-            else
-            {
-                Debug.LogWarning("选项面板已经处于激活状态，不需要再次激活");
-            }
+            optionsPanel.SetActive(true); // 显示选项菜单面板
         }
         else
         {
-            // 如果optionsPanel为空，尝试重新查找
-            Debug.LogWarning("选项面板未分配！尝试重新查找...");
-            
-            // 尝试查找名为"OptionsMenPanel"的对象（注意拼写错误）
-            optionsPanel = GameObject.Find("OptionsMenPanel");
-            
-            // 如果找到了，激活它
-            if (optionsPanel != null)
-            {
-                Debug.Log("找到选项面板: " + optionsPanel.name + "，正在激活...");
-                optionsPanel.SetActive(true);
-            }
-            else
-            {
-                Debug.LogError("无法找到选项面板！请在 Inspector 中设置引用或确保场景中存在名为'OptionsMenPanel'的对象。");
-            }
+            Debug.LogWarning("选项面板未分配！请在 Inspector 中设置引用。");
         }
     }
 

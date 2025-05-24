@@ -62,8 +62,8 @@ MonoBehaviour:
   - {fileID: 114181481821469818}
   - {fileID: 114887611470947104}
   EditorData:
-    PanOffset: {x: -31.068989, y: -53.0193}
-    Zoom: 1.1740617
+    PanOffset: {x: 112.69501, y: 5.783905}
+    Zoom: 0.9179651
   RoomType: Assets.ProceduralLevelGenerator.Scripts.Generators.Common.LevelGraph.Room
   ConnectionType: Assets.ProceduralLevelGenerator.Scripts.Generators.Common.LevelGraph.Connection
 --- !u!114 &114037397136089240
