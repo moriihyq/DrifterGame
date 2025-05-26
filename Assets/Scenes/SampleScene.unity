@@ -1372,7 +1372,7 @@ MonoBehaviour:
   spellCategory: 
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   groundCheckDistance: 0.2
   groundCheckSize: {x: 0.4, y: 0.1}
 --- !u!114 &1201160913
@@ -1423,7 +1423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   groundCheckDistance: 0.2
   groundCheckSize: {x: 0.4, y: 0.1}
   groundCheckOffset: {x: 0, y: -0.5}
