@@ -3,26 +3,81 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LoadGamePanelManager : MonoBehaviour
 {
-    [Header("UI引用")]
-    public Transform saveSlotContainer; // 存档槽位的父对象
-    public GameObject saveSlotPrefab; // 存档槽位预制体
-    public Button backButton; // 返回按钮
-    public GameObject mainUIPanel; // 主UI面板引用
+    [Header("UI References")]
+    public Transform saveSlotContainer;
+    public GameObject saveSlotPrefab;
+    public Button backButton;
+    public GameObject mainUIPanel;
     
-    [Header("存档槽位按钮")]
-    public Button[] saveSlots; // 存档槽位按钮数组
+    [Header("Save Slot Buttons")]
+    public Button[] saveSlots;
+    public Button[] deleteButtons;
+    
+    private TMP_FontAsset customFont;
+    
+    private void OnEnable()
+    {
+        // Re-bind buttons when panel is enabled
+        Debug.Log("LoadGamePanelManager OnEnable called");
+        BindDeleteButtons();
+        RefreshSaveSlots();
+    }
+    
+    private void BindDeleteButtons()
+    {
+        if (deleteButtons != null)
+        {
+            Debug.Log($"BindDeleteButtons: Found {deleteButtons.Length} delete buttons in array");
+            for (int i = 0; i < deleteButtons.Length; i++)
+            {
+                int slotIndex = i;
+                if (deleteButtons[i] != null)
+                {
+                    Debug.Log($"Binding delete button {i} to slot {slotIndex}");
+                    deleteButtons[i].onClick.RemoveAllListeners();
+                    deleteButtons[i].onClick.AddListener(() => 
+                    {
+                        Debug.Log($"Delete button clicked for slot {slotIndex}");
+                        DeleteSelectedSave(slotIndex);
+                    });
+                    
+                    // Add button name for debugging
+                    deleteButtons[i].name = $"DeleteButton_Slot{i}";
+                }
+                else
+                {
+                    Debug.LogWarning($"Delete button at index {i} is null");
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("deleteButtons array is null in BindDeleteButtons");
+        }
+    }
+    
+    // Public method for testing via Unity Inspector
+    public void TestDeleteSlot(int slotIndex)
+    {
+        Debug.Log($"TestDeleteSlot called with index {slotIndex}");
+        DeleteSelectedSave(slotIndex);
+    }
     
     private void Start()
     {
+        // Load custom font
+        customFont = Resources.Load<TMP_FontAsset>("UI_set/10 Font/CyberpunkCraftpixPixel SDF");
+        
         if (backButton != null)
         {
             backButton.onClick.AddListener(CloseLoadGamePanel);
         }
         
-        // 初始化时刷新存档列表
+        BindDeleteButtons();
         RefreshSaveSlots();
     }
     
@@ -30,49 +85,77 @@ public class LoadGamePanelManager : MonoBehaviour
     {
         if (SaveManager.Instance == null)
         {
-            Debug.LogError("SaveManager未找到！");
+            Debug.LogError("SaveManager not found!");
             return;
         }
         
         List<SaveInfo> saveInfos = SaveManager.Instance.GetAllSaveInfos();
         
-        // 如果使用预设的槽位
         if (saveSlots != null && saveSlots.Length > 0)
         {
             for (int i = 0; i < saveSlots.Length && i < saveInfos.Count; i++)
             {
-                // 获取按钮上的文本组件
                 TextMeshProUGUI buttonText = saveSlots[i].GetComponentInChildren<TextMeshProUGUI>();
                 if (buttonText != null)
                 {
+                    // Set custom font
+                    if (customFont != null)
+                    {
+                        buttonText.font = customFont;
+                    }
+                    
                     if (saveInfos[i].isEmpty)
                     {
-                        buttonText.text = $"空槽位 {i + 1}";
+                        // Use new naming convention for empty slots
+                        if (i == 0)
+                        {
+                            buttonText.text = "LATEST SAVE\nEMPTY";
+                        }
+                        else
+                        {
+                            buttonText.text = $"SAVESLOT{i}\nEMPTY";
+                        }
                         saveSlots[i].interactable = false;
+                        
+                        if (deleteButtons != null && i < deleteButtons.Length && deleteButtons[i] != null)
+                        {
+                            deleteButtons[i].gameObject.SetActive(false);
+                        }
                     }
                     else
                     {
-                        buttonText.text = $"{saveInfos[i].saveName}\n{saveInfos[i].saveTime:yyyy-MM-dd HH:mm}\n场景: {saveInfos[i].sceneName}";
+                        // Use more concise time format
+                        string timeStr = saveInfos[i].saveTime.ToString("MM-dd HH:mm");
+                        // Use new naming convention for filled slots
+                        if (i == 0)
+                        {
+                            buttonText.text = $"LATEST SAVE\n{timeStr}";
+                        }
+                        else
+                        {
+                            buttonText.text = $"SAVESLOT{i}\n{timeStr}";
+                        }
                         saveSlots[i].interactable = true;
+                        
+                        if (deleteButtons != null && i < deleteButtons.Length && deleteButtons[i] != null)
+                        {
+                            deleteButtons[i].gameObject.SetActive(true);
+                        }
                     }
                 }
                 
-                // 设置按钮点击事件
-                int slotIndex = i; // 创建局部变量以在lambda中使用
+                int slotIndex = i;
                 saveSlots[i].onClick.RemoveAllListeners();
                 saveSlots[i].onClick.AddListener(() => LoadSelectedSave(slotIndex));
             }
         }
-        // 如果使用动态生成
         else if (saveSlotPrefab != null && saveSlotContainer != null)
         {
-            // 清除现有的槽位
             foreach (Transform child in saveSlotContainer)
             {
                 Destroy(child.gameObject);
             }
             
-            // 创建新的槽位
             foreach (SaveInfo info in saveInfos)
             {
                 GameObject slotObj = Instantiate(saveSlotPrefab, saveSlotContainer);
@@ -96,10 +179,38 @@ public class LoadGamePanelManager : MonoBehaviour
     
     public void DeleteSelectedSave(int slotIndex)
     {
+        Debug.Log($"DeleteSelectedSave called with slotIndex: {slotIndex}");
+        
         if (SaveManager.Instance != null)
         {
-            SaveManager.Instance.DeleteSave(slotIndex);
-            RefreshSaveSlots();
+            // Check if the save actually exists before deletion
+            var saveInfos = SaveManager.Instance.GetAllSaveInfos();
+            if (slotIndex < saveInfos.Count)
+            {
+                Debug.Log($"Save info for slot {slotIndex}: isEmpty={saveInfos[slotIndex].isEmpty}, saveName={saveInfos[slotIndex].saveName}");
+                
+                if (!saveInfos[slotIndex].isEmpty)
+                {
+                    SaveManager.Instance.DeleteSave(slotIndex);
+                    Debug.Log($"Delete method called for slot {slotIndex + 1}");
+                    
+                    // Force immediate refresh
+                    RefreshSaveSlots();
+                    Debug.Log("RefreshSaveSlots called after deletion");
+                }
+                else
+                {
+                    Debug.Log($"Slot {slotIndex + 1} is already empty, nothing to delete");
+                }
+            }
+            else
+            {
+                Debug.LogError($"Invalid slot index: {slotIndex}");
+            }
+        }
+        else
+        {
+            Debug.LogError("SaveManager.Instance is null!");
         }
     }
     
@@ -113,11 +224,11 @@ public class LoadGamePanelManager : MonoBehaviour
     }
 }
 
-// 存档槽位UI组件
+// Save slot UI component
 [System.Serializable]
 public class SaveSlotUI : MonoBehaviour
 {
-    [Header("UI组件")]
+    [Header("UI Components")]
     public TextMeshProUGUI slotNameText;
     public TextMeshProUGUI saveTimeText;
     public TextMeshProUGUI sceneNameText;
@@ -138,7 +249,7 @@ public class SaveSlotUI : MonoBehaviour
         
         if (saveInfo.isEmpty)
         {
-            // 显示空槽位
+            // Show empty slot
             if (emptySlotIndicator != null) emptySlotIndicator.SetActive(true);
             if (saveInfoContainer != null) saveInfoContainer.SetActive(false);
             if (loadButton != null) loadButton.interactable = false;
@@ -148,20 +259,20 @@ public class SaveSlotUI : MonoBehaviour
         }
         else
         {
-            // 显示存档信息
+            // Show save info
             if (emptySlotIndicator != null) emptySlotIndicator.SetActive(false);
             if (saveInfoContainer != null) saveInfoContainer.SetActive(true);
             if (loadButton != null) loadButton.interactable = true;
             if (deleteButton != null) deleteButton.gameObject.SetActive(true);
             
-            // 设置文本
+            // Set text
             if (slotNameText != null) slotNameText.text = saveInfo.saveName;
-            if (saveTimeText != null) saveTimeText.text = saveInfo.saveTime.ToString("yyyy-MM-dd HH:mm:ss");
-            if (sceneNameText != null) sceneNameText.text = $"场景: {saveInfo.sceneName}";
-            if (playerHealthText != null) playerHealthText.text = $"生命值: {saveInfo.playerHealth}";
-            if (playTimeText != null) playTimeText.text = $"游戏时间: {FormatPlayTime(saveInfo.playTime)}";
+            if (saveTimeText != null) saveTimeText.text = $"Saved: {saveInfo.saveTime:MM-dd HH:mm}";
+            if (sceneNameText != null) sceneNameText.text = $"Scene: {saveInfo.sceneName}";
+            if (playerHealthText != null) playerHealthText.text = $"Health: {saveInfo.playerHealth}";
+            if (playTimeText != null) playTimeText.text = $"Play Time: {FormatPlayTime(saveInfo.playTime)}";
             
-            // 设置按钮事件
+            // Set button events
             if (loadButton != null)
             {
                 loadButton.onClick.RemoveAllListeners();
@@ -171,11 +282,17 @@ public class SaveSlotUI : MonoBehaviour
             if (deleteButton != null)
             {
                 deleteButton.onClick.RemoveAllListeners();
+                int capturedSlotIndex = saveInfo.slotIndex; // Capture the slot index
+                Debug.Log($"SaveSlotUI: Binding delete button for slot {capturedSlotIndex}");
                 deleteButton.onClick.AddListener(() => 
                 {
-                    // 可以添加确认对话框
-                    panelManager.DeleteSelectedSave(saveInfo.slotIndex);
+                    Debug.Log($"SaveSlotUI: Delete button clicked for slot {capturedSlotIndex}");
+                    panelManager.DeleteSelectedSave(capturedSlotIndex);
                 });
+            }
+            else
+            {
+                Debug.LogWarning($"SaveSlotUI: deleteButton is null for slot {saveInfo.slotIndex}");
             }
         }
     }

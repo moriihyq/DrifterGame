@@ -4,26 +4,44 @@ using UnityEngine.UI;
 
 public class SaveMessageUI : MonoBehaviour
 {
-    [Header("UI组件")]
+    [Header("UI Components")]
     public TextMeshProUGUI messageText;
     public Image backgroundImage;
     public CanvasGroup canvasGroup;
     
-    [Header("颜色设置")]
+    [Header("Color Settings")]
     public Color successColor = new Color(0.2f, 0.8f, 0.2f, 0.9f);
     public Color errorColor = new Color(0.8f, 0.2f, 0.2f, 0.9f);
     
-    [Header("动画设置")]
+    [Header("Animation Settings")]
     public float fadeInDuration = 0.3f;
     public float fadeOutDuration = 0.5f;
     
+    private TMP_FontAsset customFont;
+    
     private void Start()
     {
-        // 初始化时隐藏
+        // Load custom font
+        customFont = Resources.Load<TMP_FontAsset>("UI_set/10 Font/CyberpunkCraftpixPixel SDF");
+        if (customFont != null && messageText != null)
+        {
+            messageText.font = customFont;
+        }
+        
+        // Hide on initialization
         if (canvasGroup != null)
         {
             canvasGroup.alpha = 0f;
         }
+        
+        // Check if attached to SaveManager, if so, don't close GameObject
+        if (GetComponent<SaveManager>() != null)
+        {
+            Debug.LogWarning("SaveMessageUI should not be directly attached to SaveManager GameObject! Please put it on a separate UI GameObject.");
+            // Don't close SaveManager
+            return;
+        }
+        
         gameObject.SetActive(false);
     }
     
@@ -32,6 +50,12 @@ public class SaveMessageUI : MonoBehaviour
         if (messageText != null)
         {
             messageText.text = message;
+            
+            // Ensure custom font is set
+            if (customFont != null && messageText.font != customFont)
+            {
+                messageText.font = customFont;
+            }
         }
         
         if (backgroundImage != null)
@@ -46,7 +70,7 @@ public class SaveMessageUI : MonoBehaviour
     
     private System.Collections.IEnumerator AnimateMessage()
     {
-        // 淡入
+        // Fade in
         if (canvasGroup != null)
         {
             float elapsedTime = 0f;
@@ -59,7 +83,7 @@ public class SaveMessageUI : MonoBehaviour
             canvasGroup.alpha = 1f;
         }
         
-        // 等待显示时间（从SaveManager获取）
+        // Wait for display time (from SaveManager)
         if (SaveManager.Instance != null)
         {
             yield return new WaitForSeconds(SaveManager.Instance.messageDisplayTime);
@@ -69,7 +93,7 @@ public class SaveMessageUI : MonoBehaviour
             yield return new WaitForSeconds(2f);
         }
         
-        // 淡出
+        // Fade out
         if (canvasGroup != null)
         {
             float elapsedTime = 0f;

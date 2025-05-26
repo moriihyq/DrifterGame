@@ -30,7 +30,7 @@ public class TitleScreenManager : MonoBehaviour
     void Start()
     {
         // 确保SaveManager存在
-        GameInitializer.EnsureManagersExist();
+        // GameInitializer.EnsureManagersExist(); // 这行应该被注释或删除
         
         // 使用新的 API 替换弃用的 FindObjectOfType
         audioManager = Object.FindFirstObjectByType<AudioVolumeManager>();
@@ -81,6 +81,21 @@ public class TitleScreenManager : MonoBehaviour
     // 公开方法，用于绑定到"开始游戏"按钮的 OnClick 事件
     public void StartGame()
     {
+        // 获取第一个可用的游戏场景
+        if (string.IsNullOrEmpty(gameSceneName))
+        {
+            // 尝试自动检测游戏场景
+            string[] possibleScenes = { "Example1", "关卡1", "Level1", "GameScene", "可以运行的地图" };
+            foreach (string sceneName in possibleScenes)
+            {
+                if (Application.CanStreamedLevelBeLoaded(sceneName))
+                {
+                    gameSceneName = sceneName;
+                    break;
+                }
+            }
+        }
+        
         Debug.Log("开始新游戏，清除所有存档并加载游戏场景: " + gameSceneName);
         
         // 清除自动存档槽位（槽位0）以确保是新游戏
@@ -92,7 +107,14 @@ public class TitleScreenManager : MonoBehaviour
         // 异步加载场景可以防止卡顿，并可以显示加载进度条（如果需要）
         // SceneManager.LoadSceneAsync(gameSceneName);
         // 简单直接加载：
-        SceneManager.LoadScene(gameSceneName);
+        if (!string.IsNullOrEmpty(gameSceneName))
+        {
+            SceneManager.LoadScene(gameSceneName);
+        }
+        else
+        {
+            Debug.LogError("未找到可用的游戏场景！请确保在Build Settings中添加了游戏场景。");
+        }
     }
     
     // 公开方法，用于绑定到"读取游戏"按钮的 OnClick 事件
