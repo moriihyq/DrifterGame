@@ -2466,7 +2466,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 7
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2645,8 +2645,8 @@ Tilemap:
   - m_RefCount: 32
     m_Data: {fileID: 11400000, guid: 7675ad5392b933445b060fefa5e2ef70, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 1
-    m_Data: {fileID: 5441223297315994465, guid: 8b328b4fae9c887419297dd4d669c68c, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 9
     m_Data: {fileID: 1503589520, guid: 8b328b4fae9c887419297dd4d669c68c, type: 3}
   - m_RefCount: 14
@@ -2659,8 +2659,8 @@ Tilemap:
     m_Data: {fileID: -890925397, guid: 8b328b4fae9c887419297dd4d669c68c, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 285565372, guid: 8b328b4fae9c887419297dd4d669c68c, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 5441223297315994465, guid: 8b328b4fae9c887419297dd4d669c68c, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: -264219338, guid: 8b328b4fae9c887419297dd4d669c68c, type: 3}
   - m_RefCount: 32
@@ -2940,6 +2940,7 @@ GameObject:
   - component: {fileID: 3770598432153878964}
   - component: {fileID: 677202239402093299}
   - component: {fileID: 7064504246848971834}
+  - component: {fileID: 6110769235943121852}
   m_Layer: 0
   m_Name: Other 2
   m_TagString: Untagged
@@ -3106,3 +3107,20 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &6110769235943121852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8386504159566199111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0de7c0dd11a55a46858846984f0605e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToBreak: 2
+  shatteredBrickPrefab: {fileID: 0}
+  crackingSound: {fileID: 0}
+  breakSound: {fileID: 8300000, guid: 302732ee1d11c474bbac4a2f1b748994, type: 3}
+  crackSprites: []
