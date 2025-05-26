@@ -62,7 +62,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Position: {x: 640, y: 496}
   Name: "\u5C0F\u602A"
-  IndividualRoomTemplates: []
+  IndividualRoomTemplates:
+  - {fileID: 2764838490113248381, guid: fc1b22b1f37749e44a52a1032fe0eb0f, type: 3}
   RoomTemplateSets: []
 --- !u!114 &-7065968361316209765
 MonoBehaviour:
@@ -168,7 +169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Position: {x: 240, y: 416}
   Name: "\u5C0F\u602A"
-  IndividualRoomTemplates: []
+  IndividualRoomTemplates:
+  - {fileID: 4530048980369235652, guid: d883aeb827a2d4b47bdf7b4ac9e35ce4, type: 3}
   RoomTemplateSets: []
 --- !u!114 &-506938198606271225
 MonoBehaviour:
@@ -208,7 +210,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8400baee4cafd34091c865089a167b2, type: 3}
-  m_Name: LevelGraph
+  m_Name: "\u6D41\u7A0B\u56FE"
   m_EditorClassIdentifier: 
   Connections:
   - {fileID: -506938198606271225}
@@ -245,8 +247,8 @@ MonoBehaviour:
   - {fileID: 3486751436214074968}
   - {fileID: -7575138862480942169}
   EditorData:
-    PanOffset: {x: 27.183277, y: -50.825073}
-    Zoom: 0.77642804
+    PanOffset: {x: -59.082523, y: -182.78609}
+    Zoom: 1.0334257
   RoomType: Edgar.Unity.Room
   ConnectionType: Edgar.Unity.Connection
 --- !u!114 &1874562770052517206
