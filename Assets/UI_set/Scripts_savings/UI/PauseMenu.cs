@@ -206,17 +206,14 @@ public class PauseMenu : MonoBehaviour
                 var buttonText = saveSlotButtons[i].GetComponentInChildren<TextMeshProUGUI>();
                 if (buttonText != null)
                 {
+                    // 设置文字颜色为白色
+                    buttonText.color = Color.white;
+                    // 设置字体大小
+                    buttonText.fontSize = 32f;
+                    
                     if (saveInfos[i].isEmpty)
                     {
-                        // Use new naming convention for empty slots
-                        if (i == 0)
-                        {
-                            buttonText.text = "LATEST SAVE\nEMPTY";
-                        }
-                        else
-                        {
-                            buttonText.text = $"SAVESLOT{i}\nEMPTY";
-                        }
+                        buttonText.text = $"SAVESLOT{i + 1}\nEMPTY";
                         
                         if (isInSaveMode)
                         {
@@ -235,15 +232,7 @@ public class PauseMenu : MonoBehaviour
                     else
                     {
                         string timeStr = saveInfos[i].saveTime.ToString("MM-dd HH:mm");
-                        // Use new naming convention for filled slots
-                        if (i == 0)
-                        {
-                            buttonText.text = $"LATEST SAVE\n{timeStr}";
-                        }
-                        else
-                        {
-                            buttonText.text = $"SAVESLOT{i}\n{timeStr}";
-                        }
+                        buttonText.text = $"SAVESLOT{i + 1}\n{timeStr}";
                         saveSlotButtons[i].interactable = true;
                         
                         if (deleteSlotButtons != null && i < deleteSlotButtons.Length)

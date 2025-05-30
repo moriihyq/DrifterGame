@@ -81,14 +81,7 @@ public class SaveManager : MonoBehaviour
         
         GameData gameData = CollectGameData();
         // Update save naming logic
-        if (slotIndex == 0)
-        {
-            gameData.saveName = "Latest Save";
-        }
-        else
-        {
-            gameData.saveName = $"SaveSlot{slotIndex}";
-        }
+        gameData.saveName = $"SaveSlot{slotIndex + 1}";
         gameData.saveTime = DateTime.Now;
         
         string fileName = $"{SAVE_FILE_PREFIX}{slotIndex}{SAVE_FILE_EXTENSION}";
@@ -407,7 +400,7 @@ public class SaveManager : MonoBehaviour
                 SaveInfo info = new SaveInfo
                 {
                     slotIndex = i,
-                    saveName = i == 0 ? "Latest Save" : $"SaveSlot{i}",
+                    saveName = $"SaveSlot{i + 1}",
                     isEmpty = true
                 };
                 saveInfos.Add(info);

@@ -12,6 +12,7 @@ public class LoadGamePanelManager : MonoBehaviour
     public GameObject saveSlotPrefab;
     public Button backButton;
     public GameObject mainUIPanel;
+    public GameObject dimmer; // Dimmer背景遮罩
     
     [Header("Save Slot Buttons")]
     public Button[] saveSlots;
@@ -21,10 +22,25 @@ public class LoadGamePanelManager : MonoBehaviour
     
     private void OnEnable()
     {
+        // 激活Dimmer背景遮罩
+        if (dimmer != null)
+        {
+            dimmer.SetActive(true);
+        }
+        
         // Re-bind buttons when panel is enabled
         Debug.Log("LoadGamePanelManager OnEnable called");
         BindDeleteButtons();
         RefreshSaveSlots();
+    }
+    
+    private void OnDisable()
+    {
+        // 关闭Dimmer背景遮罩
+        if (dimmer != null)
+        {
+            dimmer.SetActive(false);
+        }
     }
     
     private void BindDeleteButtons()
@@ -104,18 +120,20 @@ public class LoadGamePanelManager : MonoBehaviour
                         buttonText.font = customFont;
                     }
                     
+                    // Set text color to bright cyan for better visibility
+                    buttonText.color = new Color(0f, 1f, 1f, 1f); // Bright cyan color
+                    
+                    // Increase font size for better readability
+                    buttonText.fontSize = 32f; // Increased from default 24
+                    
                     if (saveInfos[i].isEmpty)
                     {
                         // Use new naming convention for empty slots
-                        if (i == 0)
-                        {
-                            buttonText.text = "LATEST SAVE\nEMPTY";
-                        }
-                        else
-                        {
-                            buttonText.text = $"SAVESLOT{i}\nEMPTY";
-                        }
+                        buttonText.text = $"SAVESLOT{i + 1}\nEMPTY";
                         saveSlots[i].interactable = false;
+                        
+                        // Set a slightly dimmer color for empty slots
+                        buttonText.color = new Color(0.5f, 0.8f, 0.8f, 1f); // Dimmed cyan
                         
                         if (deleteButtons != null && i < deleteButtons.Length && deleteButtons[i] != null)
                         {
@@ -127,15 +145,11 @@ public class LoadGamePanelManager : MonoBehaviour
                         // Use more concise time format
                         string timeStr = saveInfos[i].saveTime.ToString("MM-dd HH:mm");
                         // Use new naming convention for filled slots
-                        if (i == 0)
-                        {
-                            buttonText.text = $"LATEST SAVE\n{timeStr}";
-                        }
-                        else
-                        {
-                            buttonText.text = $"SAVESLOT{i}\n{timeStr}";
-                        }
+                        buttonText.text = $"SAVESLOT{i + 1}\n{timeStr}";
                         saveSlots[i].interactable = true;
+                        
+                        // Set bright cyan for active save slots
+                        buttonText.color = new Color(0f, 1f, 1f, 1f); // Bright cyan
                         
                         if (deleteButtons != null && i < deleteButtons.Length && deleteButtons[i] != null)
                         {
@@ -216,6 +230,12 @@ public class LoadGamePanelManager : MonoBehaviour
     
     private void CloseLoadGamePanel()
     {
+        // 关闭Dimmer背景遮罩
+        if (dimmer != null)
+        {
+            dimmer.SetActive(false);
+        }
+        
         gameObject.SetActive(false);
         if (mainUIPanel != null)
         {
@@ -255,7 +275,14 @@ public class SaveSlotUI : MonoBehaviour
             if (loadButton != null) loadButton.interactable = false;
             if (deleteButton != null) deleteButton.gameObject.SetActive(false);
             
-            if (slotNameText != null) slotNameText.text = saveInfo.saveName;
+            if (slotNameText != null) 
+            {
+                slotNameText.text = saveInfo.saveName;
+                // Set dimmed cyan color for empty slots
+                slotNameText.color = new Color(0.5f, 0.8f, 0.8f, 1f);
+                // Increase font size for better readability
+                slotNameText.fontSize = 32f;
+            }
         }
         else
         {
@@ -265,12 +292,37 @@ public class SaveSlotUI : MonoBehaviour
             if (loadButton != null) loadButton.interactable = true;
             if (deleteButton != null) deleteButton.gameObject.SetActive(true);
             
-            // Set text
-            if (slotNameText != null) slotNameText.text = saveInfo.saveName;
-            if (saveTimeText != null) saveTimeText.text = $"Saved: {saveInfo.saveTime:MM-dd HH:mm}";
-            if (sceneNameText != null) sceneNameText.text = $"Scene: {saveInfo.sceneName}";
-            if (playerHealthText != null) playerHealthText.text = $"Health: {saveInfo.playerHealth}";
-            if (playTimeText != null) playTimeText.text = $"Play Time: {FormatPlayTime(saveInfo.playTime)}";
+            // Set text and colors for all text components
+            if (slotNameText != null) 
+            {
+                slotNameText.text = saveInfo.saveName;
+                slotNameText.color = new Color(0f, 1f, 1f, 1f); // Bright cyan
+                slotNameText.fontSize = 32f; // Increase font size
+            }
+            if (saveTimeText != null) 
+            {
+                saveTimeText.text = $"Saved: {saveInfo.saveTime:MM-dd HH:mm}";
+                saveTimeText.color = new Color(0f, 1f, 1f, 1f); // Bright cyan
+                saveTimeText.fontSize = 24f; // Increase font size
+            }
+            if (sceneNameText != null) 
+            {
+                sceneNameText.text = $"Scene: {saveInfo.sceneName}";
+                sceneNameText.color = new Color(0f, 1f, 1f, 1f); // Bright cyan
+                sceneNameText.fontSize = 24f; // Increase font size
+            }
+            if (playerHealthText != null) 
+            {
+                playerHealthText.text = $"Health: {saveInfo.playerHealth}";
+                playerHealthText.color = new Color(0f, 1f, 1f, 1f); // Bright cyan
+                playerHealthText.fontSize = 24f; // Increase font size
+            }
+            if (playTimeText != null) 
+            {
+                playTimeText.text = $"Play Time: {FormatPlayTime(saveInfo.playTime)}";
+                playTimeText.color = new Color(0f, 1f, 1f, 1f); // Bright cyan
+                playTimeText.fontSize = 24f; // Increase font size
+            }
             
             // Set button events
             if (loadButton != null)

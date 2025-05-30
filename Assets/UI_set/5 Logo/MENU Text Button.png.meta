@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 70fcefc5fc0b36b4fb17177cace63e53
+guid: 761fa29547cb26c49b995372cd58d8c6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 693440017630373382
-    second: "ChatGPT Image 2025\u5E745\u670826\u65E5 11_32_48_0"
+      213: 2485979798034053312
+    second: MENU Text Button_0
+  - first:
+      213: 7931376940556162596
+    second: MENU Text Button_1
+  - first:
+      213: 7861148731258169039
+    second: MENU Text Button_2
+  - first:
+      213: -8160616377685461545
+    second: MENU Text Button_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "ChatGPT Image 2025\u5E745\u670826\u65E5 11_32_48_0"
+      name: MENU Text Button_0
       rect:
         serializedVersion: 2
-        x: 47
-        y: 431
-        width: 931
-        height: 194
+        x: 3
+        y: 0
+        width: 1019
+        height: 1019
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 60626e3a5089f9900800000000000000
-      internalID: 693440017630373382
+      spriteID: 0c8fd9c7479ff7220800000000000000
+      internalID: 2485979798034053312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MENU Text Button_1
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 389
+        width: 250
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42613912e49e11e60800000000000000
+      internalID: 7931376940556162596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MENU Text Button_2
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 390
+        width: 197
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc6e725fe19681d60800000000000000
+      internalID: 7861148731258169039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MENU Text Button_3
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 389
+        width: 210
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d5b2db24aaafbe80800000000000000
+      internalID: -8160616377685461545
       vertices: []
       indices: 
       edges: []
@@ -134,8 +209,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "ChatGPT Image 2025\u5E745\u670826\u65E5 11_32_48_0": 693440017630373382
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

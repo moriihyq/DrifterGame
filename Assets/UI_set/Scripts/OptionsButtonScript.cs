@@ -2,30 +2,43 @@ using UnityEngine;
 
 public class OptionsButtonScript : MonoBehaviour
 {
-    // 在Unity编辑器中分配选项菜单面板
-    public GameObject optionsPanel;
+    // 在Unity编辑器中分配选项菜单管理器
+    public OptionsMenuManager optionsMenuManager;
+
+    private void Start()
+    {
+        // 如果没有分配OptionsMenuManager，尝试自动查找
+        if (optionsMenuManager == null)
+        {
+            optionsMenuManager = FindObjectOfType<OptionsMenuManager>();
+            if (optionsMenuManager == null)
+            {
+                Debug.LogWarning("未找到OptionsMenuManager！请确保场景中存在该组件。");
+            }
+        }
+    }
 
     // 当Options按钮被点击时调用
     public void OnOptionsButtonClick()
     {
-        if (optionsPanel != null)
+        if (optionsMenuManager != null)
         {
-            // 如果面板已激活，则隐藏；如果未激活，则显示
-            bool isActive = optionsPanel.activeSelf;
-            optionsPanel.SetActive(!isActive);
+            // 使用OptionsMenuManager的切换方法，确保dimmer逻辑生效
+            optionsMenuManager.ToggleOptionsMenu();
         }
         else
         {
-            Debug.LogWarning("选项面板未分配！请在Inspector中设置引用。");
+            Debug.LogWarning("OptionsMenuManager未分配或找不到！请检查引用设置。");
         }
     }
 
     // 关闭选项菜单
     public void CloseOptionsMenu()
     {
-        if (optionsPanel != null)
+        if (optionsMenuManager != null)
         {
-            optionsPanel.SetActive(false);
+            // 使用OptionsMenuManager的关闭方法，确保dimmer逻辑生效
+            optionsMenuManager.CloseOptionsMenu();
         }
     }
 

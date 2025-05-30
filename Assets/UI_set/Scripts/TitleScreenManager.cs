@@ -144,9 +144,18 @@ public class TitleScreenManager : MonoBehaviour
     public void OpenOptions()
     {
         Debug.Log("打开选项菜单");
-        if (optionsPanel != null)
+        
+        // 尝试使用OptionsMenuManager
+        OptionsMenuManager optionsMenuManager = FindObjectOfType<OptionsMenuManager>();
+        if (optionsMenuManager != null)
         {
+            optionsMenuManager.OpenOptionsMenu();
+        }
+        else if (optionsPanel != null)
+        {
+            // 后备方案：直接控制面板（但不推荐）
             optionsPanel.SetActive(true); // 显示选项菜单面板
+            Debug.LogWarning("未找到OptionsMenuManager，使用后备方案直接控制面板");
         }
         else
         {
@@ -165,9 +174,18 @@ public class TitleScreenManager : MonoBehaviour
     public void CloseOptions()
     {
         Debug.Log("关闭选项菜单");
-        if (optionsPanel != null)
+        
+        // 尝试使用OptionsMenuManager
+        OptionsMenuManager optionsMenuManager = FindObjectOfType<OptionsMenuManager>();
+        if (optionsMenuManager != null)
         {
+            optionsMenuManager.CloseOptionsMenu();
+        }
+        else if (optionsPanel != null)
+        {
+            // 后备方案：直接控制面板（但不推荐）
             optionsPanel.SetActive(false); // 隐藏选项菜单面板
+            Debug.LogWarning("未找到OptionsMenuManager，使用后备方案直接控制面板");
         }
     }
     

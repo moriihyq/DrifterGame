@@ -11,7 +11,19 @@ public class BackButtonScript : MonoBehaviour
     // 当Back按钮被点击时调用
     public void OnBackButtonClick()
     {
-        // 如果分配了选项面板且它是激活的，则关闭它
+        // 尝试使用OptionsMenuManager关闭选项菜单
+        OptionsMenuManager optionsMenuManager = FindObjectOfType<OptionsMenuManager>();
+        if (optionsMenuManager != null)
+        {
+            // 检查选项面板是否打开
+            if (optionsPanel != null && optionsPanel.activeSelf)
+            {
+                optionsMenuManager.CloseOptionsMenu();
+                return;
+            }
+        }
+        
+        // 如果分配了选项面板且它是激活的，则关闭它（后备方案）
         if (optionsPanel != null && optionsPanel.activeSelf)
         {
             optionsPanel.SetActive(false);
