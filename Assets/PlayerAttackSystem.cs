@@ -1,0 +1,241 @@
+// filepath: h:\GAME_Create\Game_latest\Assets\PlayerAttackSystem.cs
+using UnityEngine;
+
+public class PlayerAttackSystem : MonoBehaviour
+{
+    [Header("攻击设置")]
+    [SerializeField] private int attackDamage = 50; // 玩家攻击伤害
+    [SerializeField] private float attackCooldown = 0.2f; // 攻击冷却时间
+    [SerializeField] private Transform attackPoint; // 攻击判定点
+    [SerializeField] private float attackRadius = 3.0f; // 攻击范围半径（固定为3单位）
+    [SerializeField] private LayerMask enemyLayers; // 敌人图层
+    
+    [Header("生命值设置")]
+    [SerializeField] private int maxHealth = 100; // 最大生命值
+    private int currentHealth; // 当前生命值
+    
+    // 组件引用
+    private Animator animator; // 动画控制器
+    
+    // 私有变量
+    private float nextAttackTime = 0f; // 下次可攻击时间
+    private bool isDead = false; // 是否死亡
+    
+    private void Start()
+    {
+        // 获取组件引用
+        animator = GetComponent<Animator>();
+        if (animator == null)
+        {
+            animator = GetComponentInChildren<Animator>();
+            if (animator == null)
+            {
+                Debug.LogError("未找到Animator组件！请确保玩家对象或其子对象上有Animator组件");
+            }
+        }
+        
+        // 初始化生命值
+        currentHealth = maxHealth;
+        
+        // 如果没有设置攻击点，则创建一个
+        if (attackPoint == null)
+        {
+            GameObject attackPointObj = new GameObject("AttackPoint");
+            attackPointObj.transform.parent = this.transform;
+            attackPointObj.transform.localPosition = new Vector3(1f, 0f, 0f); // 在角色前方创建攻击点
+            attackPoint = attackPointObj.transform;
+        }
+        
+        // 检查enemyLayers设置
+        if (enemyLayers.value == 0)
+        {
+            Debug.LogWarning("enemyLayers未设置！请在Unity编辑器中设置正确的敌人图层");
+        }
+    }
+    
+    private void Update()
+    {
+        // 如果已死亡，不执行后续逻辑
+        if (isDead) return;
+        
+        // 检查是否可以攻击
+        if (Time.time >= nextAttackTime)
+        {
+            // 检查攻击输入 (假设使用 "Fire1" 按钮进行攻击)
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Kick();
+                nextAttackTime = Time.time + attackCooldown;
+            }
+        }
+    }
+    
+    // 踢击攻击
+    private void Kick()
+    {
+        // 播放踢击动画
+        if (animator != null)
+        {
+            animator.SetTrigger("Kick");
+        }
+        else
+        {
+            Debug.LogError("没有找到Animator组件，无法播放攻击动画!");
+        }
+        
+        // 检查enemyLayers是否已设置，如果未设置则尝试自动设置
+        if (enemyLayers.value == 0)
+        {
+            Debug.LogError("enemyLayers未设置! 尝试自动设置敌人图层");
+            // 尝试自动设置为默认的"Enemy"层
+            enemyLayers = LayerMask.GetMask("Enemy");
+            if (enemyLayers.value == 0)
+            {
+                // 如果"Enemy"层不存在，则尝试使用其他可能的层名称
+                enemyLayers = LayerMask.GetMask("Enemies", "Monster", "Hostile");
+                if (enemyLayers.value == 0)
+                {
+                    // 如果还是找不到合适的层，使用除"Ignore Raycast"外的所有层
+                    enemyLayers = ~(LayerMask.GetMask("Ignore Raycast"));
+                    Debug.LogWarning("未找到专门的敌人图层，使用所有层作为敌人检测层");
+                }
+            }
+        }
+        
+        // 检测攻击范围内的敌人
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayers);
+        
+        // 对每个敌人造成伤害
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            // 尝试获取敌人组件并造成伤害
+            Enemy enemyComponent = enemy.GetComponent<Enemy>();
+            if (enemyComponent != null)
+            {
+                enemyComponent.TakeDamage(attackDamage);
+            }
+            else
+            {
+                // 尝试在父对象或子对象中查找Enemy组件
+                enemyComponent = enemy.GetComponentInParent<Enemy>();
+                if (enemyComponent != null)
+                {
+                    enemyComponent.TakeDamage(attackDamage);
+                }
+                else 
+                {
+                    enemyComponent = enemy.GetComponentInChildren<Enemy>();
+                    if (enemyComponent != null)
+                    {
+                        enemyComponent.TakeDamage(attackDamage);
+                    }
+                }
+            }
+            
+            // 如果使用的是 EnemyBase 类，则使用该类的伤害方法
+            EnemyBase enemyBaseComponent = enemy.GetComponent<EnemyBase>();
+            if (enemyBaseComponent != null)
+            {
+                enemyBaseComponent.TakeDamage(attackDamage);
+            }
+        }
+    }
+    
+    // 玩家受到伤害
+    public void TakeDamage(int damage)
+    {
+        if (isDead) return;
+        
+        currentHealth -= damage;
+        
+        // 播放受伤动画
+        if (animator != null)
+        {
+            animator.SetTrigger("Hurt");
+        }
+        
+        // 检查是否死亡
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Die();
+        }
+    }
+    
+    // 恢复生命值
+    public void Heal(int amount)
+    {
+        if (isDead) return;
+        
+        currentHealth += amount;
+        
+        // 限制最大生命值
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
+    
+    // 玩家死亡
+    private void Die()
+    {
+        isDead = true;
+        
+        // 播放死亡动画
+        if (animator != null)
+        {
+            animator.SetBool("IsDead", true);
+        }
+        
+        // 禁用玩家控制器
+        PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = false;
+        }
+        
+        // 禁用当前组件
+        this.enabled = false;
+    }
+    
+    // 绘制攻击范围 (仅在编辑器中可见，用于调试)
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null) return;
+        
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
+    }
+    
+    // 获取当前生命值
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+    
+    // 获取最大生命值
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+    
+    // 直接设置当前生命值
+    public void SetHealth(int newHealth)
+    {
+        if (isDead) return;
+        
+        currentHealth = newHealth;
+        
+        // 限制生命值范围
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Die();
+        }
+    }
+}
