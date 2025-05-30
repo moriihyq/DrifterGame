@@ -1480,7 +1480,7 @@ GameObject:
   - component: {fileID: 746583296}
   - component: {fileID: 746583295}
   - component: {fileID: 746583297}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2577,6 +2577,7 @@ GameObject:
   - component: {fileID: 1201160913}
   - component: {fileID: 1201160914}
   - component: {fileID: 1201160915}
+  - component: {fileID: 1201160916}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2788,7 +2789,7 @@ MonoBehaviour:
   spellCategory: 
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   groundCheckDistance: 0.2
   groundCheckSize: {x: 0.4, y: 0.1}
 --- !u!114 &1201160913
@@ -2845,6 +2846,21 @@ MonoBehaviour:
   groundCheckOffset: {x: 0, y: -0.5}
   tileHeight: 0.7
   preLandDistanceInTiles: 1.2
+--- !u!114 &1201160916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201160905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15923e1bcd72b5b4bb2a5b92b9768f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rollSpeed: 10
+  rollDuration: 0.3
+  rollCooldown: 0.5
 --- !u!1 &1345512739
 GameObject:
   m_ObjectHideFlags: 0
