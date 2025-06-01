@@ -91,9 +91,6 @@ public class Enemy : MonoBehaviour
         int prevHealth = currentHealth;
         currentHealth -= damage;
         
-        // 在控制台输出敌人血量变化信息
-        Debug.Log($"<color=#FFA500>敌人 {gameObject.name} 受到 {damage} 点伤害！血量变化：{prevHealth} -> {currentHealth}</color>");
-        
         // 播放受伤动画
         if (anim != null)
         {
@@ -104,7 +101,6 @@ public class Enemy : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            Debug.Log($"<color=#FF0000>敌人 {gameObject.name} 死亡！</color>");
             Die();
         }
         
@@ -229,9 +225,6 @@ public class Enemy : MonoBehaviour
             
             // 设置下次攻击时间
             nextAttackTime = Time.time + attackCooldown;
-            
-            // 调试信息
-            Debug.Log($"[Enemy攻击] 触发攻击! X轴距离: {distanceToPlayer}, 垂直距离: {verticalDistance}");
         }
     }
     
@@ -270,7 +263,6 @@ public class Enemy : MonoBehaviour
         // 如果玩家已离开攻击范围（水平或垂直方向），则不造成伤害
         if (Mathf.Abs(distanceToPlayer) > attackRange * 1.2f || verticalDistance > verticalAttackTolerance)
         {
-            Debug.Log($"<color=#888888>攻击失败! 玩家已离开攻击范围。X轴距离: {distanceToPlayer}, 垂直距离: {verticalDistance}</color>");
             return;
         }
         
@@ -286,8 +278,6 @@ public class Enemy : MonoBehaviour
             {
                 CombatManager.Instance.LogDamage(gameObject, player, attackDamage);
             }
-            
-            Debug.Log($"<color=#FF4500>敌人 {gameObject.name} 攻击了玩家，造成 {attackDamage} 点伤害！X轴距离: {distanceToPlayer}, 垂直距离: {verticalDistance}</color>");
         }
     }
     
@@ -310,13 +300,16 @@ public class Enemy : MonoBehaviour
         // 更新移动动画
         lastSpeed = rb.linearVelocity.x;
         isMoving = Mathf.Abs(rb.linearVelocity.x) > 0.1f;
-        anim.SetBool("isMoving", isMoving);
+        
+        // 注释掉可能不存在的动画参数，避免控制台警告
+        // anim.SetBool("isMoving", isMoving);
         
         // 更新接近状态
         approach = Mathf.Abs(distanceToPlayer) <= attackRange;
-        anim.SetBool("approach", approach);
-          // 设置激活状态参数
-        anim.SetBool("isActive", isActive);
+        // anim.SetBool("approach", approach);
+        
+        // 设置激活状态参数
+        // anim.SetBool("isActive", isActive);
     }
     
     // 在编辑器中绘制攻击范围的可视化指示器

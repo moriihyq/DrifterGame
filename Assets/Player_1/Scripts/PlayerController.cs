@@ -136,11 +136,11 @@ public class PlayerController : MonoBehaviour
         bool isRunningValue = Input.GetKey(KeyCode.LeftShift) && moveInput != 0;
         animator.SetBool("isRunning", isRunningValue);
 
-        // Debug logs for verification
-        Debug.Log($"Animator Parameters - Speed: {speedValue}, isRunning: {isRunningValue}");        animator.SetBool("isGrounded", isGrounded);
-        animator.SetBool("isCrouching", isCrouching);
-        animator.SetBool("isClimbing", isClimbing);
-        animator.SetFloat("VerticalVelocity", rb.linearVelocity.y);
+        // 注释掉会产生警告的动画参数，避免控制台错误
+        // animator.SetBool("isGrounded", isGrounded);
+        // animator.SetBool("isCrouching", isCrouching);
+        // animator.SetBool("isClimbing", isClimbing);
+        // animator.SetFloat("VerticalVelocity", rb.linearVelocity.y);
         
         // Rolling状态由RollingManager控制
     }

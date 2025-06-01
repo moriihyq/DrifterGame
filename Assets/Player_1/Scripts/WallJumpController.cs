@@ -73,21 +73,22 @@ public class WallJumpController : MonoBehaviour
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, -wallSlideSpeed);
             }
 
-            // 更新动画状态
-            if (animator != null)
-            {
-                animator.SetBool("isWallSliding", true);
-            }
+            // 注释掉会产生警告的动画参数设置
+            // if (animator != null)
+            // {
+            //     animator.SetBool("isWallSliding", true);
+            // }
         }
         else
         {
             if (wallStickCounter > 0)
                 wallStickCounter -= Time.deltaTime;
 
-            if (animator != null)
-            {
-                animator.SetBool("isWallSliding", false);
-            }
+            // 注释掉会产生警告的动画参数设置
+            // if (animator != null)
+            // {
+            //     animator.SetBool("isWallSliding", false);
+            // }
         }
     }
 

@@ -1,0 +1,86 @@
+# 血瓶系统设置指南
+
+## 1. 创建血瓶预制体步骤
+
+### 步骤1: 创建血瓶GameObject
+1. 在Hierarchy中右键 -> Create Empty，命名为"HealthPotion"
+2. 添加SpriteRenderer组件，设置血瓶的精灵图片
+3. 添加HealthPotion脚本（已创建的HealthPotion.cs）
+
+### 步骤2: 设置碰撞器
+- HealthPotion.cs会自动添加CircleCollider2D
+- 如需手动设置：
+  1. 添加CircleCollider2D组件
+  2. 勾选"Is Trigger"
+  3. 设置Radius为合适大小（推荐1.0）
+
+### 步骤3: 保存为预制体
+1. 将设置好的血瓶拖拽到Project窗口中
+2. 这样就创建了血瓶预制体，可重复使用
+
+## 2. 玩家动画设置
+
+### 为玩家Animator添加喝药动画
+1. 打开玩家的Animator Controller
+2. 添加一个新的Trigger参数，命名为"dring-potion"
+3. 创建喝药动画状态，连接到"dring-potion"触发器
+4. 设置动画过渡条件
+
+### 动画状态建议
+- 动画名称: "DrinkPotion" 或 "UsePotion"
+- 动画长度: 0.5-1.0秒
+- 过渡时间: 0.1秒
+
+## 3. 使用方法
+
+### 在场景中放置血瓶
+1. 将血瓶预制体拖拽到场景中
+2. 调整位置
+3. 运行游戏测试
+
+### 测试流程
+1. 玩家靠近血瓶（绿色圆圈范围内）
+2. 屏幕显示"按 E 键使用血瓶"提示
+3. 按E键使用血瓶
+4. 血瓶消失，玩家满血，播放喝药动画
+
+## 4. 可选功能
+
+### 添加音效
+1. 在HealthPotion脚本的Inspector中设置Drink Sound
+2. 拖拽喝药音效文件到该字段
+
+### 自定义提示文本
+- 在HealthPotion脚本中修改Prompt Text字段
+
+### 禁用GUI提示
+- 取消勾选HealthPotion脚本的Show Prompt选项
+
+## 5. 调试信息
+
+运行时会在Console中显示：
+- "玩家靠近血瓶，按E键使用"
+- "玩家使用了血瓶！生命值已回复至满血: xxx/xxx"
+- "播放喝药动画：dring-potion"
+
+## 6. 注意事项
+
+1. 确保玩家GameObject有"Player"标签
+2. 确保玩家有PlayerAttackSystem组件
+3. 确保玩家有Animator组件（用于播放动画）
+4. 血瓶只能在玩家未满血时使用
+5. 使用后血瓶会自动销毁
+
+## 7. 故障排除
+
+### 血瓶无法触发
+- 检查玩家是否有"Player"标签
+- 检查血瓶的Collider2D是否为Trigger
+
+### 无法播放动画
+- 检查玩家Animator是否有"dring-potion"参数
+- 检查动画状态是否正确连接
+
+### 无法回血
+- 检查玩家是否有PlayerAttackSystem组件
+- 查看Console是否有错误信息
