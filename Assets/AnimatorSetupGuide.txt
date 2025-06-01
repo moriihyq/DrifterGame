@@ -1,0 +1,65 @@
+# Unity Animator Controller 设置指南
+
+## 玩家动画器设置
+
+1. 打开Unity编辑器，找到Player对象使用的Animator Controller
+2. 确保Animator Controller包含以下参数：
+   - IsDead (Bool) - 控制死亡状态
+   - Hurt (Trigger) - 受伤触发器
+   - Kick (Trigger) - 攻击触发器
+
+3. 设置死亡动画状态：
+   - 创建一个名为"Death"或"Die"的状态
+   - 将此状态标记为"Death"标签（在Inspector中的Tags字段）
+   - 从任何状态到Death状态的转换条件设置为 `IsDead = true`
+   - **关键设置：** 在Death动画状态属性中，设置以下参数：
+     * 取消勾选"Loop Time"选项（确保动画只播放一次）
+     * 选择"Loop Pose"选项（确保动画结束时保持最后一帧的姿势）
+
+4. 确保从Death状态无法转换到其他状态（Death是终止状态）
+
+## 敌人动画器设置
+
+1. 找到Enemy对象使用的Animator Controller
+2. 确保Animator Controller包含以下参数：
+   - IsDead (Bool) - 控制死亡状态 
+   - Hurt (Trigger) - 受伤触发器
+   - Attack (Trigger) - 攻击触发器
+   - isMoving (Bool) - 移动状态
+   - approach (Bool) - 接近状态
+
+3. 设置死亡动画状态：
+   - 创建一个名为"Death"或"Die"的状态
+   - 将此状态标记为"Death"标签
+   - 从任何状态到Death状态的转换条件设置为 `IsDead = true`
+   - **关键设置：** 在Death动画状态属性中：
+     * 取消勾选"Loop Time"选项（确保动画只播放一次）
+     * 选择"Loop Pose"选项（确保动画结束时保持最后一帧的姿势）
+     * 设置"Speed"为1.0（正常播放速度）
+
+4. 确保从Death状态无法转换到其他状态（Death是终止状态）
+
+## 常见问题与解决方案
+
+1. **问题：** 动画播放后不停在最后一帧
+   **解决：** 确保Death动画状态中取消了Loop Time选项，并且选择了Loop Pose选项
+
+2. **问题：** 动画结束后对象消失
+   **解决：** 确保在脚本中，对于敌人的Destroy调用有足够的延迟时间（至少在动画播放结束之后）
+
+3. **问题：** 死亡动画不播放
+   **解决：** 检查animator.SetBool("IsDead", true)调用是否正确，以及转换条件是否设置正确
+
+4. **问题：** 动画冻结在中间帧而不是最后一帧
+   **解决：** 使用normalizedTime检查确保动画接近结束才冻结，如脚本中所做
+
+## 测试死亡动画
+
+1. 按下键盘上的'L'键将玩家生命值设置为1
+2. 让任何敌人攻击玩家一次导致死亡
+3. 观察死亡动画是否播放一次并停留在最后一帧
+
+若要测试敌人死亡动画：
+1. 使用玩家攻击（"Fire1"按钮，通常是鼠标左键或Ctrl键）
+2. 多次攻击敌人直至其死亡
+3. 确认敌人死亡动画播放一次并停留在最后一帧
