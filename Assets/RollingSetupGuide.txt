@@ -1,0 +1,78 @@
+# 翻滚穿越敌人功能实现指南
+
+## 功能说明
+此功能已经在PlayerMovement.cs中实现，可以让玩家在执行翻滚动作时暂时性地穿过敌人，实现灵活的闪避效果。通过按下指定按键（默认为左Shift键），玩家将向前翻滚并穿过敌人。
+
+## 设置步骤
+
+### 1. 设置所需的层 (Layer)
+
+首先需要设置RollingPlayer层和层碰撞矩阵：
+
+1. 在Unity编辑器中选择 **Edit > Project Settings**
+2. 在左侧列表中选择 **Tags and Layers**
+3. 在Layers部分，找到一个未使用的User Layer (例如Layer 9)
+4. 将其命名为 `RollingPlayer`
+5. 然后点击左侧列表中的 **Physics 2D**
+6. 向下滚动找到 **Layer Collision Matrix**
+7. 找到 `RollingPlayer` 行和 `Enemy` 列相交的格子，取消勾选
+   - 这确保了在翻滚状态下，玩家与敌人之间不会发生物理碰撞
+
+### 2. 设置动画控制器
+
+为玩家角色添加翻滚动画状态：
+
+1. 打开玩家使用的 Animator Controller（通常在Players文件夹中）
+2. 添加一个名为 `Roll` 的动画状态
+3. 创建一个新的 Trigger 参数，命名为 `Roll`
+4. 设置从其他状态到 `Roll` 状态的转换，使用 `Roll` 触发器作为条件
+5. 从 `Roll` 状态返回到其他状态可以使用 Exit Time 设置
+   - 建议设置 Exit Time 为 0.9 或更高，确保动画几乎完成
+
+### 3. 确保场景中有必要组件
+
+1. 自动检查：
+   - 将RollSetupCheck.cs脚本添加到任意游戏对象上，它会自动检查所有必要设置
+   - 如果缺少LayerCollisionSetup组件，它会自动添加
+
+2. 手动设置：
+   - 确保场景中有一个对象挂载了LayerCollisionSetup.cs脚本
+   - 如果没有，创建一个空物体，命名为 `LayerManager`，并添加该脚本
+
+3. 玩家翻滚参数（这些已在PlayerMovement.cs中设置，可根据需要调整）：
+   - `rollSpeed`: 12（翻滚速度）
+   - `rollDuration`: 0.5（翻滚持续时间，秒）
+   - `rollCooldown`: 1（翻滚冷却时间，秒）
+   - `rollKey`: LeftShift（翻滚按键）
+
+## 测试功能
+
+1. 运行游戏
+2. 按方向键使角色移动（必须有移动方向，静止时不能翻滚）
+3. 在移动的同时按下Shift键触发翻滚
+4. 确认翻滚时可以穿过敌人
+5. 检查翻滚动画是否正确播放
+6. 验证翻滚冷却时间是否正常
+
+## 常见问题解决
+
+1. **翻滚无法穿过敌人**：
+   - 确认已正确设置`RollingPlayer`和`Enemy`层
+   - 检查层碰撞矩阵中两层之间是否已取消勾选（Edit > Project Settings > Physics 2D > Layer Collision Matrix）
+   - 验证LayerCollisionSetup.cs脚本是否在场景中激活
+   - 查看控制台是否有相关错误提示
+
+2. **翻滚动画不播放**：
+   - 确认Animator Controller中已添加`Roll`触发器参数和对应的动画状态
+   - 检查PlayerMovement脚本中animator变量是否正确引用
+   - 确认动画文件已正确导入并被指定给相应的动画状态
+
+3. **翻滚按键不响应**：
+   - 确认PlayerMovement脚本中rollKey设置为正确的按键（默认为LeftShift）
+   - 检查是否在水平移动时按下翻滚键（需要有移动方向，静止时不能翻滚）
+   - 确认翻滚冷却时间已结束（默认为1秒）
+
+4. **调整翻滚效果**：
+   - 在PlayerMovement脚本中调整rollSpeed和rollDuration参数
+   - 考虑在翻滚期间添加视觉效果（如拖尾效果）或音效
+   - 如需更改翻滚按键，修改PlayerMovement脚本中的rollKey变量
