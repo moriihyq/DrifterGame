@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float walkSpeed = 6f; // 原为3f，提升1.5倍
+    public float walkSpeed = 4.5f; // 原为3f，提升1.5倍
     public float runSpeed = 9f;   // 原为6f，提升1.5倍
     public float crouchSpeed = 2.25f; // 原为1.5f，提升1.5倍
     public float rollSpeed = 12f; // 原为8f，提升1.5倍
