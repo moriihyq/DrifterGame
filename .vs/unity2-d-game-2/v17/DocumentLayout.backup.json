@@ -7,11 +7,7 @@
       "RelativeMoniker": "D:0:0:{1412352D-1217-D168-711A-CADBD41D9E07}|Assembly-CSharp.csproj|solutionrelative:assets\\enemy2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1412352D-1217-D168-711A-CADBD41D9E07}|Assembly-CSharp.csproj|d:\\c\u002B\u002B project\\high-level program\\game\\unity2-d-game-2\\assets\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1412352D-1217-D168-711A-CADBD41D9E07}|Assembly-CSharp.csproj|solutionrelative:assets\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1412352D-1217-D168-711A-CADBD41D9E07}|Assembly-CSharp.csproj|D:\\C\u002B\u002B Project\\High-level Program\\game\\unity2-d-game-2\\assets\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1412352D-1217-D168-711A-CADBD41D9E07}|Assembly-CSharp.csproj|d:\\c\u002B\u002B project\\high-level program\\game\\unity2-d-game-2\\assets\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1412352D-1217-D168-711A-CADBD41D9E07}|Assembly-CSharp.csproj|solutionrelative:assets\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -22,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -31,19 +27,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "bullet.cs",
-              "DocumentMoniker": "D:\\C\u002B\u002B Project\\High-level Program\\game\\unity2-d-game-2\\Assets\\bullet.cs",
-              "RelativeDocumentMoniker": "Assets\\bullet.cs",
-              "ToolTip": "D:\\C\u002B\u002B Project\\High-level Program\\game\\unity2-d-game-2\\Assets\\bullet.cs",
-              "RelativeToolTip": "Assets\\bullet.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T10:16:11.688Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Enemy.cs",
               "DocumentMoniker": "D:\\C\u002B\u002B Project\\High-level Program\\game\\unity2-d-game-2\\Assets\\Enemy.cs",
               "RelativeDocumentMoniker": "Assets\\Enemy.cs",
@@ -51,7 +34,8 @@
               "RelativeToolTip": "Assets\\Enemy.cs",
               "ViewState": "AgIAAAsBAAAAAAAAAADwv08BAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-01T09:09:05.823Z"
+              "WhenOpened": "2025-06-01T09:09:05.823Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -61,7 +45,7 @@
               "RelativeDocumentMoniker": "Assets\\Enemy2.cs",
               "ToolTip": "D:\\C\u002B\u002B Project\\High-level Program\\game\\unity2-d-game-2\\Assets\\Enemy2.cs",
               "RelativeToolTip": "Assets\\Enemy2.cs",
-              "ViewState": "AgIAAFUBAAAAu+iiiy4wwHsBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-01T09:08:37.347Z",
               "EditorCaption": ""
