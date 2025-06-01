@@ -3,12 +3,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    public float walkSpeed = 3f;
-    public float runSpeed = 6f;
-    public float crouchSpeed = 1.5f;
-    public float rollSpeed = 8f;
-    public float wallJumpForce = 10f;
-    public float climbSpeed = 2f;
+    public float walkSpeed = 4.5f; // 原为3f，提升1.5倍
+    public float runSpeed = 9f;   // 原为6f，提升1.5倍
+    public float crouchSpeed = 2.25f; // 原为1.5f，提升1.5倍
+    public float rollSpeed = 12f; // 原为8f，提升1.5倍
+    public float wallJumpForce = 15f; // 原为10f，提升1.5倍
+    public float climbSpeed = 3f; // 原为2f，提升1.5倍
 
     [Header("Jump Settings")]
     public float jumpForce = 5f; // 大幅减少跳跃力度

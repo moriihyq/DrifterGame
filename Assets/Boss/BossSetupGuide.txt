@@ -1,0 +1,68 @@
+# Boss设置指南
+
+## 概述
+这个文档将帮助您设置和使用Boss控制器。Boss有两种攻击方式：近战攻击和远程攻击。
+默认情况下，Boss处于非激活状态，只有当玩家按下P键时，Boss才会激活并开始行动。
+
+## 基本设置
+
+1. 将BossController.cs脚本附加到您的Boss游戏对象上。
+2. 将BossAnimatorController.controller设置为Boss的动画控制器。
+
+## 动画设置
+
+Boss需要以下动画状态：
+- **Idle**: Boss的待机动画
+- **Walk**: Boss的移动动画
+- **Attack**: 近战攻击动画
+- **Shoot**: 远程攻击动画
+- **Hurt**: 受伤动画
+- **Death**: 死亡动画
+
+确保所有动画都已导入并正确配置在BossAnimatorController中。
+
+## 脚本参数说明
+
+### 基本属性
+- **maxHealth**: Boss的最大生命值，默认500
+- **meleeAttackDamage**: 近战攻击伤害，默认40
+- **rangedAttackDamage**: 远程攻击伤害，默认60
+- **meleeAttackCooldown**: 近战攻击冷却时间，默认1.5秒
+- **meleeAttackRange**: 近战攻击范围，默认1.5单位
+- **rangedAttackRange**: 远程攻击判断距离，默认8单位
+- **moveSpeed**: Boss移动速度，默认3单位/秒
+- **rangedAttackRadius**: 远程攻击的影响半径，默认5单位
+- **playerLayer**: 玩家所在的图层，用于攻击检测
+- **meleeAttackDelay**: 近战攻击动画开始到实际造成伤害的延迟，默认0.4秒
+- **rangedAttackDelay**: 远程攻击动画开始到实际造成伤害的延迟，默认0.8秒
+
+### 攻击点设置
+- **meleeAttackPoint**: 近战攻击判定点，这应该是Boss前方的一个Transform点
+
+## Boss行为模式
+
+1. **非激活状态**：
+   - Boss不会主动攻击玩家或移动
+   - 按下P键可激活Boss
+
+2. **激活状态**：
+   - 首次激活时，Boss会追踪玩家直到距离小于meleeAttackRange并发起一次近战攻击
+   - 之后，Boss会随机决定在执行1-3次近战攻击后使用一次远程攻击
+   - 近战攻击需要Boss靠近玩家，而远程攻击可以在任何位置执行
+
+3. **攻击模式**：
+   - **近战攻击**：Boss靠近玩家并执行"Attack"动画，对近战范围内的玩家造成伤害
+   - **远程攻击**：Boss停止移动并执行"Shoot"动画，对大范围内的玩家造成更高伤害
+
+## 注意事项
+
+1. Boss的生命值会在控制台中显示，方便调试
+2. 所有攻击、受伤和死亡事件都会在控制台中显示
+3. 攻击范围可以在Scene视图中通过Gizmos查看（选中Boss对象时）
+4. 确保玩家对象已正确设置"Player"标签
+
+## 调整建议
+
+1. 如果Boss太强或太弱，调整攻击伤害和生命值
+2. 如果移动和攻击感觉不流畅，可以调整攻击冷却时间和移动速度
+3. 如果攻击判定不准确，请检查攻击延迟是否与动画匹配

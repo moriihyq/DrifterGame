@@ -35,8 +35,7 @@ public class BossController : MonoBehaviour
     private int consecutiveMeleeAttacks = 0; // 已执行的连续近战攻击次数
     private int meleeAttacksBeforeRanged; // 执行远程攻击前需要的近战攻击次数
     private bool initialAttackPerformed = false; // 是否已执行初始攻击
-    
-    void Start()
+      void Start()
     {
         // 初始化组件引用
         anim = GetComponentInChildren<Animator>();
@@ -60,6 +59,39 @@ public class BossController : MonoBehaviour
             player = GameObject.Find("Player");
             Debug.LogWarning("无法通过标签找到玩家对象，尝试通过名称查找");
         }
+        
+        // 确保playerLayer已正确设置
+        if (playerLayer.value == 0)
+        {
+            Debug.LogWarning("<color=yellow>Boss的playerLayer未设置，尝试自动设置为'Player'层...</color>");
+            playerLayer = LayerMask.GetMask("Player");
+            
+            if (playerLayer.value == 0)
+            {
+                Debug.LogError("<color=red>严重错误：找不到'Player'层！请确保已在项目中创建此层。尝试寻找替代层...</color>");
+                
+                // 尝试其他可能的层名称
+                string[] possibleLayerNames = new string[] {"Character", "PlayerCharacter", "Hero", "Protagonist"};
+                foreach (string layerName in possibleLayerNames)
+                {
+                    playerLayer = LayerMask.GetMask(layerName);
+                    if (playerLayer.value != 0)
+                    {
+                        Debug.Log($"<color=yellow>使用'{layerName}'层作为替代的玩家层</color>");
+                        break;
+                    }
+                }
+                
+                // 如果仍未找到，则使用一些常见层
+                if (playerLayer.value == 0)
+                {
+                    playerLayer = LayerMask.GetMask("Default");
+                    Debug.LogWarning("<color=orange>无法找到专门的玩家层，使用'Default'层。这可能导致攻击检测不准确！</color>");
+                }
+            }
+        }
+        
+        Debug.Log($"<color=cyan>Boss初始化完成 - 玩家引用: {(player != null ? player.name : "未找到")}, 玩家层: {playerLayer.value}</color>");
         
         // 确保有近战攻击点
         if (meleeAttackPoint == null)
@@ -89,17 +121,35 @@ public class BossController : MonoBehaviour
         
         // 随机生成执行远程攻击前需要的近战攻击次数
         RegenerateAttackPattern();
-    }
-    
-    void Update()
+    }      void Update()
     {
         // 如果Boss已死亡，不执行任何逻辑
         if (isDead) return;
-        
-        // 检测P键激活Boss
-        if (Input.GetKeyDown(KeyCode.P) && !isActive)
+          // 检测P键激活或重置Boss
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            ActivateBoss();
+            Debug.Log("<color=#FF1493>P键被按下 - 当前Boss激活状态: " + isActive + "</color>");
+            
+            // 重置所有相关状态，确保完全重新激活
+            StopAllCoroutines(); // 停止所有可能的协程
+            isAttacking = false;
+            initialAttackPerformed = false;
+            
+            // 无论当前状态如何，都重新查找玩家并激活Boss
+            GameObject foundPlayer = GameObject.FindGameObjectWithTag("Player");
+            if (foundPlayer != null)
+            {
+                player = foundPlayer;
+                Debug.Log($"<color=#FF1493>找到玩家，位置: {player.transform.position}</color>");
+                
+                // 完全重新激活Boss
+                isActive = false;
+                StartCoroutine(DelayedActivation());
+            }
+            else
+            {
+                Debug.LogError("<color=#FF0000>无法找到玩家对象！Boss无法激活！</color>");
+            }
         }
         
         if (isActive)
@@ -110,77 +160,216 @@ public class BossController : MonoBehaviour
         }
         
         UpdateAnimator();
-    }
-    
-    // 激活Boss
-    private void ActivateBoss()
+    }    // 用于延迟激活Boss的协程，解决可能的帧同步问题
+    private IEnumerator DelayedActivation()
     {
-        isActive = true;
-        consecutiveMeleeAttacks = 0;
-        initialAttackPerformed = false;
-        Debug.Log("<color=#FF0000>Boss已激活！</color>");
+        // 先等待一帧，确保场景中的所有状态都已更新
+        yield return null;
         
-        if (anim != null)
+        // 然后调用激活方法
+        ActivateBoss();
+        
+        // 额外的调试检查
+        yield return new WaitForSeconds(0.5f);
+        
+        if (!isActive || rb.linearVelocity.x == 0)
         {
-            anim.SetBool("isActive", true);
+            Debug.LogWarning("<color=#FFFF00>Boss可能未正确激活，尝试再次激活...</color>");
+            ActivateBoss();
         }
     }
     
-    // 更新与玩家的距离
-    private void UpdatePlayerDistance()
+    // 激活Boss
+    public void ActivateBoss()
     {
+        // 设置激活状态
+        isActive = true;
+        consecutiveMeleeAttacks = 0;
+        initialAttackPerformed = false;
+        
+        // 记录激活时间
+        float activationTime = Time.time;
+        Debug.Log($"<color=#FF0000>Boss激活！时间: {activationTime}, 当前帧: {Time.frameCount}</color>");
+        
+        // 确保找到玩家
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
             if (player == null)
             {
-                distanceToPlayer = 100f; // 如果找不到玩家，设置一个很大的距离
-                return;
+                player = GameObject.Find("Player");
+                if (player == null)
+                {
+                    Debug.LogError("<color=#FF0000>激活Boss时无法找到玩家对象！Boss将无法追踪</color>");
+                    return;
+                }
+            }
+        }
+        
+        Debug.Log($"<color=#FF9900>找到玩家: {player.name}, 位置: {player.transform.position}</color>");
+        
+        // 更新玩家距离
+        UpdatePlayerDistance();
+        
+        // 立即更新动画状态
+        if (anim != null)
+        {
+            anim.SetBool("isActive", true);
+            anim.SetBool("isMoving", true);
+            Debug.Log("<color=#32CD32>Boss动画状态已更新：isActive=true, isMoving=true</color>");
+        }
+        else
+        {
+            Debug.LogError("<color=#FF0000>Boss没有动画控制器！</color>");
+        }
+        
+        // 强制立即更新移动
+        if (rb != null)
+        {
+            float moveDirection = distanceToPlayer > 0 ? 1 : -1;
+            rb.linearVelocity = new Vector2(moveDirection * moveSpeed, rb.linearVelocity.y);
+            Debug.Log($"<color=#FF9900>Boss开始移动！位置: {transform.position}, 速度: {rb.linearVelocity}, 移动方向: {moveDirection}, 玩家距离: {distanceToPlayer}</color>");
+            
+            // 添加强制移动确认
+            StartCoroutine(ConfirmMovement());
+        }
+        else
+        {
+            Debug.LogError("<color=#FF0000>Boss没有Rigidbody2D组件！</color>");
+        }
+    }
+    
+    // 确认移动已经成功启动的协程
+    private IEnumerator ConfirmMovement()
+    {
+        yield return new WaitForSeconds(0.2f);
+        
+        if (isActive && rb.linearVelocity.x == 0 && Mathf.Abs(distanceToPlayer) > meleeAttackRange)
+        {
+            Debug.LogWarning("<color=#FFFF00>Boss移动似乎未成功启动，尝试手动设置速度...</color>");
+            float moveDirection = distanceToPlayer > 0 ? 1 : -1;
+            rb.linearVelocity = new Vector2(moveDirection * moveSpeed, rb.linearVelocity.y);
+        }
+        
+        // 多次检查，确保移动状态正常
+        for (int i = 0; i < 5; i++)
+        {
+            yield return new WaitForSeconds(0.2f);
+            if (isActive && !isAttacking && Mathf.Abs(distanceToPlayer) > meleeAttackRange)
+            {
+                float moveDirection = distanceToPlayer > 0 ? 1 : -1;
+                float currentVelocityX = rb.linearVelocity.x;
+                float expectedVelocityX = moveDirection * moveSpeed;
+                
+                // 如果速度不符合预期，尝试修正
+                if (Mathf.Abs(currentVelocityX - expectedVelocityX) > 0.5f)
+                {
+                    Debug.Log($"<color=#FFA07A>校正Boss移动速度: {currentVelocityX} -> {expectedVelocityX}</color>");
+                    rb.linearVelocity = new Vector2(expectedVelocityX, rb.linearVelocity.y);
+                }
+            }
+        }
+    }// 更新与玩家的距离
+    private void UpdatePlayerDistance()
+    {
+        // 如果玩家引用丢失，重新查找
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null)
+            {
+                player = GameObject.Find("Player");
+                if (player == null)
+                {
+                    Debug.LogError("<color=#FF0000>Boss无法找到玩家！请确保场景中有带有'Player'标签的玩家对象</color>");
+                    distanceToPlayer = 100f; // 如果找不到玩家，设置一个很大的距离
+                    return;
+                }
             }
         }
         
         // 计算与玩家的X轴距离（2D游戏通常关注X轴距离）
         distanceToPlayer = player.transform.position.x - transform.position.x;
-    }
-    
-    // 更新Boss移动
+        
+        // 计算实际2D距离和垂直差距（用于攻击判定）
+        Vector2 playerPosition = player.transform.position;
+        Vector2 bossPosition = transform.position;
+        float actualDistance = Vector2.Distance(playerPosition, bossPosition);
+        float verticalDistance = Mathf.Abs(playerPosition.y - bossPosition.y);
+    }// 更新Boss移动
     private void UpdateMovement()
     {
+        // 检查Boss是否激活
+        if (!isActive)
+        {
+            if (rb.linearVelocity.x != 0)
+            {
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            }
+            return;
+        }
+    
         // 如果正在攻击，不允许移动
         if (isAttacking)
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             return;
         }
         
-        // 如果是初次激活且尚未执行初始攻击，追踪玩家
-        if (!initialAttackPerformed)
+        // 确保再次检查玩家位置
+        UpdatePlayerDistance();
+        
+        // 如果找不到玩家，不要移动
+        if (player == null)
+        {
+            Debug.LogWarning("<color=yellow>UpdateMovement: 找不到玩家，Boss无法移动</color>");
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            return;
+        }
+          // 获取玩家和Boss的Y轴距离
+        float yDistance = Mathf.Abs(player.transform.position.y - transform.position.y);
+        
+        // 如果玩家和Boss在不同层级且差距较大，可以考虑垂直移动（如果游戏设计支持）
+        bool shouldTrackPlayer = true;
+        if (yDistance > 3.0f) // 如果玩家在明显不同的高度（可调整此阈值）
+        {
+            Debug.Log($"<color=orange>警告：玩家与Boss垂直距离过大: {yDistance}，可能需要调整寻路逻辑</color>");
+            shouldTrackPlayer = false; // 可以设计为Boss放弃追击或使用特殊方式移动
+        }
+        
+        // 如果是初次激活且尚未执行初始攻击，优先追踪玩家
+        if (!initialAttackPerformed && shouldTrackPlayer)
         {
             // 如果距离大于近战攻击范围，向玩家移动
             if (Mathf.Abs(distanceToPlayer) > meleeAttackRange)
             {
                 float moveDirection = distanceToPlayer > 0 ? 1 : -1;
-                rb.velocity = new Vector2(moveDirection * moveSpeed, rb.velocity.y);
+                rb.linearVelocity = new Vector2(moveDirection * moveSpeed, rb.linearVelocity.y);
             }
             else
             {
                 // 停止并准备攻击
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             }
         }
-        else
+        else if (shouldTrackPlayer)
         {
-            // 如果需要执行近战攻击但不在范围内，则靠近玩家
+            // 正常追踪逻辑：如果需要执行近战攻击但不在范围内，则靠近玩家
             if (consecutiveMeleeAttacks < meleeAttacksBeforeRanged && Mathf.Abs(distanceToPlayer) > meleeAttackRange)
             {
                 float moveDirection = distanceToPlayer > 0 ? 1 : -1;
-                rb.velocity = new Vector2(moveDirection * moveSpeed, rb.velocity.y);
+                rb.linearVelocity = new Vector2(moveDirection * moveSpeed, rb.linearVelocity.y);
             }
             else
             {
                 // 其他情况下停止移动
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             }
+        }
+        else
+        {
+            // 如果不应该追踪（例如，Y轴距离过大），则停止移动
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
     }
     
@@ -271,55 +460,172 @@ public class BossController : MonoBehaviour
         nextAttackTime = Time.time + meleeAttackCooldown * 1.5f;
         Invoke("EndAttackState", 1.2f); // 远程攻击动画可能更长
     }
-    
-    // 应用近战攻击伤害
+      // 应用近战攻击伤害
     private void ApplyMeleeAttackDamage()
     {
         if (isDead || !isActive) return;
         
-        // 检测攻击范围内的玩家
-        Collider2D playerCollider = Physics2D.OverlapCircle(meleeAttackPoint.position, meleeAttackRange, playerLayer);
-        if (playerCollider != null)
+        // 确认playerLayer是否设置正确
+        if (playerLayer.value == 0)
         {
-            PlayerAttackSystem playerHealth = playerCollider.GetComponent<PlayerAttackSystem>();
-            if (playerHealth != null)
+            Debug.LogError("<color=red>错误: Boss的playerLayer未设置！尝试自动设置...</color>");
+            playerLayer = LayerMask.GetMask("Player");
+            if (playerLayer.value == 0)
             {
-                // 对玩家造成伤害
-                playerHealth.TakeDamage(meleeAttackDamage);
+                Debug.LogError("<color=red>错误: 找不到Player层，请在Inspector中正确设置playerLayer</color>");
+                return;
+            }
+        }
+        
+        // 调试信息
+        Debug.Log($"<color=cyan>Boss近战攻击检测 - 攻击点位置: {meleeAttackPoint.position}, 攻击范围: {meleeAttackRange}, 玩家层掩码: {playerLayer.value}</color>");
+        
+        // 检测攻击范围内的玩家
+        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(meleeAttackPoint.position, meleeAttackRange, playerLayer);
+        
+        // 检查是否找到任何玩家碰撞体
+        if (hitPlayers.Length == 0)
+        {
+            Debug.LogWarning($"<color=yellow>Boss近战攻击未检测到玩家碰撞体! 尝试直接查找玩家...</color>");
+            
+            // 尝试直接通过玩家引用查找
+            if (player != null)
+            {
+                float distanceToPlayerReal = Vector2.Distance(meleeAttackPoint.position, player.transform.position);
+                Debug.Log($"<color=cyan>直接距离检测: 与玩家实际距离 = {distanceToPlayerReal}，攻击范围 = {meleeAttackRange}</color>");
                 
-                // 记录到战斗管理器
-                if (CombatManager.Instance != null)
+                if (distanceToPlayerReal <= meleeAttackRange * 1.2f) // 增加一些容错空间
                 {
-                    CombatManager.Instance.LogDamage(gameObject, player, meleeAttackDamage);
+                    PlayerAttackSystem playerHealth = player.GetComponent<PlayerAttackSystem>();
+                    if (playerHealth != null)
+                    {
+                        // 对玩家造成伤害
+                        playerHealth.TakeDamage(meleeAttackDamage);
+                        
+                        // 记录到战斗管理器
+                        if (CombatManager.Instance != null)
+                        {
+                            CombatManager.Instance.LogDamage(gameObject, player, meleeAttackDamage);
+                        }
+                        
+                        Debug.Log($"<color=#FF4500>Boss的近战攻击命中玩家(距离检测)，造成 {meleeAttackDamage} 点伤害！</color>");
+                        return; // 已处理完攻击
+                    }
+                }
+            }
+        }
+        else
+        {
+            // 正常的碰撞检测流程
+            foreach (Collider2D playerCollider in hitPlayers)
+            {
+                PlayerAttackSystem playerHealth = playerCollider.GetComponent<PlayerAttackSystem>();
+                if (playerHealth == null)
+                {
+                    playerHealth = playerCollider.GetComponentInParent<PlayerAttackSystem>();
                 }
                 
-                Debug.Log($"<color=#FF4500>Boss的近战攻击命中玩家，造成 {meleeAttackDamage} 点伤害！</color>");
+                if (playerHealth != null)
+                {
+                    // 对玩家造成伤害
+                    playerHealth.TakeDamage(meleeAttackDamage);
+                    
+                    // 记录到战斗管理器
+                    if (CombatManager.Instance != null)
+                    {
+                        CombatManager.Instance.LogDamage(gameObject, player, meleeAttackDamage);
+                    }
+                    
+                    Debug.Log($"<color=#FF4500>Boss的近战攻击命中玩家，造成 {meleeAttackDamage} 点伤害！</color>");
+                }
+                else
+                {
+                    Debug.LogWarning($"<color=yellow>检测到碰撞体 {playerCollider.name}，但未找到PlayerAttackSystem组件!</color>");
+                }
             }
         }
     }
-    
-    // 应用远程攻击伤害
+      // 应用远程攻击伤害
     private void ApplyRangedAttackDamage()
     {
         if (isDead || !isActive) return;
         
-        // 远程攻击使用更大的范围
-        Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, rangedAttackRadius, playerLayer);
-        if (playerCollider != null)
+        // 确认playerLayer是否设置正确
+        if (playerLayer.value == 0)
         {
-            PlayerAttackSystem playerHealth = playerCollider.GetComponent<PlayerAttackSystem>();
-            if (playerHealth != null)
+            Debug.LogError("<color=red>错误: Boss的playerLayer未设置！尝试自动设置...</color>");
+            playerLayer = LayerMask.GetMask("Player");
+            if (playerLayer.value == 0)
             {
-                // 对玩家造成伤害
-                playerHealth.TakeDamage(rangedAttackDamage);
+                Debug.LogError("<color=red>错误: 找不到Player层，请在Inspector中正确设置playerLayer</color>");
+                return;
+            }
+        }
+        
+        // 调试信息
+        Debug.Log($"<color=cyan>Boss远程攻击检测 - 攻击中心位置: {transform.position}, 攻击范围: {rangedAttackRadius}, 玩家层掩码: {playerLayer.value}</color>");
+        
+        // 远程攻击使用更大的范围，获取所有在范围内的玩家
+        Collider2D[] hitPlayers = Physics2D.OverlapCircleAll(transform.position, rangedAttackRadius, playerLayer);
+        
+        // 检查是否找到任何玩家碰撞体
+        if (hitPlayers.Length == 0)
+        {
+            Debug.LogWarning($"<color=yellow>Boss远程攻击未检测到玩家碰撞体! 尝试直接查找玩家...</color>");
+            
+            // 尝试直接通过玩家引用查找
+            if (player != null)
+            {
+                float distanceToPlayerReal = Vector2.Distance(transform.position, player.transform.position);
+                Debug.Log($"<color=cyan>直接距离检测: 与玩家实际距离 = {distanceToPlayerReal}，攻击范围 = {rangedAttackRadius}</color>");
                 
-                // 记录到战斗管理器
-                if (CombatManager.Instance != null)
+                if (distanceToPlayerReal <= rangedAttackRadius * 1.1f) // 增加一些容错空间
                 {
-                    CombatManager.Instance.LogDamage(gameObject, player, rangedAttackDamage);
+                    PlayerAttackSystem playerHealth = player.GetComponent<PlayerAttackSystem>();
+                    if (playerHealth != null)
+                    {
+                        // 对玩家造成伤害
+                        playerHealth.TakeDamage(rangedAttackDamage);
+                        
+                        // 记录到战斗管理器
+                        if (CombatManager.Instance != null)
+                        {
+                            CombatManager.Instance.LogDamage(gameObject, player, rangedAttackDamage);
+                        }
+                        
+                        Debug.Log($"<color=#8B0000>Boss的远程攻击命中玩家(距离检测)，造成 {rangedAttackDamage} 点伤害！</color>");
+                        return; // 已处理完攻击
+                    }
+                }
+            }
+        }
+        else
+        {
+            foreach (Collider2D playerCollider in hitPlayers)
+            {
+                PlayerAttackSystem playerHealth = playerCollider.GetComponent<PlayerAttackSystem>();
+                if (playerHealth == null)
+                {
+                    playerHealth = playerCollider.GetComponentInParent<PlayerAttackSystem>();
                 }
                 
-                Debug.Log($"<color=#8B0000>Boss的远程攻击命中玩家，造成 {rangedAttackDamage} 点伤害！</color>");
+                if (playerHealth != null)
+                {
+                    // 对玩家造成伤害
+                    playerHealth.TakeDamage(rangedAttackDamage);
+                    
+                    // 记录到战斗管理器
+                    if (CombatManager.Instance != null)
+                    {
+                        CombatManager.Instance.LogDamage(gameObject, player, rangedAttackDamage);
+                    }
+                    
+                    Debug.Log($"<color=#8B0000>Boss的远程攻击命中玩家，造成 {rangedAttackDamage} 点伤害！</color>");
+                }
+                else
+                {
+                    Debug.LogWarning($"<color=yellow>检测到碰撞体 {playerCollider.name}，但未找到PlayerAttackSystem组件!</color>");
+                }
             }
         }
     }
@@ -344,7 +650,7 @@ public class BossController : MonoBehaviour
         }
         
         // 更新移动动画
-        bool isMoving = Mathf.Abs(rb.velocity.x) > 0.1f;
+        bool isMoving = Mathf.Abs(rb.linearVelocity.x) > 0.1f;
         anim.SetBool("isMoving", isMoving);
         
         // 设置激活状态参数
@@ -403,7 +709,7 @@ public class BossController : MonoBehaviour
             collider.enabled = false;
         }
         
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         rb.isKinematic = true;
         
         // Boss可能不会立即销毁，而是有一个死亡动画
@@ -424,4 +730,42 @@ public class BossController : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, rangedAttackRadius);
     }
+    
+    // 调试功能：测试对玩家造成伤害
+    public void TestDamagePlayer(int damageAmount)
+    {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null)
+            {
+                Debug.LogError("<color=red>找不到玩家对象，无法测试伤害！</color>");
+                return;
+            }
+        }
+        
+        PlayerAttackSystem playerHealth = player.GetComponent<PlayerAttackSystem>();
+        if (playerHealth == null)
+        {
+            Debug.LogError("<color=red>玩家对象上找不到PlayerAttackSystem组件！</color>");
+            return;
+        }
+        
+        // 测试造成伤害
+        playerHealth.TakeDamage(damageAmount);
+        Debug.Log($"<color=lime>测试成功：对玩家造成了{damageAmount}点测试伤害</color>");
+    }
+      // Update方法中添加测试键绑定
+    private void OnGUI()
+    {
+        // 创建一个简单的调试按钮，在游戏运行时按下可以测试对玩家造成伤害
+        if (GUI.Button(new Rect(Screen.width - 150, 10, 140, 30), "测试Boss伤害"))
+        {
+            TestDamagePlayer(10);
+        }
+    }
+    
+    // 外部只读访问Boss激活状态
+    public bool IsActive => isActive;
 }
+
