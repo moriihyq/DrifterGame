@@ -124,7 +124,7 @@ public class LoadGamePanelManager : MonoBehaviour
                     buttonText.color = new Color(0f, 1f, 1f, 1f); // Bright cyan color
                     
                     // Increase font size for better readability
-                    buttonText.fontSize = 32f; // Increased from default 24
+                    buttonText.fontSize = 38f; // Further increased for better readability
                     
                     if (saveInfos[i].isEmpty)
                     {
@@ -281,7 +281,7 @@ public class SaveSlotUI : MonoBehaviour
                 // Set dimmed cyan color for empty slots
                 slotNameText.color = new Color(0.5f, 0.8f, 0.8f, 1f);
                 // Increase font size for better readability
-                slotNameText.fontSize = 32f;
+                slotNameText.fontSize = 38f; // Increased main text size
             }
         }
         else
@@ -297,31 +297,31 @@ public class SaveSlotUI : MonoBehaviour
             {
                 slotNameText.text = saveInfo.saveName;
                 slotNameText.color = new Color(0f, 1f, 1f, 1f); // Bright cyan
-                slotNameText.fontSize = 32f; // Increase font size
+                slotNameText.fontSize = 38f; // Increased main text size
             }
             if (saveTimeText != null) 
             {
                 saveTimeText.text = $"Saved: {saveInfo.saveTime:MM-dd HH:mm}";
                 saveTimeText.color = new Color(0f, 1f, 1f, 1f); // Bright cyan
-                saveTimeText.fontSize = 24f; // Increase font size
+                saveTimeText.fontSize = 28f; // Increased detail text size
             }
             if (sceneNameText != null) 
             {
                 sceneNameText.text = $"Scene: {saveInfo.sceneName}";
                 sceneNameText.color = new Color(0f, 1f, 1f, 1f); // Bright cyan
-                sceneNameText.fontSize = 24f; // Increase font size
+                sceneNameText.fontSize = 28f; // Increased detail text size
             }
             if (playerHealthText != null) 
             {
                 playerHealthText.text = $"Health: {saveInfo.playerHealth}";
                 playerHealthText.color = new Color(0f, 1f, 1f, 1f); // Bright cyan
-                playerHealthText.fontSize = 24f; // Increase font size
+                playerHealthText.fontSize = 28f; // Increased detail text size
             }
             if (playTimeText != null) 
             {
                 playTimeText.text = $"Play Time: {FormatPlayTime(saveInfo.playTime)}";
                 playTimeText.color = new Color(0f, 1f, 1f, 1f); // Bright cyan
-                playTimeText.fontSize = 24f; // Increase font size
+                playTimeText.fontSize = 28f; // Increased detail text size
             }
             
             // Set button events
