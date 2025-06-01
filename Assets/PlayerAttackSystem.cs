@@ -69,10 +69,12 @@ public class PlayerAttackSystem : MonoBehaviour
             }
         }
     }
-    
-    // 踢击攻击
+      // 踢击攻击
     private void Kick()
     {
+        // 在控制台输出玩家攻击信息
+        Debug.Log("<color=#00BFFF>玩家发动踢击攻击！</color>");
+        
         // 播放踢击动画
         if (animator != null)
         {
@@ -107,11 +109,11 @@ public class PlayerAttackSystem : MonoBehaviour
         
         // 对每个敌人造成伤害
         foreach (Collider2D enemy in hitEnemies)
-        {
-            // 尝试获取敌人组件并造成伤害
+        {            // 尝试获取敌人组件并造成伤害
             Enemy enemyComponent = enemy.GetComponent<Enemy>();
             if (enemyComponent != null)
             {
+                Debug.Log($"<color=#4169E1>玩家攻击命中敌人 {enemy.name}！</color>");
                 enemyComponent.TakeDamage(attackDamage);
             }
             else
@@ -140,13 +142,16 @@ public class PlayerAttackSystem : MonoBehaviour
             }
         }
     }
-    
-    // 玩家受到伤害
+      // 玩家受到伤害
     public void TakeDamage(int damage)
     {
         if (isDead) return;
         
+        int prevHealth = currentHealth;
         currentHealth -= damage;
+        
+        // 在控制台输出玩家血量变化信息
+        Debug.Log($"<color=#FF6347>玩家受到 {damage} 点伤害！血量变化：{prevHealth} -> {currentHealth}</color>");
         
         // 播放受伤动画
         if (animator != null)
@@ -158,15 +163,16 @@ public class PlayerAttackSystem : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
+            Debug.Log("<color=#FF0000>玩家死亡！</color>");
             Die();
         }
     }
-    
-    // 恢复生命值
+      // 恢复生命值
     public void Heal(int amount)
     {
         if (isDead) return;
         
+        int prevHealth = currentHealth;
         currentHealth += amount;
         
         // 限制最大生命值
@@ -174,6 +180,9 @@ public class PlayerAttackSystem : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
+        
+        // 在控制台输出玩家血量恢复信息
+        Debug.Log($"<color=#00FF00>玩家恢复 {amount} 点生命值！血量变化：{prevHealth} -> {currentHealth}</color>");
     }
     
     // 玩家死亡
