@@ -42,5 +42,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackgroundVideo
+    uniqueID: 2204754611
+    locked: 0
+  - name: Floor
+    uniqueID: 584795447
+    locked: 0
   m_RenderingLayers:
   - Default
