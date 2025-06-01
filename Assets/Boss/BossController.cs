@@ -758,6 +758,9 @@ public class BossController : MonoBehaviour
       // Update方法中添加测试键绑定
     private void OnGUI()
     {
+        // 图形化界面已禁用 - 如需重新启用，将下面的return注释掉
+        return;
+        
         // 创建一个简单的调试按钮，在游戏运行时按下可以测试对玩家造成伤害
         if (GUI.Button(new Rect(Screen.width - 150, 10, 140, 30), "测试Boss伤害"))
         {

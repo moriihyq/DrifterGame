@@ -46,17 +46,39 @@ public class GameData
 [System.Serializable]
 public class PlayerData
 {
+    // 基础血量信息
     public int currentHealth;
     public int maxHealth;
+    
+    // 位置和朝向信息
     public Vector3 position;
     public bool isFacingRight;
     
+    // PlayerAttackSystem专用字段
+    public int attackDamage;
+    public float attackCooldown;
+    public float attackRadius;
+    public bool isDead;
+    
+    // 攻击状态
+    public float nextAttackTime;
+    
     public PlayerData()
     {
-        currentHealth = 10;
-        maxHealth = 10;
+        // 默认血量值（从PlayerAttackSystem获取）
+        currentHealth = 100;
+        maxHealth = 100;
+        
+        // 默认位置和朝向
         position = Vector3.zero;
         isFacingRight = true;
+        
+        // 默认攻击设置
+        attackDamage = 50;
+        attackCooldown = 0.2f;
+        attackRadius = 3.0f;
+        isDead = false;
+        nextAttackTime = 0f;
     }
 }
 

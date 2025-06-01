@@ -193,6 +193,18 @@ public class PlayerAttackSystem : MonoBehaviour
         Debug.Log($"<color=#00FF00>玩家恢复 {amount} 点生命值！血量变化：{prevHealth} -> {currentHealth}</color>");
     }
     
+    // 恢复全部生命值（血瓶专用）
+    public void HealToFull()
+    {
+        if (isDead) return;
+        
+        int prevHealth = currentHealth;
+        currentHealth = maxHealth;
+        
+        // 在控制台输出玩家血量恢复信息
+        Debug.Log($"<color=#00FF00>玩家使用血瓶恢复全部生命值！血量变化：{prevHealth} -> {currentHealth}</color>");
+    }
+    
     // 玩家死亡
     private void Die()
     {
@@ -254,6 +266,12 @@ public class PlayerAttackSystem : MonoBehaviour
             currentHealth = 0;
             Die();
         }
+    }
+    
+    // 获取最大生命值（供外部访问）
+    public int MaxHealth
+    {
+        get { return maxHealth; }
     }
     
     // 外部只读访问当前生命值

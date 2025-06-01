@@ -14,6 +14,9 @@ public class TitleScreenManager : MonoBehaviour
     [Header("音频控制")]
     public AudioVolumeManager audioManager; // 音频控制管理器的引用
 
+    [Header("游戏启动设置")]
+    public bool startGameLoadsRecentSave = false; // 是否让StartGame加载最近存档
+
     private void Awake()
     {
         // 查找音频管理器
@@ -96,7 +99,37 @@ public class TitleScreenManager : MonoBehaviour
             }
         }
         
-        Debug.Log("开始新游戏，清除所有存档并加载游戏场景: " + gameSceneName);
+        if (startGameLoadsRecentSave && SaveManager.Instance != null)
+        {
+            // 尝试加载最近的存档
+            var saveInfos = SaveManager.Instance.GetAllSaveInfos();
+            int mostRecentSlot = -1;
+            System.DateTime mostRecentTime = System.DateTime.MinValue;
+            
+            // 查找最近的存档
+            for (int i = 0; i < saveInfos.Count; i++)
+            {
+                if (!saveInfos[i].isEmpty && saveInfos[i].saveTime > mostRecentTime)
+                {
+                    mostRecentTime = saveInfos[i].saveTime;
+                    mostRecentSlot = i;
+                }
+            }
+            
+            if (mostRecentSlot >= 0)
+            {
+                Debug.Log($"加载最近存档（槽位 {mostRecentSlot}），保存时间: {mostRecentTime}");
+                SaveManager.Instance.LoadGameAndApply(mostRecentSlot);
+                return;
+            }
+            else
+            {
+                Debug.Log("未找到存档，开始新游戏");
+            }
+        }
+        
+        // 默认行为：开始新游戏
+        Debug.Log("开始新游戏，清除自动存档并加载游戏场景: " + gameSceneName);
         
         // 清除自动存档槽位（槽位0）以确保是新游戏
         if (SaveManager.Instance != null)
@@ -104,9 +137,7 @@ public class TitleScreenManager : MonoBehaviour
             SaveManager.Instance.DeleteSave(0);
         }
         
-        // 异步加载场景可以防止卡顿，并可以显示加载进度条（如果需要）
-        // SceneManager.LoadSceneAsync(gameSceneName);
-        // 简单直接加载：
+        // 加载游戏场景
         if (!string.IsNullOrEmpty(gameSceneName))
         {
             SceneManager.LoadScene(gameSceneName);

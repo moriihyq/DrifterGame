@@ -98,6 +98,9 @@ public class BossAttackDebugger : MonoBehaviour
     
     void OnGUI()
     {
+        // 图形化界面已禁用 - 如需重新启用，将下面的return注释掉
+        return;
+        
         int btnWidth = 180;
         int btnHeight = 30;
         int margin = 10;
