@@ -1,0 +1,111 @@
+# 移动问题快速测试和修复指南
+
+## 立即测试步骤
+
+### 1. 快速测试移动功能
+1. 将 `SimpleMovementTest.cs` 脚本添加到Player对象上
+2. 运行游戏
+3. 尝试使用WASD键移动
+4. 按F2键切换输入检测方法
+5. 观察Console输出
+
+### 2. 详细诊断
+1. 将 `MovementDiagnostics.cs` 脚本也添加到Player对象上
+2. 运行游戏并按F1键查看详细诊断信息
+
+## 常见问题和解决方案
+
+### 问题1: Input.GetAxisRaw无效但直接按键检测有效
+**症状**: 按F2切换到直接按键检测时能移动，但Input.GetAxisRaw不行
+**原因**: Input Manager配置问题或新输入系统冲突
+**解决方案**:
+```
+1. 检查Edit > Project Settings > Input Manager
+2. 确认Horizontal轴配置正确：
+   - altNegativeButton: a
+   - altPositiveButton: d
+3. 确认Vertical轴配置正确：
+   - altNegativeButton: s
+   - altPositiveButton: w
+```
+
+### 问题2: 都无法移动
+**症状**: 两种输入方法都不工作
+**原因**: Rigidbody2D设置问题或组件冲突
+**解决方案**:
+```
+1. 检查Rigidbody2D设置：
+   - Body Type: Dynamic
+   - Freeze Rotation Z: true
+   - Freeze Position: 不勾选X和Y
+2. 暂时禁用其他移动相关脚本（RollingManager等）
+```
+
+### 问题3: 新输入系统冲突
+**症状**: 诊断显示"New Input System is ENABLED"
+**解决方案**:
+```
+1. 打开Edit > Project Settings > Player
+2. 找到"Active Input Handling"
+3. 设置为"Input Manager (Old)"
+4. 重启Unity
+```
+
+## 临时修复方案
+
+如果上述方法都不行，可以临时修改PlayerController.cs：
+
+### 方案A: 使用直接按键检测
+```csharp
+// 在PlayerController.cs的Update()方法中替换：
+// moveInput = Input.GetAxisRaw("Horizontal");
+
+// 改为：
+if (Input.GetKey(KeyCode.A))
+    moveInput = -1f;
+else if (Input.GetKey(KeyCode.D))
+    moveInput = 1f;
+else
+    moveInput = 0f;
+```
+
+### 方案B: 创建自定义输入管理器
+```csharp
+// 创建新类 CustomInputManager.cs
+public static class CustomInputManager
+{
+    public static float GetHorizontal()
+    {
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            return -1f;
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            return 1f;
+        return 0f;
+    }
+    
+    public static bool GetKeyDown(KeyCode key)
+    {
+        return Input.GetKeyDown(key);
+    }
+    
+    public static bool GetKey(KeyCode key)
+    {
+        return Input.GetKey(key);
+    }
+    
+    public static bool GetKeyUp(KeyCode key)
+    {
+        return Input.GetKeyUp(key);
+    }
+}
+```
+
+## 重新开始烛火系统
+
+修复移动问题后，我们将：
+1. 重新分析烛火交互需求
+2. 创建更稳定的烛火交互系统
+3. 确保不与现有系统冲突
+4. 提供完整的设置指南
+
+请先运行测试脚本，让我知道结果，然后我们继续解决问题！

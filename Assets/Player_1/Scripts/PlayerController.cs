@@ -22,23 +22,22 @@ public class PlayerController : MonoBehaviour
     [Header("Spell System (Extensible)")]
     public string spellCategory; // 预留法术类别接口
 
-    [Header("Ground Check Settings")]
-    public LayerMask groundLayer;
+    [Header("Ground Check Settings")]    public LayerMask groundLayer;
     public float groundCheckDistance = 0.1f; // 减小检测距离，避免提前检测
     public Vector2 groundCheckSize = new Vector2(0.8f, 0.2f); // 增加检测框宽度，提高高度
     private Vector2 groundCheckOffset = new Vector2(0f, -0.5f); // 添加偏移量以调整检测位置
-
+    
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer sr;
     private PlayerJumpManager jumpManager;
-    private RollingManager rollingManager;    public bool isGrounded { get; private set; }
+    private RollingManager rollingManager;
+    
+    public bool isGrounded { get; private set; }
     private bool isCrouching;
     private bool isClimbing;
     private bool isTouchingWall;
-    private float moveInput;
-
-    void Awake()
+    private float moveInput;    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -46,7 +45,9 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         jumpManager = GetComponent<PlayerJumpManager>();
         rollingManager = GetComponent<RollingManager>();
-    }    void Update()
+    }
+    
+    void Update()
     {
         moveInput = Input.GetAxisRaw("Horizontal");
         HandleMovement();
@@ -99,16 +100,16 @@ public class PlayerController : MonoBehaviour
                 Debug.Log($"[Jump] 无法跳跃，已达到最大跳跃次数：{jumpCount}/{maxJumpCount}");
             }
         }
-    }
-
-    void HandleCrouch()
+    }    void HandleCrouch()
     {
         if (Input.GetKeyDown(KeyCode.S))
             isCrouching = true;
         if (Input.GetKeyUp(KeyCode.S))
             isCrouching = false;
-    }    // 移除了HandleRoll方法，现在由RollingManager处理
+    }
 
+    // 移除了HandleRoll方法，现在由RollingManager处理
+    
     void HandleClimb()
     {
         if (isTouchingWall && Input.GetKey(KeyCode.W))
@@ -134,10 +135,10 @@ public class PlayerController : MonoBehaviour
 
         // Update isRunning parameter
         bool isRunningValue = Input.GetKey(KeyCode.LeftShift) && moveInput != 0;
-        animator.SetBool("isRunning", isRunningValue);
-
-        // Debug logs for verification
-        Debug.Log($"Animator Parameters - Speed: {speedValue}, isRunning: {isRunningValue}");        animator.SetBool("isGrounded", isGrounded);
+        animator.SetBool("isRunning", isRunningValue);        // Debug logs for verification
+        Debug.Log($"Animator Parameters - Speed: {speedValue}, isRunning: {isRunningValue}");
+        
+        animator.SetBool("isGrounded", isGrounded);
         animator.SetBool("isCrouching", isCrouching);
         animator.SetBool("isClimbing", isClimbing);
         animator.SetFloat("VerticalVelocity", rb.linearVelocity.y);

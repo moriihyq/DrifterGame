@@ -191,12 +191,20 @@ public class Enemy : MonoBehaviour
         if (Mathf.Abs(distanceToPlayer) <= attackRange)
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-        }
-        // 否则向玩家移动
+        }        // 否则向玩家移动
         else if (Mathf.Abs(distanceToPlayer) < 5f)
         {
             float moveDirection = distanceToPlayer > 0 ? 1 : -1;
-            rb.linearVelocity = new Vector2(moveDirection * 5f, rb.linearVelocity.y);
+            float baseSpeed = 5f;
+            
+            // 检查是否有减速效果
+            EnemySlowEffect slowEffect = GetComponent<EnemySlowEffect>();
+            if (slowEffect != null)
+            {
+                baseSpeed = slowEffect.GetAdjustedSpeed(baseSpeed);
+            }
+            
+            rb.linearVelocity = new Vector2(moveDirection * baseSpeed, rb.linearVelocity.y);
         }
         else
         {

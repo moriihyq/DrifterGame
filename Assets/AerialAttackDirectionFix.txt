@@ -1,0 +1,63 @@
+空中攻击面向检测修复说明
+=============================
+
+【修复日期】2025年6月1日
+
+【问题描述】
+空中攻击技能显示的面向方向与实际玩家面向不符。
+例如：玩家实际面向左，但调试信息显示"面向右"。
+
+【根本原因】
+PlayerController.cs 使用 SpriteRenderer.flipX 控制玩家面向：
+- flipX = false：面向右
+- flipX = true：面向左
+
+但 PlayerLevelSkillSystem.cs 中的 GetPlayerDirection() 方法只检查了 transform.localScale.x，
+没有考虑 SpriteRenderer.flipX 的情况。
+
+【修复内容】
+1. 更新 GetPlayerDirection() 方法，添加 SpriteRenderer.flipX 检测
+2. 调整检测优先级：输入方向 > 速度方向 > SpriteRenderer.flipX > transform.localScale.x
+3. 增强调试输出，显示所有检测方式的结果
+4. 更新 Scene 视图可视化，使其在编辑器模式下也能正确显示面向
+
+【修复后的检测逻辑】
+```csharp
+// 方法1：通过SpriteRenderer.flipX判断 (PlayerController使用这种方式)
+SpriteRenderer sr = GetComponent<SpriteRenderer>();
+float spriteDirection = 1f; // 默认向右
+if (sr != null)
+{
+    // flipX=true表示面向左，flipX=false表示面向右
+    spriteDirection = sr.flipX ? -1f : 1f;
+}
+
+// 优先级：输入方向 > 速度方向 > Sprite方向 > Scale方向
+```
+
+【测试方法】
+1. 运行游戏
+2. 按A/D键移动玩家，观察玩家精灵翻转
+3. 按L键升级到3级
+4. 按X键释放空中攻击技能
+5. 查看Console调试输出：
+   - "Sprite方向: 1 (flipX: False)" = 面向右
+   - "Sprite方向: -1 (flipX: True)" = 面向左
+   - "玩家面向: 右/左" 应该与实际面向一致
+
+【验证结果】
+修复后，空中攻击的面向检测应该完全准确，
+攻击范围会出现在玩家面向的正确方向上。
+
+【相关文件】
+- PlayerLevelSkillSystem.cs（已修复）
+- PlayerController.cs（面向控制逻辑）
+- AerialAttackDebugger.cs（调试工具）
+
+【调试命令】
+- L键：快速升级到3级
+- K键：重置冷却时间
+- Tab键：切换调试UI
+- X键：释放技能并查看面向检测
+
+这个修复确保了空中攻击技能的面向检测与玩家的实际面向保持一致！

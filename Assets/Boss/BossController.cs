@@ -17,6 +17,13 @@ public class BossController : MonoBehaviour
     [SerializeField] private float meleeAttackDelay = 0.4f; // 近战攻击判定延迟
     [SerializeField] private float rangedAttackDelay = 0.8f; // 远程攻击判定延迟
     
+    [Header("音效设置")]
+    [SerializeField] private AudioSource audioSource; // 音效播放器
+    [SerializeField] private AudioClip meleeAttackSound; // 近战攻击音效
+    [SerializeField] private AudioClip rangedAttackSound; // 远程攻击音效
+    [SerializeField] [Range(0f, 1f)] private float meleeAttackVolume = 1f; // 近战攻击音量
+    [SerializeField] [Range(0f, 1f)] private float rangedAttackVolume = 1f; // 远程攻击音量
+    
     // 组件引用
     private Animator anim;
     private Rigidbody2D rb;
@@ -45,6 +52,17 @@ public class BossController : MonoBehaviour
         if (rb == null) rb = gameObject.AddComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.gravityScale = 3f; // 确保Boss受重力影响
+        
+        // 初始化音频组件
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+                Debug.Log("自动添加AudioSource组件到Boss对象");
+            }
+        }
         
         // 初始化状态
         currentHealth = maxHealth;
@@ -430,6 +448,17 @@ public class BossController : MonoBehaviour
             anim.SetTrigger("Attack");
         }
         
+        // 播放近战攻击音效
+        if (audioSource != null && meleeAttackSound != null)
+        {
+            audioSource.PlayOneShot(meleeAttackSound, meleeAttackVolume);
+            Debug.Log("<color=#FF4500>播放近战攻击音效</color>");
+        }
+        else
+        {
+            Debug.LogWarning("<color=yellow>近战攻击音效未设置或音效播放器缺失</color>");
+        }
+        
         Debug.Log("<color=#FF4500>Boss发动近战攻击！</color>");
         
         // 延迟进行攻击判定
@@ -449,6 +478,17 @@ public class BossController : MonoBehaviour
         if (anim != null)
         {
             anim.SetTrigger("Shoot");
+        }
+        
+        // 播放远程攻击音效
+        if (audioSource != null && rangedAttackSound != null)
+        {
+            audioSource.PlayOneShot(rangedAttackSound, rangedAttackVolume);
+            Debug.Log("<color=#8B0000>播放远程攻击音效</color>");
+        }
+        else
+        {
+            Debug.LogWarning("<color=yellow>远程攻击音效未设置或音效播放器缺失</color>");
         }
         
         Debug.Log("<color=#8B0000>Boss发动远程攻击！</color>");

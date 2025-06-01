@@ -2,13 +2,24 @@
 using UnityEngine;
 
 public class PlayerAttackSystem : MonoBehaviour
-{
-    [Header("攻击设置")]
+{    [Header("攻击设置")]
     [SerializeField] private int attackDamage = 50; // 玩家攻击伤害
     [SerializeField] private float attackCooldown = 0.2f; // 攻击冷却时间
     [SerializeField] private Transform attackPoint; // 攻击判定点
     [SerializeField] private float attackRadius = 3.0f; // 攻击范围半径（固定为3单位）
     [SerializeField] private LayerMask enemyLayers; // 敌人图层
+    
+    [Header("音效设置")]
+    [SerializeField] private AudioSource audioSource; // 音效播放器
+    [SerializeField] private AudioClip normalAttackSound; // 普通攻击音效
+    [SerializeField] [Range(0f, 1f)] private float normalAttackVolume = 1f; // 普通攻击音量
+    
+    // 公共属性，允许其他脚本修改攻击伤害
+    public int AttackDamage 
+    { 
+        get { return attackDamage; } 
+        set { attackDamage = value; Debug.Log($"<color=yellow>[PlayerAttackSystem] 攻击伤害设置为: {attackDamage}</color>"); } 
+    }
     
     [Header("生命值设置")]
     [SerializeField] private int maxHealth = 100; // 最大生命值
@@ -31,6 +42,17 @@ public class PlayerAttackSystem : MonoBehaviour
             if (animator == null)
             {
                 Debug.LogError("未找到Animator组件！请确保玩家对象或其子对象上有Animator组件");
+            }
+        }
+        
+        // 如果没有设置音频源，则获取或添加一个
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+                Debug.Log("自动添加AudioSource组件到玩家对象");
             }
         }
         
@@ -83,6 +105,16 @@ public class PlayerAttackSystem : MonoBehaviour
         else
         {
             Debug.LogError("没有找到Animator组件，无法播放攻击动画!");
+        }
+        
+        // 播放普通攻击音效
+        if (audioSource != null && normalAttackSound != null)
+        {
+            audioSource.PlayOneShot(normalAttackSound, normalAttackVolume);
+        }
+        else
+        {
+            Debug.LogWarning("音效播放器或普通攻击音效未设置，无法播放音效");
         }
         
         // 检查enemyLayers是否已设置，如果未设置则尝试自动设置
@@ -193,6 +225,18 @@ public class PlayerAttackSystem : MonoBehaviour
         Debug.Log($"<color=#00FF00>玩家恢复 {amount} 点生命值！血量变化：{prevHealth} -> {currentHealth}</color>");
     }
     
+    // 恢复全部生命值（血瓶专用）
+    public void HealToFull()
+    {
+        if (isDead) return;
+        
+        int prevHealth = currentHealth;
+        currentHealth = maxHealth;
+        
+        // 在控制台输出玩家血量恢复信息
+        Debug.Log($"<color=#00FF00>玩家使用血瓶恢复全部生命值！血量变化：{prevHealth} -> {currentHealth}</color>");
+    }
+    
     // 玩家死亡
     private void Die()
     {
@@ -254,6 +298,12 @@ public class PlayerAttackSystem : MonoBehaviour
             currentHealth = 0;
             Die();
         }
+    }
+    
+    // 获取最大生命值（供外部访问）
+    public int MaxHealth
+    {
+        get { return maxHealth; }
     }
     
     // 外部只读访问当前生命值

@@ -1,0 +1,148 @@
+# 玩家等级技能系统设置指南
+
+## 1. 为玩家添加技能系统组件
+
+### 步骤1: 添加脚本组件
+1. 选择玩家GameObject
+2. 在Inspector中点击"Add Component"
+3. 搜索并添加"PlayerLevelSkillSystem"脚本
+
+### 步骤2: 配置基本参数
+在PlayerLevelSkillSystem组件中设置：
+
+**等级系统:**
+- Player Level: 设置玩家初始等级（默认1）
+
+**空中攻击技能设置:**
+- Aerial Attack Required Level: 3（需要3级才能使用）
+- Aerial Attack Cooldown: 20（20秒冷却时间）
+- Aerial Attack Range: 3（3个单位攻击距离）
+- Aerial Attack Damage: 50（攻击伤害）
+- Slow Effect Duration: 3（减速持续3秒）
+- Slow Effect Strength: 0.5（减速到50%速度）
+
+## 2. 创建技能冷却UI
+
+### 步骤1: 创建UI Canvas（如果还没有）
+1. 右键Hierarchy -> UI -> Canvas
+2. 确保Canvas的Render Mode为"Screen Space - Overlay"
+
+### 步骤2: 创建技能冷却UI
+1. 在Canvas下右键 -> UI -> Panel，命名为"SkillCooldownUI"
+2. 设置Panel的锚点为右上角
+3. 调整位置和大小（推荐宽150，高80）
+
+### 步骤3: 添加冷却时间文本
+1. 在SkillCooldownUI下右键 -> UI -> Text，命名为"CooldownText"
+2. 设置文本内容为"空中攻击: 0.0s"
+3. 调整字体大小和颜色
+
+### 步骤4: 添加冷却填充图像
+1. 在SkillCooldownUI下右键 -> UI -> Image，命名为"CooldownFill"
+2. 设置Image Type为"Filled"
+3. 设置Fill Method为"Radial 360"
+4. 设置颜色为半透明红色或橙色
+
+### 步骤5: 创建等级要求提示文本
+1. 在Canvas下右键 -> UI -> Text，命名为"LevelRequirementText"
+2. 设置锚点为屏幕中心
+3. 设置文本为"需要等级3解锁空中攻击"
+
+## 3. 连接UI引用
+
+### 在PlayerLevelSkillSystem组件中设置：
+1. **Skill Cooldown UI**: 拖拽"SkillCooldownUI"对象
+2. **Cooldown Text**: 拖拽"CooldownText"对象
+3. **Cooldown Fill Image**: 拖拽"CooldownFill"对象
+4. **Level Requirement Text**: 拖拽"LevelRequirementText"对象
+
+## 4. 设置玩家动画
+
+### 为玩家Animator添加空中攻击动画
+1. 打开玩家的Animator Controller
+2. 添加一个新的Trigger参数，命名为"Aerial_Attack"
+3. 创建空中攻击动画状态
+4. 连接"Aerial_Attack"触发器到该状态
+
+### 动画设置建议
+- 动画名称: "AerialAttack"
+- 动画长度: 0.8-1.2秒
+- 过渡时间: 0.1秒
+
+## 5. 添加音效（可选）
+
+### 步骤1: 准备音效文件
+- 将空中攻击音效文件放入Assets文件夹
+
+### 步骤2: 设置音效
+1. 确保玩家有AudioSource组件
+2. 在PlayerLevelSkillSystem的"Aerial Attack Sound"字段中拖拽音效文件
+
+## 6. 使用方法
+
+### 基本操作
+1. **查看当前等级**: 在PlayerLevelSkillSystem组件中查看Player Level
+2. **使用空中攻击**: 当等级≥3时，按X键释放技能
+3. **查看冷却时间**: 技能使用后会显示冷却UI
+
+### 调整等级（测试用）
+- 在游戏运行时可以在Inspector中修改Player Level值
+- 或者通过代码调用: `playerLevelSkillSystem.AddLevel(2);`
+
+## 7. 技能效果说明
+
+### 空中攻击技能特性
+- **触发条件**: 等级≥3 且 按下X键
+- **检测范围**: 玩家前方3个单位的直线区域
+- **攻击效果**: 对范围内所有敌人造成伤害和减速
+- **减速效果**: 敌人移动速度降低50%，持续3秒
+- **冷却时间**: 20秒
+
+### 可调节参数
+所有技能参数都可以在Inspector中实时调整：
+- 攻击距离、伤害值、减速强度、减速时长、冷却时间等
+
+## 8. 调试信息
+
+### Console输出信息
+- "执行空中攻击技能！"
+- "播放空中攻击动画：Aerial_Attack"
+- "空中攻击命中敌人，造成 X 点伤害"
+- "敌人被减速，速度从 X 降低到 Y"
+- "空中攻击技能冷却完成！"
+
+### 可视化调试
+- 选中玩家时，Scene视图会显示红色线框表示攻击范围
+
+## 9. 故障排除
+
+### 技能无法触发
+- 检查玩家等级是否≥3
+- 检查是否在冷却时间内
+- 查看Console是否有错误信息
+
+### 动画无法播放
+- 检查Animator是否有"Aerial_Attack"参数
+- 检查动画状态连接是否正确
+
+### UI不显示
+- 检查UI对象引用是否正确设置
+- 检查Canvas是否激活
+
+### 敌人无法被检测到
+- 确保敌人有Collider2D组件
+- 确保敌人有Enemy或BossController脚本
+
+## 10. 扩展功能
+
+### 添加更多技能
+- 可以在此脚本基础上添加更多技能
+- 为每个技能设置不同的等级要求和效果
+
+### 升级系统
+- 可以通过击杀敌人获得经验值
+- 经验值满足条件时自动升级
+
+### 技能树
+- 可以扩展为完整的技能树系统
+- 不同技能有不同的解锁条件

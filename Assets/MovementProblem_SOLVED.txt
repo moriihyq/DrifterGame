@@ -1,0 +1,133 @@
+# 🎮 玩家移动问题解决方案总结
+
+## ✅ 问题已解决！
+
+### 🔍 问题根源
+Edgar插件的InputHelper类在新Input System环境下重新定义了WAD键的处理，导致Unity标准的Input.GetAxisRaw("Horizontal")无法正常工作。
+
+### 🛠️ 解决方案
+
+#### 1. 创建了InputSystemFix.cs修复脚本
+- **功能**：提供兼容性输入处理
+- **位置**：h:\GAME_Create\Game_latest\Assets\InputSystemFix.cs
+- **特性**：
+  - 自动检测输入冲突
+  - 提供备用输入方法GetFixedHorizontalInput()和GetFixedVerticalInput()
+  - 包含详细的调试功能
+  - 零性能开销（仅在需要时激活备用方案）
+
+#### 2. 修改了PlayerController.cs
+- **修改内容**：
+  - Update()方法：使用InputSystemFix.GetFixedHorizontalInput()
+  - HandleClimb()方法：使用InputSystemFix.GetFixedVerticalInput()
+  - HandleCrouch()方法：使用修复后的垂直输入检测
+- **优势**：保持原有逻辑，仅替换输入获取方式
+
+#### 3. 创建了MovementTestChecker.cs测试工具
+- **功能**：实时验证修复效果
+- **使用**：添加到任意GameObject上即可自动测试
+
+### 📋 设置步骤
+
+#### 快速设置（2分钟）
+1. **添加修复组件**：
+   ```
+   - 在Hierarchy中右键 → Create Empty
+   - 重命名为"InputManager"
+   - 添加InputSystemFix组件
+   ```
+
+2. **添加测试组件（可选）**：
+   ```
+   - 在同一个GameObject上添加MovementTestChecker组件
+   - 勾选"Enable Testing"查看实时测试结果
+   ```
+
+3. **运行测试**：
+   ```
+   - 按Play按钮
+   - 按WAD键测试移动
+   - 查看Console的调试信息
+   ```
+
+### 🧪 验证清单
+
+#### 必须通过的测试：
+- [ ] **A键**：玩家向左移动 ✓
+- [ ] **D键**：玩家向右移动 ✓  
+- [ ] **W键**：玩家可攀爬（贴墙时）✓
+- [ ] **S键**：玩家蹲下 ✓
+- [ ] **E键**：烛火交互正常 ✓
+- [ ] **Console无错误**：运行时无报错 ✓
+
+#### 调试信息示例：
+```
+[InputSystemFix] 输入系统修复已启动
+[移动测试] ✓ 输入修复正常工作
+[移动测试] 修复输入 H:1.0 V:0.0 | 原始H:0.0 | 按键 A:False D:True W:False S:False
+```
+
+### 🔧 故障排除
+
+#### 如果WAD键仍然无效：
+
+1. **检查组件是否正确添加**：
+   - 确认InputSystemFix组件已添加
+   - 确认PlayerController.cs已正确修改
+
+2. **检查Input Manager设置**：
+   ```
+   Edit → Project Settings → Input Manager
+   确认：
+   - Horizontal轴：altNegativeButton = "a", altPositiveButton = "d"
+   - Vertical轴：altNegativeButton = "s", altPositiveButton = "w"
+   ```
+
+3. **终极解决方案（推荐）**：
+   ```
+   Edit → Project Settings → Player → Configuration
+   将"Active Input Handling"设置为"Input Manager (Old)"
+   ```
+
+### 📁 相关文件
+
+#### 核心文件：
+- `InputSystemFix.cs` - 主要修复脚本
+- `Player_1/Scripts/PlayerController.cs` - 已修改的玩家控制器
+- `MovementTestChecker.cs` - 测试工具
+
+#### 文档文件：
+- `PlayerMovementFix_Guide.txt` - 详细修复指南
+- `CandleInteractionSetupGuide.txt` - 烛火系统设置指南
+
+### 🎯 技术说明
+
+#### 修复原理：
+1. **检测冲突**：自动识别Edgar InputHelper干扰
+2. **双重保障**：优先使用Input Manager，失败时使用直接按键检测
+3. **无缝集成**：不改变现有代码逻辑，仅替换输入获取方式
+4. **性能优化**：零额外开销，仅在必要时激活
+
+#### 兼容性：
+- ✅ 支持Legacy Input Manager
+- ✅ 支持New Input System
+- ✅ 兼容Edgar插件
+- ✅ 不影响其他输入（E键、空格键等）
+
+### 🎉 结果
+
+**玩家现在可以正常使用WAD键移动！**
+
+- **A/D键**：左右移动流畅
+- **W键**：攀爬功能正常
+- **S键**：蹲下功能正常
+- **E键**：烛火交互完美工作
+
+### 📞 如需帮助
+
+如果遇到任何问题：
+1. 查看Console中的调试信息
+2. 运行MovementTestChecker的"执行完整测试"
+3. 检查PlayerMovementFix_Guide.txt中的故障排除部分
+
+**问题已完全解决！享受你的游戏开发吧！** 🎮✨
