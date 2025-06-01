@@ -150,8 +150,7 @@ public class Enemy : MonoBehaviour
         UpdateAttackState();
         UpdateAnimator();
     }
-    
-    // 更新与玩家的距离
+      // 更新与玩家的距离
     private void UpdatePlayerDistance()
     {
         // 如果player引用丢失，尝试重新查找
@@ -166,10 +165,16 @@ public class Enemy : MonoBehaviour
             }
         }
         
+        // 计算X轴距离（用于左右移动和朝向判断）
         distanceToPlayer = player.transform.position.x - transform.position.x;
         
-        // 当玩家在一定范围内时激活敌人
-        isActive = Mathf.Abs(distanceToPlayer) < 5f;
+        // 计算实际2D距离（用于攻击判定）
+        Vector2 playerPosition = player.transform.position;
+        Vector2 enemyPosition = transform.position;
+        float actualDistance = Vector2.Distance(playerPosition, enemyPosition);
+        
+        // 当玩家在一定范围内时激活敌人（使用实际距离判断）
+        isActive = actualDistance < 5f;
     }
     
     // 更新敌人移动
@@ -198,22 +203,35 @@ public class Enemy : MonoBehaviour
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
     }
-    
-    // 更新攻击状态
+      // 更新攻击状态
     private void UpdateAttackState()
     {
         // 只有在激活状态且不在攻击过程中时才考虑攻击
         if (!isActive || isAttacking)
             return;
         
-        // 如果玩家在攻击范围内且冷却时间已过
-        if (Mathf.Abs(distanceToPlayer) <= attackRange && Time.time >= nextAttackTime)
+        // 计算与玩家的实际2D距离和垂直距离
+        Vector2 playerPosition = player.transform.position;
+        Vector2 enemyPosition = transform.position;
+        float actualDistance = Vector2.Distance(playerPosition, enemyPosition);
+        float verticalDistance = Mathf.Abs(playerPosition.y - enemyPosition.y);
+        
+        // 设置可接受的垂直攻击容差（垂直方向上的最大攻击距离）
+        float verticalAttackTolerance = 0.8f;
+        
+        // 如果玩家在攻击范围内（水平和垂直都满足）且冷却时间已过
+        if (Mathf.Abs(distanceToPlayer) <= attackRange && 
+            verticalDistance <= verticalAttackTolerance && 
+            Time.time >= nextAttackTime)
         {
             // 开始攻击
             PerformAttack();
             
             // 设置下次攻击时间
             nextAttackTime = Time.time + attackCooldown;
+            
+            // 调试信息
+            Debug.Log($"[Enemy攻击] 触发攻击! X轴距离: {distanceToPlayer}, 垂直距离: {verticalDistance}");
         }
     }
     
@@ -234,15 +252,27 @@ public class Enemy : MonoBehaviour
         // 延迟结束攻击状态
         Invoke("EndAttackState", 0.5f); // 假设攻击动画持续0.5秒左右
     }
-    
-    // 应用攻击伤害
+      // 应用攻击伤害
     private void ApplyAttackDamage()
     {
         if (isDead) return;
         
-        // 如果玩家不存在或已离开攻击范围，则不造成伤害
-        if (player == null || Mathf.Abs(distanceToPlayer) > attackRange * 1.2f)
+        // 如果玩家不存在，则不造成伤害
+        if (player == null)
             return;
+            
+        // 再次检查玩家是否在有效的攻击范围内（包括垂直距离）
+        Vector2 playerPosition = player.transform.position;
+        Vector2 enemyPosition = transform.position;
+        float verticalDistance = Mathf.Abs(playerPosition.y - enemyPosition.y);
+        float verticalAttackTolerance = 0.8f;
+        
+        // 如果玩家已离开攻击范围（水平或垂直方向），则不造成伤害
+        if (Mathf.Abs(distanceToPlayer) > attackRange * 1.2f || verticalDistance > verticalAttackTolerance)
+        {
+            Debug.Log($"<color=#888888>攻击失败! 玩家已离开攻击范围。X轴距离: {distanceToPlayer}, 垂直距离: {verticalDistance}</color>");
+            return;
+        }
         
         // 检查玩家是否有生命值组件
         PlayerAttackSystem playerHealth = player.GetComponent<PlayerAttackSystem>();
@@ -250,13 +280,14 @@ public class Enemy : MonoBehaviour
         {
             // 对玩家造成伤害
             playerHealth.TakeDamage(attackDamage);
-              // 记录到战斗管理器
+            
+            // 记录到战斗管理器
             if (CombatManager.Instance != null)
             {
                 CombatManager.Instance.LogDamage(gameObject, player, attackDamage);
             }
             
-            Debug.Log($"<color=#FF4500>敌人 {gameObject.name} 攻击了玩家，造成 {attackDamage} 点伤害！</color>");
+            Debug.Log($"<color=#FF4500>敌人 {gameObject.name} 攻击了玩家，造成 {attackDamage} 点伤害！X轴距离: {distanceToPlayer}, 垂直距离: {verticalDistance}</color>");
         }
     }
     
@@ -284,8 +315,38 @@ public class Enemy : MonoBehaviour
         // 更新接近状态
         approach = Mathf.Abs(distanceToPlayer) <= attackRange;
         anim.SetBool("approach", approach);
-        
-        // 设置激活状态参数
+          // 设置激活状态参数
         anim.SetBool("isActive", isActive);
+    }
+    
+    // 在编辑器中绘制攻击范围的可视化指示器
+    private void OnDrawGizmos()
+    {
+        // 绘制水平攻击范围
+        Gizmos.color = Color.red;
+        
+        // 绘制2D攻击范围
+        float verticalAttackTolerance = 0.8f;  // 与代码中保持一致
+        Vector2 center = transform.position;
+        
+        // 绘制实际攻击范围（椭圆形）
+        DrawEllipseGizmo(center, attackRange, verticalAttackTolerance, 20);
+    }
+    
+    // 辅助方法：绘制椭圆
+    private void DrawEllipseGizmo(Vector2 center, float width, float height, int segments)
+    {
+        float angle = 0f;
+        float angleStep = 2 * Mathf.PI / segments;
+        
+        Vector2 prevPoint = center + new Vector2(Mathf.Cos(0) * width, Mathf.Sin(0) * height);
+        
+        for (int i = 0; i <= segments; i++)
+        {
+            angle += angleStep;
+            Vector2 newPoint = center + new Vector2(Mathf.Cos(angle) * width, Mathf.Sin(angle) * height);
+            Gizmos.DrawLine(prevPoint, newPoint);
+            prevPoint = newPoint;
+        }
     }
 }

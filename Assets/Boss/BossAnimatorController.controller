@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AnimatorController>
+  <Name>BossAnimatorController</Name>
+  <Version>5</Version>
+  <Parameters>
+    <Parameter name="isMoving" type="bool" defaultValue="false" />
+    <Parameter name="isActive" type="bool" defaultValue="false" />
+    <Parameter name="Attack" type="trigger" />
+    <Parameter name="Shoot" type="trigger" />
+    <Parameter name="Hurt" type="trigger" />
+    <Parameter name="IsDead" type="bool" defaultValue="false" />
+  </Parameters>
+  <StateMachineRoot>
+    <StateMachine name="Base Layer" guid="b88d4c9-b1fc-42d1-9b92-e11612d41418">
+      <States>
+        <State name="Idle" guid="d93822db-21cc-4966-8a31-d4c4a1513434">
+          <Position>0, 0</Position>
+          <Transitions>
+            <Transition name="MoveTransition" guid="4bd92b1a-f6db-4d53-8e2e-557be999ac52">
+              <Condition name="isMoving" mode="1" threshold="0" />
+              <Destination>Walk</Destination>
+            </Transition>
+            <Transition name="AttackTransition" guid="f5b4f6cd-a243-44c3-87c5-879c0bc0f9c8">
+              <Condition name="Attack" mode="0" threshold="0" />
+              <Destination>Attack</Destination>
+            </Transition>
+            <Transition name="ShootTransition" guid="57d3c65b-280b-4c75-8e7c-557e18049e68">
+              <Condition name="Shoot" mode="0" threshold="0" />
+              <Destination>Shoot</Destination>
+            </Transition>
+            <Transition name="HurtTransition" guid="e1d72c4a-5e45-4654-a08b-adbf0cc04a1e">
+              <Condition name="Hurt" mode="0" threshold="0" />
+              <Destination>Hurt</Destination>
+            </Transition>
+            <Transition name="DeathTransition" guid="c2f48766-646f-46ec-88fe-c5d792c94646">
+              <Condition name="IsDead" mode="1" threshold="0" />
+              <Destination>Death</Destination>
+            </Transition>
+          </Transitions>
+        </State>
+        <State name="Walk" guid="cb20ad41-38cf-4bc2-889c-0d2c268b2eee">
+          <Position>300, 0</Position>
+          <Transitions>
+            <Transition name="IdleTransition" guid="418bc92a-c8ed-4e07-b7a2-47a8be963dd8">
+              <Condition name="isMoving" mode="2" threshold="0" />
+              <Destination>Idle</Destination>
+            </Transition>
+            <Transition name="AttackTransition" guid="67f383a5-f4bf-4835-8cb0-20741a25e9ab">
+              <Condition name="Attack" mode="0" threshold="0" />
+              <Destination>Attack</Destination>
+            </Transition>
+            <Transition name="ShootTransition" guid="7c906ad5-ce86-43ea-97c5-81580d20e54d">
+              <Condition name="Shoot" mode="0" threshold="0" />
+              <Destination>Shoot</Destination>
+            </Transition>
+            <Transition name="HurtTransition" guid="d6a0c77c-962c-4a31-b0b3-c65b67e00310">
+              <Condition name="Hurt" mode="0" threshold="0" />
+              <Destination>Hurt</Destination>
+            </Transition>
+            <Transition name="DeathTransition" guid="bb40c359-b6e4-4805-bf24-d38b8ed7fe5f">
+              <Condition name="IsDead" mode="1" threshold="0" />
+              <Destination>Death</Destination>
+            </Transition>
+          </Transitions>
+        </State>
+        <State name="Attack" guid="23f6c9c6-5a41-4d81-8cb2-bef9e614621f">
+          <Position>0, 200</Position>
+          <Transitions>
+            <Transition name="IdleTransition" guid="e7f2185c-719b-43bb-99d0-14c72ba4f362">
+              <HasExitTime>true</HasExitTime>
+              <ExitTime>0.8</ExitTime>
+              <Destination>Idle</Destination>
+            </Transition>
+            <Transition name="DeathTransition" guid="ed97a2a0-8613-4574-a837-db8247228757">
+              <Condition name="IsDead" mode="1" threshold="0" />
+              <Destination>Death</Destination>
+            </Transition>
+          </Transitions>
+        </State>
+        <State name="Shoot" guid="981d2162-b20e-4739-bee1-bf2bbbe59def">
+          <Position>300, 200</Position>
+          <Transitions>
+            <Transition name="IdleTransition" guid="76e7e405-1d7c-446c-b286-92d1b783baa2">
+              <HasExitTime>true</HasExitTime>
+              <ExitTime>0.9</ExitTime>
+              <Destination>Idle</Destination>
+            </Transition>
+            <Transition name="DeathTransition" guid="e6654a4d-c7ce-4d34-b194-63d97f10fd88">
+              <Condition name="IsDead" mode="1" threshold="0" />
+              <Destination>Death</Destination>
+            </Transition>
+          </Transitions>
+        </State>
+        <State name="Hurt" guid="f94f3b1b-b0a9-4c94-8e2a-8c58482b79a5">
+          <Position>600, 0</Position>
+          <Transitions>
+            <Transition name="IdleTransition" guid="ebc2b505-65c5-4664-a5ea-d03adca5d34f">
+              <HasExitTime>true</HasExitTime>
+              <ExitTime>0.75</ExitTime>
+              <Destination>Idle</Destination>
+            </Transition>
+            <Transition name="DeathTransition" guid="3cf5fd60-1d15-4bed-a429-7daaa76c2086">
+              <Condition name="IsDead" mode="1" threshold="0" />
+              <Destination>Death</Destination>
+            </Transition>
+          </Transitions>
+        </State>
+        <State name="Death" guid="04fcbd58-bfc7-43f8-9f57-7497f67de0fa">
+          <Position>600, 200</Position>
+          <Transitions />
+        </State>
+      </States>
+      <DefaultState>Idle</DefaultState>
+    </StateMachine>
+  </StateMachineRoot>
+</AnimatorController>
