@@ -109,31 +109,39 @@ public class PlayerAttackSystem : MonoBehaviour
         
         // 对每个敌人造成伤害
         foreach (Collider2D enemy in hitEnemies)
-        {            // 尝试获取敌人组件并造成伤害
+        {
+            // 尝试获取敌人组件并造成伤害
             Enemy enemyComponent = enemy.GetComponent<Enemy>();
             if (enemyComponent != null)
             {
                 Debug.Log($"<color=#4169E1>玩家攻击命中敌人 {enemy.name}！</color>");
                 enemyComponent.TakeDamage(attackDamage);
+                continue;
             }
-            else
+
+            // 检测BossController
+            BossController boss = enemy.GetComponent<BossController>();
+            if (boss != null)
             {
-                // 尝试在父对象或子对象中查找Enemy组件
-                enemyComponent = enemy.GetComponentInParent<Enemy>();
-                if (enemyComponent != null)
-                {
-                    enemyComponent.TakeDamage(attackDamage);
-                }
-                else 
-                {
-                    enemyComponent = enemy.GetComponentInChildren<Enemy>();
-                    if (enemyComponent != null)
-                    {
-                        enemyComponent.TakeDamage(attackDamage);
-                    }
-                }
+                Debug.Log($"<color=yellow>玩家攻击命中Boss {enemy.name}！</color>");
+                boss.TakeDamage(attackDamage);
+                continue;
             }
-            
+
+            // 尝试在父对象或子对象中查找Enemy组件
+            enemyComponent = enemy.GetComponentInParent<Enemy>();
+            if (enemyComponent != null)
+            {
+                enemyComponent.TakeDamage(attackDamage);
+                continue;
+            }
+            enemyComponent = enemy.GetComponentInChildren<Enemy>();
+            if (enemyComponent != null)
+            {
+                enemyComponent.TakeDamage(attackDamage);
+                continue;
+            }
+
             // 如果使用的是 EnemyBase 类，则使用该类的伤害方法
             EnemyBase enemyBaseComponent = enemy.GetComponent<EnemyBase>();
             if (enemyBaseComponent != null)
@@ -247,4 +255,7 @@ public class PlayerAttackSystem : MonoBehaviour
             Die();
         }
     }
+    
+    // 外部只读访问当前生命值
+    public int Health => currentHealth;
 }
