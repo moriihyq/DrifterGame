@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using UnityEngine.UI;
 public class HealthPotion : MonoBehaviour
 {
     [Header("血瓶设置")]

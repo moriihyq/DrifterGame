@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
 /// <summary>
 /// 敌人检测时机调试器 - 专门分析间歇性检测问题
 /// </summary>

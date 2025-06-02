@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Pipe
   - PipeTrigger
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Player
   - Enemy
   - Things
-  - 
+  - Collideable
   - 
   - 
   - 
@@ -41,14 +42,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: BackgroundVideo
     uniqueID: 2204754611
     locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Floor
     uniqueID: 584795447
+    locked: 0
+  - name: Player
+    uniqueID: 3317442501
     locked: 0
   m_RenderingLayers:
   - Default

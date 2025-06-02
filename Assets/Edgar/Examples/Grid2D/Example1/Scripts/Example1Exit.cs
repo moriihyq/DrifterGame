@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
+using UnityEngine.UI;
 namespace Edgar.Unity.Examples.Example1
 {
     /// <summary>

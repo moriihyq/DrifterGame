@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using UnityEngine.UI;
 public class OptionsButtonScript : MonoBehaviour
 {
     // 在Unity编辑器中分配选项菜单管理器

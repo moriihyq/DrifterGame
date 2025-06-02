@@ -1,7 +1,8 @@
-﻿using System.IO;
+using System.IO;
 using UnityEditorInternal;
 using UnityEngine;
 
+using UnityEngine.UI;
 namespace Edgar.Unity.Editor
 {
     public class EdgarScriptableSingleton<T> : ScriptableObject where T : ScriptableObject

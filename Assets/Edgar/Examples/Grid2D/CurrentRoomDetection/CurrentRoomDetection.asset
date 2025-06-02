@@ -79,11 +79,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8074dc491ddc34f4e83332d9eae76980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Position: {x: 240, y: 208}
   Name: Spawn
   IndividualRoomTemplates:
   - {fileID: 9204587858199253963, guid: bfebc572ee520ff49944c3fbb21c269a, type: 3}
   RoomTemplateSets: []
-  Position: {x: 240, y: 208}
 --- !u!114 &114542072930144088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,10 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8074dc491ddc34f4e83332d9eae76980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Position: {x: 352, y: 272}
   Name: Room 2
   IndividualRoomTemplates: []
   RoomTemplateSets: []
-  Position: {x: 352, y: 272}
 --- !u!114 &114571993687451652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,10 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8074dc491ddc34f4e83332d9eae76980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Position: {x: 576, y: 208}
   Name: Room 4
   IndividualRoomTemplates: []
   RoomTemplateSets: []
-  Position: {x: 576, y: 208}
 --- !u!114 &114602654430792232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,10 +128,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8074dc491ddc34f4e83332d9eae76980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Position: {x: 352, y: 208}
   Name: Room 1
   IndividualRoomTemplates: []
   RoomTemplateSets: []
-  Position: {x: 352, y: 208}
 --- !u!114 &114724272651916196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,10 +158,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8074dc491ddc34f4e83332d9eae76980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Position: {x: 464, y: 208}
   Name: Room 3
   IndividualRoomTemplates: []
   RoomTemplateSets: []
-  Position: {x: 464, y: 208}
 --- !u!114 &114797829353180442
 MonoBehaviour:
   m_ObjectHideFlags: 0

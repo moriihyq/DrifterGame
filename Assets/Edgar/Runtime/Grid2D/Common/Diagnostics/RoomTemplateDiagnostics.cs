@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +7,7 @@ using Edgar.GraphBasedGenerator.Grid2D;
 using Edgar.GraphBasedGenerator.Grid2D.Exceptions;
 using UnityEngine;
 
+using UnityEngine.UI;
 namespace Edgar.Unity.Diagnostics
 {
     public static class RoomTemplateDiagnostics

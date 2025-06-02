@@ -6,6 +6,7 @@ using Edgar.Legacy.Core.MapDescriptions;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
+using UnityEngine.UI;
 namespace Edgar.Unity.Diagnostics
 {
     public static class LevelStructureDiagnostics

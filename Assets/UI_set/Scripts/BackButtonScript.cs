@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using UnityEngine.UI;
 public class BackButtonScript : MonoBehaviour
 {
     public string mainMenuSceneName = "MainMenuScene"; // 主菜单场景名称

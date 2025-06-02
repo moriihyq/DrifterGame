@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Text;
 using Edgar.Unity.Diagnostics;
 using UnityEditor;
+using UnityEngine.UI;
 #if UNITY_2021_2_OR_NEWER
 using UnityEditor.SceneManagement;
 #else

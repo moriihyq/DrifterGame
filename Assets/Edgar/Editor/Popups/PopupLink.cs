@@ -1,4 +1,5 @@
-﻿namespace Edgar.Unity.Editor
+using UnityEngine.UI;
+namespace Edgar.Unity.Editor
 {
     public class PopupLink
     {

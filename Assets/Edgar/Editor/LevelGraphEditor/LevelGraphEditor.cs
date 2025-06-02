@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
+using UnityEngine.UI;
 namespace Edgar.Unity.Editor
 {
     public partial class LevelGraphEditor : EditorWindow

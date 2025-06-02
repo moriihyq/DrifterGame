@@ -182,14 +182,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0895ed3cce9706041b0fc157c81ed601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   moveSpeed: 5
   jumpForce: 8
-  money: 0
-  groundCheck: {fileID: 5365676}
+  groundCheckPoint: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   groundCheckRadius: 0.2
+  maxJumps: 2
+  airJumpForceMultiplier: 1
 --- !u!70 &54921509
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

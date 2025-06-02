@@ -230,3 +230,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc16132691b747449e048c1b9e441a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  bulletSpeed: 10
+  angle: 0
+  maxHealth: 100
+  attackDamage: 25
+  attackCooldown: 1
+  attackRange: 1.2
+  attackPoint: {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  attackDelay: 0.3
+  distanceToPlayer: 0

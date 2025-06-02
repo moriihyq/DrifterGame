@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
 /// <summary>
 /// 敌人组件修复器 - 专门解决SaveableEnemy组件缺失问题
 /// </summary>

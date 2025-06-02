@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.SceneManagement;
@@ -6,6 +6,7 @@ using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+using UnityEngine.UI;
 namespace Edgar.Unity.Editor
 {
     public class RoomTemplateScreenshots

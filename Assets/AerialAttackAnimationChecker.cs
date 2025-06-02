@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using UnityEngine.UI;
 /// <summary>
 /// 空中攻击动画设置检查器 - 自动检查和设置玩家动画控制器
 /// </summary>

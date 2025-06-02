@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using UnityEngine.UI;
 /// <summary>
 /// 用于调试Boss动画的工具类
 /// 将此脚本附加到Boss对象上，帮助调试动画控制器的问题

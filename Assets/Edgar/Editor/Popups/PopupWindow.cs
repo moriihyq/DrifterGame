@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
 
+using UnityEngine.UI;
 namespace Edgar.Unity.Editor
 {
     public class PopupWindow : EditorWindow

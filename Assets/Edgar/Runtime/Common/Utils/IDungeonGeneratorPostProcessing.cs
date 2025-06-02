@@ -1,4 +1,6 @@
-﻿using System;
+using UnityEngine;
+using System;
+using Random = System.Random;
 
 namespace Edgar.Unity
 {

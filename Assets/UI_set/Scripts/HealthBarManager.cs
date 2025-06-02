@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using UnityEngine.UI;
 /// <summary>
 /// 血量条管理器
 /// 负责连接PlayerAttackSystem和HealthBarUI，实现血量同步显示

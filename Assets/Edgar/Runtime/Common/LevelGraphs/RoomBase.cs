@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
 namespace Edgar.Unity
 {
     /// <summary>

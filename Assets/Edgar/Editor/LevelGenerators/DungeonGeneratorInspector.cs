@@ -1,6 +1,7 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEngine;
 
+using UnityEngine.UI;
 namespace Edgar.Unity.Editor
 {
     [CustomEditor(typeof(DungeonGeneratorBaseGrid2D), true)]

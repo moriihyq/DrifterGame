@@ -4893,8 +4893,10 @@ MonoBehaviour:
   optionsButton: {fileID: 0}
   mainMenuButton: {fileID: 1693263886}
   saveSlotButtons: []
+  deleteSlotButtons: []
   backFromSaveButton: {fileID: 0}
   pauseKey: 27
+  showDeleteButtons: 1
 --- !u!1 &2020379021
 GameObject:
   m_ObjectHideFlags: 0
@@ -5147,7 +5149,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.73, y: 0.64}
+    oldSize: {x: 2.28125, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

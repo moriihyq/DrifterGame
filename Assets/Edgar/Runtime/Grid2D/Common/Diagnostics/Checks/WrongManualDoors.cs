@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
+using UnityEngine.UI;
 namespace Edgar.Unity.Diagnostics
 {
     public class WrongManualDoors

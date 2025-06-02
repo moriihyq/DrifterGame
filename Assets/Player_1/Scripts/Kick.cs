@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using UnityEngine.UI;
 public class Kick : MonoBehaviour
 {
     private Animator animator;

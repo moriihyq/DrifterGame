@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using Edgar.Legacy.Utils.GraphAnalysis;
 
+using UnityEngine.UI;
 namespace Edgar.Unity.Diagnostics
 {
     public class OddCycles

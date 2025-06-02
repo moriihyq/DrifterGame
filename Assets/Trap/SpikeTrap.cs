@@ -1,125 +1,156 @@
 using UnityEngine;
-using System.Collections; // 引用 System.Collections 以使用协程
 
+/// <summary>
+/// 刺陷阱脚本 - 处理刺陷阱的动画事件和伤害检测
+/// 解决动画事件"DeactivateSpike"和"ActivateSpike"无接收器的问题
+/// </summary>
 public class SpikeTrap : MonoBehaviour
 {
-    // === 公开变量 (在Inspector中设置) ===
-    [Header("伤害设置")]
-    public int damagePerTick = 10; // 每次地刺触发时造成的伤害量，固定为10点
-    public float damageTickInterval = 0.5f; // 每次掉血的间隔时间（秒）
-
-    // === 内部状态变量 ===
-    private bool _isSpikeActive = false; // 地刺是否处于激活（伸出）状态
-    private Coroutine _damageCoroutine = null; // 用于控制持续掉血的协程
-    private bool _isPlayerInContact = false; // 标志位：玩家是否在地刺的Trigger范围内
-    private HealthManager _healthManager; // 存储对HealthManager的引用
-
-    private void Start()
+    [Header("刺陷阱设置")]
+    [Tooltip("刺陷阱的伤害值")]
+    public int damage = 1;
+    
+    [Tooltip("触发层级掩码，通常包含Player层")]
+    public LayerMask targetLayerMask = 1; // 默认为第0层
+    
+    [Tooltip("是否在刺激活时播放音效")]
+    public bool playSound = true;
+    
+    [Tooltip("刺激活时的音效")]
+    public AudioClip spikeActivateSound;
+    
+    [Tooltip("刺收回时的音效")]
+    public AudioClip spikeDeactivateSound;
+    
+    private bool spikeActive = false;
+    private AudioSource audioSource;
+    private Collider2D spikeCollider;
+    private Animator animator;
+    
+    void Start()
     {
-        // 获取HealthManager的引用
-        _healthManager = HealthManager.Instance;
-        if (_healthManager == null)
+        // 获取组件
+        audioSource = GetComponent<AudioSource>();
+        spikeCollider = GetComponent<Collider2D>();
+        animator = GetComponent<Animator>();
+        
+        // 如果没有AudioSource，添加一个
+        if (audioSource == null && playSound)
         {
-            Debug.LogError("无法找到HealthManager实例！请确保场景中存在HealthManager。");
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
         }
     }
-
-    // === 动画事件函数 ===
-    // 这个函数会通过动画事件在开始帧调用
-    [SerializeField]
+    
+    /// <summary>
+    /// 动画事件：激活刺陷阱
+    /// 在动画的适当时机调用，使刺变得危险
+    /// </summary>
     public void ActivateSpike()
     {
-        _isSpikeActive = true;
-        Debug.Log("地刺激活！开始造成伤害。");
-
-        // 如果在激活时玩家已经在接触范围内，则立即开始掉血
-        if (_isPlayerInContact)
+        spikeActive = true;
+        
+        // 播放激活音效
+        if (playSound && audioSource != null && spikeActivateSound != null)
         {
-            StartDealingDamage();
+            audioSource.PlayOneShot(spikeActivateSound);
         }
     }
-
-    // 这个函数会通过动画事件在结束帧调用
-    [SerializeField]
+    
+    /// <summary>
+    /// 动画事件：停用刺陷阱
+    /// 在动画的适当时机调用，使刺变得安全
+    /// </summary>
     public void DeactivateSpike()
     {
-        _isSpikeActive = false;
-        Debug.Log("地刺收回！停止造成伤害。");
-
-        // 停止任何正在进行的掉血协程
-        StopDealingDamage();
-    }
-
-    // === 触发器检测 (2D 游戏专用) ===
-    // 当其他 2D Collider 进入地刺的 Trigger 范围时调用
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // 检查进入的对象是否是玩家 (通过标签判断)
-        // 确保你的玩家 GameObject 的 Tag 设置为 "Player"
-        if (other.CompareTag("Player"))
+        spikeActive = false;
+        
+        // 播放收回音效
+        if (playSound && audioSource != null && spikeDeactivateSound != null)
         {
-            _isPlayerInContact = true; // 玩家进入范围
-            Debug.Log(other.name + " 进入地刺范围。");
-
-            // 如果地刺处于激活状态，则开始对玩家造成持续伤害
-            if (_isSpikeActive)
-            {
-                StartDealingDamage();
-            }
+            audioSource.PlayOneShot(spikeDeactivateSound);
         }
     }
-
-    // 当其他 2D Collider 离开地刺的 Trigger 范围时调用
-    private void OnTriggerExit2D(Collider2D other)
+    
+    /// <summary>
+    /// 检测碰撞并造成伤害
+    /// </summary>
+    void OnTriggerEnter2D(Collider2D other)
     {
-        // 检查离开的对象是否是玩家
-        if (other.CompareTag("Player"))
+        // 只有当刺激活时才造成伤害
+        if (!spikeActive) return;
+        
+        // 检查碰撞对象是否在目标层级中
+        if (((1 << other.gameObject.layer) & targetLayerMask) == 0) return;
+        
+        // 尝试对碰撞对象造成伤害
+        TryDamageTarget(other.gameObject);
+    }
+    
+    /// <summary>
+    /// 尝试对目标造成伤害
+    /// </summary>
+    private void TryDamageTarget(GameObject target)
+    {
+        // 尝试找到PlayerController组件
+        PlayerController playerController = target.GetComponent<PlayerController>();
+        if (playerController != null)
         {
-            Debug.Log(other.name + " 离开地刺范围。");
-            StopDealingDamage(); // 玩家离开，停止掉血
-            _isPlayerInContact = false; // 玩家不再接触
+            playerController.TakeDamage(damage);
+            return;
+        }
+        
+        // 尝试找到Enemy组件
+        Enemy enemy = target.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(damage);
+            return;
+        }
+        
+        // 尝试通用的伤害接口
+        IDamageable damageable = target.GetComponent<IDamageable>();
+        if (damageable != null)
+        {
+            damageable.TakeDamage(damage);
+            return;
         }
     }
-
-    // === 伤害处理协程控制 ===
-    private void StartDealingDamage()
+    
+    /// <summary>
+    /// 手动触发刺陷阱动画
+    /// </summary>
+    [ContextMenu("触发刺陷阱")]
+    public void TriggerSpikeTrap()
     {
-        // 在启动新的协程之前，确保停止任何之前可能正在运行的掉血协程
-        // 这可以防止多次启动协程导致的问题
-        if (_damageCoroutine != null)
+        if (animator != null)
         {
-            StopCoroutine(_damageCoroutine);
-        }
-        // 启动持续掉血的协程
-        _damageCoroutine = StartCoroutine(DealDamageOverTime());
-    }
-
-    private void StopDealingDamage()
-    {
-        // 如果有掉血协程正在运行，则停止它
-        if (_damageCoroutine != null)
-        {
-            StopCoroutine(_damageCoroutine);
-            _damageCoroutine = null; // 将引用置空
-            Debug.Log("停止对玩家造成伤害。");
+            animator.SetTrigger("Trigger"); // 如果动画控制器有触发器参数
         }
     }
-
-    // 持续掉血的协程
-    private IEnumerator DealDamageOverTime()
+    
+    /// <summary>
+    /// 获取刺的当前状态
+    /// </summary>
+    public bool IsSpikeActive()
     {
-        // 循环条件：
-        // 1. 地刺仍然激活 (_isSpikeActive)
-        // 2. 玩家仍然在地刺的触发器范围内 (_isPlayerInContact)
-        // 3. HealthManager存在且玩家还活着
-        while (_isSpikeActive && _isPlayerInContact && _healthManager != null && _healthManager.GetCurrentHealth() > 0)
-        {
-            // 通过HealthManager对玩家造成伤害
-            _healthManager.TakeDamage(damagePerTick);
-            yield return new WaitForSeconds(damageTickInterval); // 等待指定的时间间隔
-        }
-
-        // 当循环结束（例如，地刺收回、玩家离开、玩家死亡）时，确保停止协程
-        StopDealingDamage();
+        return spikeActive;
+    }
+    
+    /// <summary>
+    /// 强制设置刺的状态
+    /// </summary>
+    public void SetSpikeState(bool active)
+    {
+        spikeActive = active;
     }
 }
+
+/// <summary>
+/// 通用伤害接口
+/// 其他可受伤害的对象可以实现此接口
+/// </summary>
+public interface IDamageable
+{
+    void TakeDamage(int damage);
+} 

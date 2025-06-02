@@ -1,6 +1,7 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Text;
 
+using UnityEngine.UI;
 namespace Edgar.Unity.Diagnostics
 {
     public class NumberOfCycles

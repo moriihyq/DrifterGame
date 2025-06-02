@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
 /// <summary>
 /// 敌人存档调试器 - 用于测试和调试敌人存档功能
 /// </summary>

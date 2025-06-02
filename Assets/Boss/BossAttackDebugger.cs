@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using UnityEngine.UI;
 // Boss调试类，用于在游戏运行时检查和修复Boss攻击问题
 public class BossAttackDebugger : MonoBehaviour
 {

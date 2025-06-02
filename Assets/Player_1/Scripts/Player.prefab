@@ -234,6 +234,8 @@ MonoBehaviour:
     m_Bits: 64
   groundCheckDistance: 0.2
   groundCheckSize: {x: 0.4, y: 0.1}
+  playerSortingOrder: 10
+  autoFixLayerOnStart: 1
 --- !u!114 &5958696340005349826
 MonoBehaviour:
   m_ObjectHideFlags: 0

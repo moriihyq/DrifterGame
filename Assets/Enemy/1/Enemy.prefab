@@ -230,4 +230,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1525cad7bd92dce4681e7a3eab6a8fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
+  attackDamage: 25
+  attackCooldown: 1
+  attackRange: 1.2
+  attackPoint: {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  attackDelay: 0.3
   distanceToPlayer: 0

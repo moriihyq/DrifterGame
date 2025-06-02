@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using UnityEngine.UI;
 /// <summary>
 /// 血量同步诊断脚本
 /// 用于调试存档加载后血量不同步的问题

@@ -1,5 +1,6 @@
-﻿using System.Text;
+using System.Text;
 
+using UnityEngine.UI;
 namespace Edgar.Unity.Editor
 {
     public class ScenePopupBuilder

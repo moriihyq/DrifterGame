@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("组件引用")]

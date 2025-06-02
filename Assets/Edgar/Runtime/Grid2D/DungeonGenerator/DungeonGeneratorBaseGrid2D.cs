@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +7,7 @@ using Edgar.GraphBasedGenerator.Grid2D;
 using Edgar.Unity.Export;
 using UnityEngine;
 
+using UnityEngine.UI;
 namespace Edgar.Unity
 {
     /// <summary>

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+using UnityEngine.UI;
 // 用于在游戏运行时显示Boss状态信息的调试组件
 public class BossDebugDisplay : MonoBehaviour
 {

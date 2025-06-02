@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using UnityEngine.UI;
 // 血瓶设置检查器，自动检查和修复血瓶系统设置
 public class HealthPotionSetupChecker : MonoBehaviour
 {

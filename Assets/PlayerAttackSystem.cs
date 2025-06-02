@@ -1,8 +1,9 @@
-// filepath: h:\GAME_Create\Game_latest\Assets\PlayerAttackSystem.cs
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerAttackSystem : MonoBehaviour
-{    [Header("攻击设置")]
+{
+    [Header("攻击设置")]
     [SerializeField] private int attackDamage = 50; // 玩家攻击伤害
     [SerializeField] private float attackCooldown = 0.2f; // 攻击冷却时间
     [SerializeField] private Transform attackPoint; // 攻击判定点

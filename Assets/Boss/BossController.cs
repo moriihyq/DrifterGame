@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+using UnityEngine.UI;
 public class BossController : MonoBehaviour
 {
     [Header("基本属性")]

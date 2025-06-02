@@ -1,5 +1,6 @@
 using UnityEngine;
 
+using UnityEngine.UI;
 /// <summary>
 /// 这个辅助脚本用于检测和修复Options面板的问题
 /// </summary>

@@ -203,15 +203,15 @@ public class HealthBarUI : MonoBehaviour
     private void SmoothUpdateHealthBar()
     {
         if (animationEnabled)
-        {
-            // 平滑过渡到目标血量
-            currentHealthPercent = Mathf.Lerp(currentHealthPercent, targetHealthPercent, Time.deltaTime * smoothSpeed);
+    {
+        // 平滑过渡到目标血量
+        currentHealthPercent = Mathf.Lerp(currentHealthPercent, targetHealthPercent, Time.deltaTime * smoothSpeed);
         }
         else
         {
             // 直接设置到目标血量
             currentHealthPercent = targetHealthPercent;
-        }
+            }
         
         // 更新血量条视觉效果
         UpdateHealthBarVisual();

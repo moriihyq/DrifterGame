@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using UnityEngine.UI;
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance { get; private set; }

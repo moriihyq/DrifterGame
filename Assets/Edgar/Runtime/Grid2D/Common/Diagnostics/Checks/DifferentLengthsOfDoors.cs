@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Edgar.GraphBasedGenerator.Grid2D;
 using UnityEngine;
 
+using UnityEngine.UI;
 namespace Edgar.Unity.Diagnostics
 {
     public class DifferentLengthsOfDoors

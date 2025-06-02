@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using Edgar.GraphBasedGenerator.Grid2D.Exceptions;
 using UnityEditor;
 using UnityEngine;
 
+using UnityEngine.UI;
 namespace Edgar.Unity.Editor
 {
     public abstract class ManualDoorModeInspectorBase : IDoorModeInspector
