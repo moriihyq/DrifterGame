@@ -12,7 +12,7 @@ public class BackButtonScript : MonoBehaviour
     public void OnBackButtonClick()
     {
         // 尝试使用OptionsMenuManager关闭选项菜单
-        OptionsMenuManager optionsMenuManager = FindObjectOfType<OptionsMenuManager>();
+        OptionsMenuManager optionsMenuManager = FindFirstObjectByType<OptionsMenuManager>();
         if (optionsMenuManager != null)
         {
             // 检查选项面板是否打开

@@ -29,7 +29,7 @@ public class NewSaveFeatureTester : MonoBehaviour
         if (!enableTesting) return;
         
         // Find LoadGamePanelManager
-        loadGamePanel = FindObjectOfType<LoadGamePanelManager>();
+        loadGamePanel = FindFirstObjectByType<LoadGamePanelManager>();
         if (loadGamePanel == null)
         {
             Debug.LogWarning("[NewSaveFeatureTester] LoadGamePanelManager not found, some test features may not be available");

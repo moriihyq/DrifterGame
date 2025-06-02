@@ -29,7 +29,7 @@ public class OptionsPanelFixer : MonoBehaviour
         }
         
         // 2. 查找TitleScreenManager
-        TitleScreenManager titleManager = FindObjectOfType<TitleScreenManager>();
+        TitleScreenManager titleManager = FindFirstObjectByType<TitleScreenManager>();
         if (titleManager != null)
         {
             Debug.Log("OptionsPanelFixer: 找到TitleScreenManager");

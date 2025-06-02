@@ -22,7 +22,7 @@ public class TitleScreenManager : MonoBehaviour
         // 查找音频管理器
         if (audioManager == null)
         {
-            audioManager = FindObjectOfType<AudioVolumeManager>();
+            audioManager = FindFirstObjectByType<AudioVolumeManager>();
             if (audioManager == null)
             {
                 Debug.LogWarning("未找到音频管理器！");
@@ -36,7 +36,7 @@ public class TitleScreenManager : MonoBehaviour
         // GameInitializer.EnsureManagersExist(); // 这行应该被注释或删除
         
         // 使用新的 API 替换弃用的 FindObjectOfType
-        audioManager = Object.FindFirstObjectByType<AudioVolumeManager>();
+        audioManager = FindFirstObjectByType<AudioVolumeManager>();
         
         // 如果选项面板还没有被分配，尝试通过名称查找
         if (optionsPanel == null)
@@ -177,7 +177,7 @@ public class TitleScreenManager : MonoBehaviour
         Debug.Log("打开选项菜单");
         
         // 尝试使用OptionsMenuManager
-        OptionsMenuManager optionsMenuManager = FindObjectOfType<OptionsMenuManager>();
+        OptionsMenuManager optionsMenuManager = FindFirstObjectByType<OptionsMenuManager>();
         if (optionsMenuManager != null)
         {
             optionsMenuManager.OpenOptionsMenu();
@@ -207,7 +207,7 @@ public class TitleScreenManager : MonoBehaviour
         Debug.Log("关闭选项菜单");
         
         // 尝试使用OptionsMenuManager
-        OptionsMenuManager optionsMenuManager = FindObjectOfType<OptionsMenuManager>();
+        OptionsMenuManager optionsMenuManager = FindFirstObjectByType<OptionsMenuManager>();
         if (optionsMenuManager != null)
         {
             optionsMenuManager.CloseOptionsMenu();

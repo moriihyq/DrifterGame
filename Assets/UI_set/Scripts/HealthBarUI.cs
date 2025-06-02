@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class HealthBarUI : MonoBehaviour
 {
@@ -23,12 +24,18 @@ public class HealthBarUI : MonoBehaviour
     private PlayerController playerController;
     private PlayerAttackSystem playerAttackSystem;
     
+    // 事件定义
+    public event Action OnHealthCritical;
+    public event Action OnHealthEmpty;
+    public event Action<float> OnHealthPercentageChanged;
+    
     private float targetHealthPercent = 1f;
     private float currentHealthPercent = 1f;
     private float hideTimer = 0f;
     private int lastHealth;
     private Canvas canvas;
     private Camera mainCamera;
+    private bool animationEnabled = true;
     
     private void Awake()
     {
@@ -77,7 +84,7 @@ public class HealthBarUI : MonoBehaviour
                 if (player == null)
                 {
                     // 尝试查找带有PlayerController的对象
-                    PlayerController pc = FindObjectOfType<PlayerController>();
+                    PlayerController pc = FindFirstObjectByType<PlayerController>();
                     if (pc != null)
                     {
                         player = pc.gameObject;
@@ -195,20 +202,19 @@ public class HealthBarUI : MonoBehaviour
     
     private void SmoothUpdateHealthBar()
     {
-        // 平滑过渡到目标血量
-        currentHealthPercent = Mathf.Lerp(currentHealthPercent, targetHealthPercent, Time.deltaTime * smoothSpeed);
-        
-        // 更新血量条填充
-        if (healthBarFill != null)
+        if (animationEnabled)
         {
-            healthBarFill.fillAmount = currentHealthPercent;
-            
-            // 更新颜色
-            if (useGradient && healthGradient != null)
-            {
-                healthBarFill.color = healthGradient.Evaluate(currentHealthPercent);
-            }
+            // 平滑过渡到目标血量
+            currentHealthPercent = Mathf.Lerp(currentHealthPercent, targetHealthPercent, Time.deltaTime * smoothSpeed);
         }
+        else
+        {
+            // 直接设置到目标血量
+            currentHealthPercent = targetHealthPercent;
+        }
+        
+        // 更新血量条视觉效果
+        UpdateHealthBarVisual();
     }
     
     private void HandleHideTimer()
@@ -271,5 +277,75 @@ public class HealthBarUI : MonoBehaviour
         playerController = player.GetComponent<PlayerController>();
         playerAttackSystem = player.GetComponent<PlayerAttackSystem>();
         UpdateHealthBar();
+    }
+    
+    // 设置血量的方法
+    public void SetHealth(int currentHealth, int maxHealth, bool animate = true)
+    {
+        if (maxHealth <= 0) return;
+        
+        float newHealthPercent = (float)currentHealth / maxHealth;
+        targetHealthPercent = newHealthPercent;
+        
+        if (!animate)
+        {
+            currentHealthPercent = targetHealthPercent;
+            UpdateHealthBarVisual();
+        }
+        
+        // 触发事件
+        OnHealthPercentageChanged?.Invoke(newHealthPercent);
+        
+        if (newHealthPercent <= 0f)
+        {
+            OnHealthEmpty?.Invoke();
+        }
+        else if (newHealthPercent <= 0.25f)
+        {
+            OnHealthCritical?.Invoke();
+        }
+        
+        // 显示血量条
+        if (!alwaysVisible)
+        {
+            SetHealthBarVisibility(true);
+            hideTimer = hideDelay;
+        }
+    }
+    
+    // 重置血量条到满血状态
+    public void ResetToFull()
+    {
+        targetHealthPercent = 1f;
+        currentHealthPercent = 1f;
+        UpdateHealthBarVisual();
+        OnHealthPercentageChanged?.Invoke(1f);
+    }
+    
+    // 设置动画启用状态
+    public void SetAnimationEnabled(bool enabled)
+    {
+        animationEnabled = enabled;
+    }
+    
+    // 获取当前血量百分比
+    public float GetCurrentPercentage()
+    {
+        return currentHealthPercent;
+    }
+    
+    // 更新血量条视觉效果
+    private void UpdateHealthBarVisual()
+    {
+        if (healthBarFill != null)
+        {
+            healthBarFill.fillAmount = currentHealthPercent;
+            
+            // 更新颜色
+            if (useGradient && healthGradient != null)
+            {
+                healthBarFill.color = healthGradient.Evaluate(currentHealthPercent);
+            }
+        }
     }
 } 

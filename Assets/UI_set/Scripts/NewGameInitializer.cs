@@ -94,7 +94,7 @@ public class NewGameInitializer : MonoBehaviour
             if (player == null)
             {
                 // Try finding by component
-                PlayerAttackSystem playerAttackSystem = FindObjectOfType<PlayerAttackSystem>();
+                PlayerAttackSystem playerAttackSystem = FindFirstObjectByType<PlayerAttackSystem>();
                 if (playerAttackSystem != null)
                 {
                     player = playerAttackSystem.gameObject;
@@ -102,7 +102,7 @@ public class NewGameInitializer : MonoBehaviour
                 else
                 {
                     // Try finding PlayerController as fallback
-                    PlayerController playerController = FindObjectOfType<PlayerController>();
+                    PlayerController playerController = FindFirstObjectByType<PlayerController>();
                     if (playerController != null)
                     {
                         player = playerController.gameObject;

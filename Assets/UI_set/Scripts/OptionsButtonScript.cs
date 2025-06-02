@@ -10,7 +10,7 @@ public class OptionsButtonScript : MonoBehaviour
         // 如果没有分配OptionsMenuManager，尝试自动查找
         if (optionsMenuManager == null)
         {
-            optionsMenuManager = FindObjectOfType<OptionsMenuManager>();
+            optionsMenuManager = FindFirstObjectByType<OptionsMenuManager>();
             if (optionsMenuManager == null)
             {
                 Debug.LogWarning("未找到OptionsMenuManager！请确保场景中存在该组件。");

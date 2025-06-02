@@ -43,7 +43,7 @@ public class RollSetupCheck : MonoBehaviour
     // 检查层碰撞设置组件是否存在
     void CheckLayerCollisionSetup()
     {
-        LayerCollisionSetup layerCollisionSetup = FindObjectOfType<LayerCollisionSetup>();
+        LayerCollisionSetup layerCollisionSetup = FindFirstObjectByType<LayerCollisionSetup>();
 
         if (layerCollisionSetup == null)
         {
@@ -60,7 +60,7 @@ public class RollSetupCheck : MonoBehaviour
     // 检查玩家是否有Animator和翻滚动画
     void CheckPlayerAnimator()
     {
-        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
+        PlayerMovement playerMovement = FindFirstObjectByType<PlayerMovement>();
         
         if (playerMovement != null)
         {

@@ -36,7 +36,7 @@ public class OptionsMenuManager : MonoBehaviour
         // 确保有音频管理器引用
         if (audioManager == null)
         {
-            audioManager = FindObjectOfType<AudioVolumeManager>();
+            audioManager = FindFirstObjectByType<AudioVolumeManager>();
             if (audioManager == null)
             {
                 Debug.LogWarning("未找到AudioVolumeManager！音量设置可能无法正常工作。");

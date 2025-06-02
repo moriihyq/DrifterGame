@@ -11,7 +11,7 @@ public class HealthManager : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<HealthManager>();
+                instance = FindFirstObjectByType<HealthManager>();
                 if (instance == null)
                 {
                     GameObject go = new GameObject("HealthManager");
@@ -73,7 +73,7 @@ public class HealthManager : MonoBehaviour
                 player = GameObject.Find("Player");
                 if (player == null)
                 {
-                    PlayerController pc = FindObjectOfType<PlayerController>();
+                    PlayerController pc = FindFirstObjectByType<PlayerController>();
                     if (pc != null)
                     {
                         player = pc.gameObject;

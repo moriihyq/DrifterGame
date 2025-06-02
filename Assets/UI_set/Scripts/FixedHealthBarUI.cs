@@ -77,7 +77,7 @@ public class FixedHealthBarUI : MonoBehaviour
             player = GameObject.Find("Player");
             if (player == null)
             {
-                PlayerController pc = FindObjectOfType<PlayerController>();
+                PlayerController pc = FindFirstObjectByType<PlayerController>();
                 if (pc != null)
                 {
                     player = pc.gameObject;

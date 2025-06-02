@@ -32,7 +32,7 @@ public class SaveSlotNewGameExample : MonoBehaviour
     private void Start()
     {
         // 查找LoadGamePanelManager
-        panelManager = FindObjectOfType<LoadGamePanelManager>();
+        panelManager = FindFirstObjectByType<LoadGamePanelManager>();
         if (panelManager == null)
         {
             Debug.LogError($"[SaveSlotNewGameExample] Slot {slotIndex}: LoadGamePanelManager not found");

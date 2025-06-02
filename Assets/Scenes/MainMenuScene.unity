@@ -5503,6 +5503,7 @@ MonoBehaviour:
   mainUIPanel: {fileID: 1339219173}
   dimmer: {fileID: 2058380602}
   newGameButton: {fileID: 0}
+  forceNewGameButton: {fileID: 0}
   newGameSceneName: "5.26\u5730\u56FE"
   saveSlots:
   - {fileID: 843785015}

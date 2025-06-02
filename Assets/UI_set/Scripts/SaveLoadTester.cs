@@ -64,14 +64,14 @@ public class SaveLoadTester : MonoBehaviour
         
         if (playerAttackSystem == null)
         {
-            playerAttackSystem = FindObjectOfType<PlayerAttackSystem>();
+            playerAttackSystem = FindFirstObjectByType<PlayerAttackSystem>();
         }
         
         // 查找SaveManager
         saveManager = SaveManager.Instance;
         if (saveManager == null)
         {
-            saveManager = FindObjectOfType<SaveManager>();
+            saveManager = FindFirstObjectByType<SaveManager>();
         }
         
         // 查找状态文本

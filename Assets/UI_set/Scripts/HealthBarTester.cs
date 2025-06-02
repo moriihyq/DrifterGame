@@ -54,7 +54,7 @@ public class HealthBarTester : MonoBehaviour
             
             if (playerAttackSystem == null)
             {
-                playerAttackSystem = FindObjectOfType<PlayerAttackSystem>();
+                playerAttackSystem = FindFirstObjectByType<PlayerAttackSystem>();
             }
         }
         
@@ -64,7 +64,7 @@ public class HealthBarTester : MonoBehaviour
             healthBarManager = HealthBarManager.Instance;
             if (healthBarManager == null)
             {
-                healthBarManager = FindObjectOfType<HealthBarManager>();
+                healthBarManager = FindFirstObjectByType<HealthBarManager>();
             }
         }
         

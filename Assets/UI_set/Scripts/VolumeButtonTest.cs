@@ -14,12 +14,12 @@ public class VolumeButtonTest : MonoBehaviour
         // 自动查找组件
         if (volumeButton == null)
         {
-            volumeButton = FindObjectOfType<VolumeButton>();
+            volumeButton = FindFirstObjectByType<VolumeButton>();
         }
         
         if (audioManager == null)
         {
-            audioManager = FindObjectOfType<AudioVolumeManager>();
+            audioManager = FindFirstObjectByType<AudioVolumeManager>();
         }
         
         Debug.Log("VolumeButton测试脚本已启动");

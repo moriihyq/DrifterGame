@@ -69,7 +69,7 @@ public class HealthBarManager : MonoBehaviour
         // 自动查找HealthBarUI组件
         if (healthBarUI == null)
         {
-            healthBarUI = FindObjectOfType<HealthBarUI>();
+            healthBarUI = FindFirstObjectByType<HealthBarUI>();
             if (healthBarUI == null)
             {
                 healthBarUI = GetComponentInChildren<HealthBarUI>();
@@ -89,7 +89,7 @@ public class HealthBarManager : MonoBehaviour
             // 如果通过标签找不到，尝试直接查找组件
             if (playerAttackSystem == null)
             {
-                playerAttackSystem = FindObjectOfType<PlayerAttackSystem>();
+                playerAttackSystem = FindFirstObjectByType<PlayerAttackSystem>();
             }
         }
         

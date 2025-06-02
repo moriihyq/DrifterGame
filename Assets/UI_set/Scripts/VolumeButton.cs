@@ -35,7 +35,7 @@ public class VolumeButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHa
         // 自动查找AudioVolumeManager（如果未手动分配）
         if (audioVolumeManager == null)
         {
-            audioVolumeManager = FindObjectOfType<AudioVolumeManager>();
+            audioVolumeManager = FindFirstObjectByType<AudioVolumeManager>();
             if (audioVolumeManager == null)
             {
                 Debug.LogError("场景中未找到AudioVolumeManager！");

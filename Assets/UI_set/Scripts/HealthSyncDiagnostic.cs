@@ -55,18 +55,18 @@ public class HealthSyncDiagnostic : MonoBehaviour
         
         if (playerAttackSystem == null)
         {
-            playerAttackSystem = FindObjectOfType<PlayerAttackSystem>();
+            playerAttackSystem = FindFirstObjectByType<PlayerAttackSystem>();
         }
         
         // 查找HealthBarManager
         healthBarManager = HealthBarManager.Instance;
         if (healthBarManager == null)
         {
-            healthBarManager = FindObjectOfType<HealthBarManager>();
+            healthBarManager = FindFirstObjectByType<HealthBarManager>();
         }
         
         // 查找HealthBarUI
-        healthBarUI = FindObjectOfType<HealthBarUI>();
+        healthBarUI = FindFirstObjectByType<HealthBarUI>();
     }
     
     /// <summary>
