@@ -139,9 +139,6 @@ public class HealthPotionSetupChecker : MonoBehaviour
     // 在编辑器中添加检查按钮
     void OnGUI()
     {
-        // 图形化界面已禁用 - 如需重新启用，将下面的return注释掉
-        return;
-        
         if (GUI.Button(new Rect(10, 10, 200, 30), "重新检查血瓶系统"))
         {
             CheckHealthPotionSetup();

@@ -1,0 +1,67 @@
+# 移动问题诊断指南
+
+## 问题描述
+玩家按下WAD键无法移动，需要诊断输入系统冲突问题。
+
+## 诊断步骤
+
+### 1. 添加诊断脚本
+已创建 `MovementDiagnostics.cs` 脚本来帮助诊断问题。
+
+### 2. 使用诊断脚本
+1. 将 `MovementDiagnostics.cs` 脚本添加到任何GameObject上（建议添加到Player对象）
+2. 运行游戏
+3. 尝试按下WASD键
+4. 查看Console面板中的调试输出
+5. 按F1键查看详细诊断信息
+
+### 3. 可能的问题原因
+
+#### A. Input Manager配置问题
+- Horizontal轴没有正确配置A/D键
+- Vertical轴没有正确配置W/S键
+
+#### B. 新旧输入系统冲突
+- 项目同时启用了Legacy Input Manager和New Input System
+- Edgar插件的InputHelper可能干扰了输入
+
+#### C. PlayerController脚本问题
+- Rigidbody2D组件设置不正确
+- 移动逻辑有bug
+
+#### D. 组件冲突
+- 多个脚本同时控制玩家移动
+- Rolling系统或其他系统阻止了移动
+
+### 4. 解决方案预案
+
+#### 方案A：修复Input Manager
+```
+检查ProjectSettings/InputManager.asset中的配置
+确保Horizontal轴的altNegativeButton = a, altPositiveButton = d
+确保Vertical轴的altNegativeButton = s, altPositiveButton = w
+```
+
+#### 方案B：禁用输入系统冲突
+```
+在Player Settings中设置Active Input Handling为Input Manager (Old)
+或者创建自定义输入包装器避免冲突
+```
+
+#### 方案C：直接使用KeyCode检测
+```csharp
+// 在PlayerController.cs的Update()方法中：
+float horizontal = 0f;
+if (Input.GetKey(KeyCode.A)) horizontal = -1f;
+if (Input.GetKey(KeyCode.D)) horizontal = 1f;
+
+float vertical = 0f;
+if (Input.GetKey(KeyCode.S)) vertical = -1f;
+if (Input.GetKey(KeyCode.W)) vertical = 1f;
+```
+
+### 5. 测试验证
+运行诊断脚本后，根据输出信息确定具体问题并应用相应解决方案。
+
+## 下一步
+先运行诊断脚本，查看输出信息，然后我们根据结果选择最合适的解决方案。

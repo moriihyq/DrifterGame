@@ -1,0 +1,64 @@
+# 玩家等级技能系统 - 快速使用指南
+
+## 🚀 快速开始（3分钟配置）
+
+### 1. 添加脚本到玩家
+1. 选择你的玩家GameObject
+2. 添加 `PlayerLevelSkillSystem` 组件
+3. 添加 `PlayerLevelSkillSystemChecker` 组件（可选，用于自动检查和修复）
+
+### 2. 自动设置（推荐）
+1. 运行游戏
+2. `PlayerLevelSkillSystemChecker` 会自动检查配置
+3. 自动创建缺失的UI组件
+4. 查看Console中的检查结果
+
+### 3. 手动设置动画（必须）
+1. 打开玩家的 Animator Controller
+2. 添加参数: `Aerial_Attack` (Trigger类型)
+3. 创建空中攻击动画状态
+4. 连接触发器到动画状态
+
+### 4. 测试技能
+1. 在Inspector中设置 Player Level = 3
+2. 运行游戏，按 X 键释放空中攻击
+3. 查看Console中的调试信息
+
+## ⚙️ 主要参数配置
+
+### 在 PlayerLevelSkillSystem 组件中：
+- **Player Level**: 玩家等级（设为3以上可使用技能）
+- **Aerial Attack Range**: 攻击距离（默认3单位）
+- **Aerial Attack Damage**: 攻击伤害（默认50）
+- **Slow Effect Duration**: 减速持续时间（默认3秒）
+- **Slow Effect Strength**: 减速强度（0.5 = 减速到50%）
+
+## 🎮 操作说明
+- **X键**: 释放空中攻击（需要等级≥3）
+- **效果**: 对前方3个单位直线范围内的所有敌人造成伤害和减速
+- **冷却**: 20秒冷却时间，右上角显示倒计时
+
+## 🔧 减速效果说明
+系统会自动为敌人和Boss添加减速组件：
+- **EnemySlowEffect**: 自动添加到普通敌人，修改其移动速度
+- **BossSlowEffect**: 自动添加到Boss，使用反射修改私有moveSpeed字段
+
+## 🔧 故障排除
+1. **按X没反应**: 检查等级是否≥3，是否在冷却中
+2. **没有动画**: 确保Animator有"Aerial_Attack"触发器
+3. **UI不显示**: 运行一次游戏让自动设置创建UI
+4. **减速无效果**: 减速组件会自动添加，无需手动配置
+
+## 📋 检查列表
+- ✅ PlayerLevelSkillSystem 组件已添加
+- ✅ Animator 有 "Aerial_Attack" 触发器
+- ✅ 场景中有 Canvas
+- ✅ 玩家等级 ≥ 3
+- ✅ 场景中有敌人用于测试
+
+## 🎯 新增功能
+- **智能减速系统**: 自动检测敌人类型并应用相应的减速效果
+- **反射技术**: 安全访问私有字段，确保与Boss系统兼容
+- **自动组件管理**: 减速组件按需自动添加，无需手动配置
+
+完成以上步骤后，空中攻击技能系统就可以正常使用了！

@@ -1,0 +1,86 @@
+# 玩家移动问题修复指南
+
+## 问题原因
+Edgar插件的InputHelper类干扰了Unity的Input Manager，导致WAD键无法正常工作。
+
+## 解决方案已实施
+
+### 1. 创建InputSystemFix.cs修复脚本
+- 自动检测输入冲突
+- 提供备用输入方法
+- 包含调试功能
+
+### 2. 修改PlayerController.cs
+- 使用InputSystemFix.GetFixedHorizontalInput()替代Input.GetAxisRaw("Horizontal")
+- 使用InputSystemFix.GetFixedVerticalInput()替代直接按键检测
+- 确保WAD键正常工作
+
+## 设置步骤
+
+### 步骤1：添加修复组件
+1. 在Hierarchy中选择任意GameObject（建议创建新的空GameObject命名为"InputManager"）
+2. 添加InputSystemFix组件
+3. 确保"Show Debug Info"选中以查看调试信息
+
+### 步骤2：测试修复效果
+1. 运行游戏
+2. 按WAD键测试移动
+3. 查看Console中的调试信息
+4. 确认输入正常工作
+
+## 调试信息说明
+
+### Console输出示例
+```
+[InputSystemFix] 输入系统修复已启动
+=== 输入系统状态检查 ===
+Input Manager轴读取正常 - Horizontal: 0, Vertical: 0
+直接按键检测 - A: False, D: False, W: False, S: False
+[InputSystemFix] 检测到Edgar InputHelper类，可能会干扰输入
+=== 检查完成 ===
+```
+
+### 如果仍有问题
+如果WAD键仍然无法工作，可能需要：
+
+1. **检查Input Manager设置**：
+   - Edit → Project Settings → Input Manager
+   - 确认Horizontal轴的altNegativeButton = "a", altPositiveButton = "d"
+   - 确认Vertical轴的altNegativeButton = "s", altPositiveButton = "w"
+
+2. **禁用新Input System**（推荐）：
+   - Edit → Project Settings → Player → Configuration
+   - 将Active Input Handling设置为"Input Manager (Old)"
+
+3. **移除Edgar示例**（如果不需要）：
+   - 删除Assets/Edgar/Examples文件夹
+
+## 技术细节
+
+### 修复原理
+- InputSystemFix提供兼容性层
+- 优先使用Input Manager轴
+- 轴无效时回退到直接按键检测
+- 避免Edgar InputHelper干扰
+
+### 性能影响
+- 修复脚本性能开销极小
+- 仅在必要时使用备用输入方法
+- 调试信息可在发布版本中禁用
+
+## 验证修复成功
+
+### 测试清单
+- [ ] 按A键玩家向左移动
+- [ ] 按D键玩家向右移动  
+- [ ] 按W键玩家可以攀爬（当贴墙时）
+- [ ] 按S键玩家蹲下
+- [ ] 按E键可以与烛火交互
+- [ ] Console无错误信息
+
+如果所有测试都通过，说明修复成功！
+
+## 注意事项
+- 请勿删除InputSystemFix.cs文件
+- 如果修改PlayerController.cs，请保留修复的输入方法
+- 调试信息可以通过取消选中"Show Debug Info"来关闭
