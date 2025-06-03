@@ -2,27 +2,30 @@ using UnityEngine;
 
 public class Enemy2 : MonoBehaviour
 {
-    [Header("×Óµ¯ÉèÖÃ")]
-    public GameObject bulletPrefab; // ×Óµ¯Ô¤ÖÆÌå
-    public Transform firePoint;    // ·¢Éäµã£¨¿ÕÎïÌå×÷Îª×ÓÎïÌå£©
+    [Header("ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public GameObject bulletPrefab; // ï¿½Óµï¿½Ô¤ï¿½ï¿½ï¿½ï¿½
+    public Transform firePoint;    // ï¿½ï¿½ï¿½ï¿½ã£¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½å£©
 
-    [Header("·¢Éä²ÎÊı")]
-    public float bulletSpeed = 10f; // ×Óµ¯³õËÙ¶È
-    [Range(0, 360)] public float angle = 0f; // ·¢Éä½Ç¶È£¨0=ÓÒ£¬90=ÉÏ£©
-    [Header("»ù±¾ÊôĞÔ")]
-    [SerializeField] private int maxHealth = 100; // ×î´óÉúÃüÖµ
-    [SerializeField] private int attackDamage = 25; // ¹¥»÷ÉËº¦
-    [SerializeField] private float attackCooldown = 1f; // ¹¥»÷ÀäÈ´Ê±¼ä (¾«È·Îª1Ãë)
-    [SerializeField] private float attackRange = 1.2f; // ¹¥»÷·¶Î§
-    [SerializeField] private Transform attackPoint; // ¹¥»÷ÅĞ¶¨µã
-    [SerializeField] private LayerMask playerLayer; // Íæ¼ÒÍ¼²ã
-    [SerializeField] private float attackDelay = 0.3f; // ´Ó¹¥»÷¶¯»­¿ªÊ¼µ½Êµ¼ÊÔì³ÉÉËº¦µÄÑÓ³Ù
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public float bulletSpeed = 10f; // ï¿½Óµï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
+    [Range(0, 360)] public float angle = 0f; // ï¿½ï¿½ï¿½ï¿½Ç¶È£ï¿½0=ï¿½Ò£ï¿½90=ï¿½Ï£ï¿½    [Header("åŸºæœ¬å±æ€§")]
+    [SerializeField] private int maxHealth = 100; // æœ€å¤§ç”Ÿå‘½å€¼
+    [SerializeField] private int attackDamage = 25; // æ”»å‡»ä¼¤å®³
+    [SerializeField] private float attackCooldown = 1f; // æ”»å‡»å†·å´æ—¶é—´
+    [SerializeField] private float attackRange = 1.2f; // æ”»å‡»èŒƒå›´
+    [SerializeField] private Transform attackPoint; // æ”»å‡»åˆ¤å®šç‚¹
+    [SerializeField] private LayerMask playerLayer; // ç©å®¶å›¾å±‚
+    [SerializeField] private float attackDelay = 0.3f; // æ”»å‡»å»¶è¿Ÿ
+    
+    [Header("ç§»åŠ¨è®¾ç½®")]
+    [SerializeField] private float moveSpeed = 5f; // ç§»åŠ¨é€Ÿåº¦
+    [SerializeField] private float detectionRange = 5f; // æ£€æµ‹ç©å®¶çš„èŒƒå›´
 
-    // ×é¼şÒıÓÃ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private Animator anim;
     private Rigidbody2D rb;
 
-    // ×´Ì¬±äÁ¿
+    // ×´Ì¬ï¿½ï¿½ï¿½ï¿½
     private bool isMoving;
     private bool approach;
     public float distanceToPlayer;
@@ -30,10 +33,10 @@ public class Enemy2 : MonoBehaviour
     private bool isDead;
     private float originScaleX;
     private float lastSpeed;
-    private float nextAttackTime = 0f; // ÏÂ´Î¿É¹¥»÷Ê±¼ä
+    private float nextAttackTime = 0f; // ï¿½Â´Î¿É¹ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
     private GameObject player;
-    private bool isAttacking = false; // µ±Ç°ÊÇ·ñÕıÔÚ¹¥»÷
-    private bool isActive = false; // µĞÈËÊÇ·ñ´¦ÓÚ¼¤»î×´Ì¬
+    private bool isAttacking = false; // ï¿½ï¿½Ç°ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½
+    private bool isActive = false; // ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½×´Ì¬
     void Start()
     {
         isMoving = false;
@@ -41,56 +44,56 @@ public class Enemy2 : MonoBehaviour
         isAttacking = false;
         isActive = false;
 
-        // »ñÈ¡×é¼ş
+        // ï¿½ï¿½È¡ï¿½ï¿½ï¿½
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-        // ³õÊ¼»¯±äÁ¿
+        // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         lastSpeed = 0;
         currentHealth = maxHealth;
         isDead = false;
         originScaleX = transform.localScale.x;
 
-        // ²éÕÒÍæ¼Ò
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
         {
             player = GameObject.Find("Player");
             if (player == null)
             {
-                Debug.LogWarning("ÎŞ·¨ÕÒµ½Íæ¼Ò¶ÔÏó£¬ÇëÈ·±£Íæ¼Ò¶ÔÏóÒÑÉèÖÃ'Player'±êÇ©»òÃûÎª'Player'");
+                Debug.LogWarning("ï¿½Ş·ï¿½ï¿½Òµï¿½ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'Player'ï¿½ï¿½Ç©ï¿½ï¿½ï¿½ï¿½Îª'Player'");
             }
         }
 
-        // È·±£ÓĞ¹¥»÷µã
+        // È·ï¿½ï¿½ï¿½Ğ¹ï¿½ï¿½ï¿½ï¿½ï¿½
         if (attackPoint == null)
         {
             GameObject attackPointObj = new GameObject("EnemyAttackPoint");
             attackPointObj.transform.SetParent(transform);
-            attackPointObj.transform.localPosition = new Vector3(1f, 0f, 0f); // ÉèÖÃÔÚµĞÈËÇ°·½
+            attackPointObj.transform.localPosition = new Vector3(1f, 0f, 0f); // ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½Ç°ï¿½ï¿½
             attackPoint = attackPointObj.transform;
 
-            Debug.Log("ÎªµĞÈË´´½¨ÁËÄ¬ÈÏ¹¥»÷µã");
+            Debug.Log("Îªï¿½ï¿½ï¿½Ë´ï¿½ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½ï¿½");
         }
 
-        // È·±£ÓĞÅö×²Æ÷
+        // È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×²ï¿½ï¿½
         Collider2D collider = GetComponent<Collider2D>();
         if (collider == null)
         {
-            Debug.LogWarning("EnemyÃ»ÓĞÅö×²Æ÷£¬Ìí¼ÓBoxCollider2D");
+            Debug.LogWarning("EnemyÃ»ï¿½ï¿½ï¿½ï¿½×²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½BoxCollider2D");
             BoxCollider2D boxCollider = gameObject.AddComponent<BoxCollider2D>();
             boxCollider.size = new Vector2(1f, 1f);
             boxCollider.offset = Vector2.zero;
         }
 
-        // È·±£µĞÈËÔÚÕıÈ·µÄ²ã¼¶ÉÏ
+        // È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½Ä²ã¼¶ï¿½ï¿½
         if (LayerMask.NameToLayer("Enemy") != -1)
         {
             gameObject.layer = LayerMask.NameToLayer("Enemy");
         }
     }
-    // µĞÈËÊÜµ½ÉËº¦
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Üµï¿½ï¿½Ëºï¿½
     public void TakeDamage(int damage)
     {
         if (isDead) return;
@@ -98,29 +101,29 @@ public class Enemy2 : MonoBehaviour
         int prevHealth = currentHealth;
         currentHealth -= damage;
 
-        // ÔÚ¿ØÖÆÌ¨Êä³öµĞÈËÑªÁ¿±ä»¯ĞÅÏ¢
-        Debug.Log($"<color=#FFA500>µĞÈË {gameObject.name} ÊÜµ½ {damage} µãÉËº¦£¡ÑªÁ¿±ä»¯£º{prevHealth} -> {currentHealth}</color>");
+        // ï¿½Ú¿ï¿½ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñªï¿½ï¿½ï¿½ä»¯ï¿½ï¿½Ï¢
+        Debug.Log($"<color=#FFA500>ï¿½ï¿½ï¿½ï¿½ {gameObject.name} ï¿½Üµï¿½ {damage} ï¿½ï¿½ï¿½Ëºï¿½ï¿½ï¿½Ñªï¿½ï¿½ï¿½ä»¯ï¿½ï¿½{prevHealth} -> {currentHealth}</color>");
 
-        // ²¥·ÅÊÜÉË¶¯»­
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¶ï¿½ï¿½ï¿½
         if (anim != null)
         {
             anim.SetTrigger("Hurt");
         }
 
-        // ¼ì²éÊÇ·ñËÀÍö
+        // ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            Debug.Log($"<color=#FF0000>µĞÈË {gameObject.name} ËÀÍö£¡</color>");
+            Debug.Log($"<color=#FF0000>ï¿½ï¿½ï¿½ï¿½ {gameObject.name} ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</color>");
             Die();
         }
 
-        // Í¨ÖªÕ½¶·¹ÜÀíÆ÷¼ÇÂ¼ÉËº¦
+        // Í¨ÖªÕ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½Ëºï¿½
         if (CombatManager.Instance != null)
         {
             CombatManager.Instance.LogDamage(GameObject.FindGameObjectWithTag("Player"), gameObject, damage);
 
-            // ¼ì²éÊÇ·ñ»÷É±
+            // ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½É±
             if (currentHealth <= 0)
             {
                 CombatManager.Instance.HandleKill(GameObject.FindGameObjectWithTag("Player"), gameObject);
@@ -128,27 +131,27 @@ public class Enemy2 : MonoBehaviour
         }
     }
 
-    // µĞÈËËÀÍö
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private void Die()
     {
         isDead = true;
 
-        // ²¥·ÅËÀÍö¶¯»­
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (anim != null)
         {
             anim.SetBool("IsDead", true);
         }
 
-        // ½ûÓÃ×é¼ş
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
 
-        // ÔÚÒ»¶ÎÊ±¼äºóÏú»Ù¶ÔÏó
+        // ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½ï¿½ï¿½
         Destroy(gameObject, 2f);
     }    // Update is called once per frame
     void Update()
     {
-        // Èç¹ûµĞÈËÒÑËÀÍö£¬²»Ö´ĞĞÈÎºÎÂß¼­
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½Îºï¿½ï¿½ß¼ï¿½
         if (isDead)
             return;
 
@@ -157,10 +160,10 @@ public class Enemy2 : MonoBehaviour
         UpdateAttackState();
         UpdateAnimator();
     }
-    // ¸üĞÂÓëÍæ¼ÒµÄ¾àÀë
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒµÄ¾ï¿½ï¿½ï¿½
     private void UpdatePlayerDistance()
     {
-        // Èç¹ûplayerÒıÓÃ¶ªÊ§£¬³¢ÊÔÖØĞÂ²éÕÒ
+        // ï¿½ï¿½ï¿½playerï¿½ï¿½ï¿½Ã¶ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â²ï¿½ï¿½ï¿½
         if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
@@ -172,175 +175,199 @@ public class Enemy2 : MonoBehaviour
             }
         }
 
-        // ¼ÆËãXÖá¾àÀë£¨ÓÃÓÚ×óÓÒÒÆ¶¯ºÍ³¯ÏòÅĞ¶Ï£©
+        // ï¿½ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ë£¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½Í³ï¿½ï¿½ï¿½ï¿½Ğ¶Ï£ï¿½
         distanceToPlayer = player.transform.position.x - transform.position.x;
 
-        // ¼ÆËãÊµ¼Ê2D¾àÀë£¨ÓÃÓÚ¹¥»÷ÅĞ¶¨£©
+        // ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½2Dï¿½ï¿½ï¿½ë£¨ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½Ğ¶ï¿½ï¿½ï¿½
         Vector2 playerPosition = player.transform.position;
         Vector2 enemyPosition = transform.position;
         float actualDistance = Vector2.Distance(playerPosition, enemyPosition);
 
-        // µ±Íæ¼ÒÔÚÒ»¶¨·¶Î§ÄÚÊ±¼¤»îµĞÈË£¨Ê¹ÓÃÊµ¼Ê¾àÀëÅĞ¶Ï£©
-        isActive = actualDistance < 5f;
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î§ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½Ê¹ï¿½ï¿½Êµï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ğ¶Ï£ï¿½
+        isActive = actualDistance < detectionRange;
     }
 
-    // ¸üĞÂµĞÈËÒÆ¶¯
+    // ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
     private void UpdateMovement()
     {
-        // Èç¹ûÕıÔÚ¹¥»÷»òÎ´¼¤»î£¬²»´¦ÀíÒÆ¶¯
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½î£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
         if (isAttacking || !isActive)
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             return;
         }
 
-        // ÔÚ¹¥»÷·¶Î§ÄÚÍ£Ö¹²¢×¼±¸¹¥»÷
+        // ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½Î§ï¿½ï¿½Í£Ö¹ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (Mathf.Abs(distanceToPlayer) <= attackRange)
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-        }
-        // ·ñÔòÏòÍæ¼ÒÒÆ¶¯
-        else if (Mathf.Abs(distanceToPlayer) < 5f)
+        }        // å¦åˆ™å‘ç©å®¶ç§»åŠ¨
+        else if (Mathf.Abs(distanceToPlayer) < detectionRange)
         {
             float moveDirection = distanceToPlayer > 0 ? 1 : -1;
-            rb.linearVelocity = new Vector2(moveDirection * 5f, rb.linearVelocity.y);
+            
+            // æ£€æŸ¥æ˜¯å¦æœ‰å‡é€Ÿæ•ˆæœ
+            EnemySlowEffect slowEffect = GetComponent<EnemySlowEffect>();
+            float currentSpeed = moveSpeed;
+            if (slowEffect != null)
+            {
+                currentSpeed = slowEffect.GetAdjustedSpeed(moveSpeed);
+            }
+            
+            rb.linearVelocity = new Vector2(moveDirection * currentSpeed, rb.linearVelocity.y);
         }
         else
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
     }
-    // ¸üĞÂ¹¥»÷×´Ì¬
+    // ï¿½ï¿½ï¿½Â¹ï¿½ï¿½ï¿½×´Ì¬
     private void UpdateAttackState()
     {
-        // Ö»ÓĞÔÚ¼¤»î×´Ì¬ÇÒ²»ÔÚ¹¥»÷¹ı³ÌÖĞÊ±²Å¿¼ÂÇ¹¥»÷
+        // Ö»ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½×´Ì¬ï¿½Ò²ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Å¿ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½
         if (!isActive || isAttacking)
             return;
 
-        // ¼ÆËãÓëÍæ¼ÒµÄÊµ¼Ê2D¾àÀëºÍ´¹Ö±¾àÀë
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½Êµï¿½ï¿½2Dï¿½ï¿½ï¿½ï¿½Í´ï¿½Ö±ï¿½ï¿½ï¿½ï¿½
         Vector2 playerPosition = player.transform.position;
         Vector2 enemyPosition = transform.position;
         float actualDistance = Vector2.Distance(playerPosition, enemyPosition);
         float verticalDistance = Mathf.Abs(playerPosition.y - enemyPosition.y);
 
-        // ÉèÖÃ¿É½ÓÊÜµÄ´¹Ö±¹¥»÷Èİ²î£¨´¹Ö±·½ÏòÉÏµÄ×î´ó¹¥»÷¾àÀë£©
+        // ï¿½ï¿½ï¿½Ã¿É½ï¿½ï¿½ÜµÄ´ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½İ²î£¨ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ó¹¥»ï¿½ï¿½ï¿½ï¿½ë£©
         float verticalAttackTolerance = 0.8f;
 
-        // Èç¹ûÍæ¼ÒÔÚ¹¥»÷·¶Î§ÄÚ£¨Ë®Æ½ºÍ´¹Ö±¶¼Âú×ã£©ÇÒÀäÈ´Ê±¼äÒÑ¹ı
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½Î§ï¿½Ú£ï¿½Ë®Æ½ï¿½Í´ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ã£©ï¿½ï¿½ï¿½ï¿½È´Ê±ï¿½ï¿½ï¿½Ñ¹ï¿½
         if (Mathf.Abs(distanceToPlayer) <= attackRange &&
             verticalDistance <= verticalAttackTolerance &&
             Time.time >= nextAttackTime)
         {
-            // ¿ªÊ¼¹¥»÷
+            // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
             PerformAttack();
 
-            // ÉèÖÃÏÂ´Î¹¥»÷Ê±¼ä
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Â´Î¹ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
             nextAttackTime = Time.time + attackCooldown;
 
-            // µ÷ÊÔĞÅÏ¢
-            Debug.Log($"[Enemy¹¥»÷] ´¥·¢¹¥»÷! XÖá¾àÀë: {distanceToPlayer}, ´¹Ö±¾àÀë: {verticalDistance}");
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+            Debug.Log($"[Enemyï¿½ï¿½ï¿½ï¿½] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! Xï¿½ï¿½ï¿½ï¿½ï¿½: {distanceToPlayer}, ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½: {verticalDistance}");
         }
     }
 
-    // Ö´ĞĞ¹¥»÷
+    // Ö´ï¿½Ğ¹ï¿½ï¿½ï¿½
     private void PerformAttack()
     {
         isAttacking = true;
 
-        // ´¥·¢¹¥»÷¶¯»­
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (anim != null)
         {
             anim.SetTrigger("Attack");
         }
 
-        // ÑÓ³Ù½øĞĞ¹¥»÷ÅĞ¶¨
+        // ï¿½Ó³Ù½ï¿½ï¿½Ğ¹ï¿½ï¿½ï¿½ï¿½Ğ¶ï¿½
         Invoke("ApplyAttackDamage", attackDelay);
 
-        // ÑÓ³Ù½áÊø¹¥»÷×´Ì¬
-        Invoke("EndAttackState", 0.5f); // ¼ÙÉè¹¥»÷¶¯»­³ÖĞø0.5Ãë×óÓÒ
+        // ï¿½Ó³Ù½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
+        Invoke("EndAttackState", 0.5f); // ï¿½ï¿½ï¿½è¹¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0.5ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
-    // Ó¦ÓÃ¹¥»÷ÉËº¦
+    // Ó¦ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½Ëºï¿½
     private void ApplyAttackDamage()
     {
         if (isDead) return;
 
-        // Èç¹ûÍæ¼Ò²»´æÔÚ£¬Ôò²»Ôì³ÉÉËº¦
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½
         if (player == null)
             return;
 
-        // ÔÙ´Î¼ì²éÍæ¼ÒÊÇ·ñÔÚÓĞĞ§µÄ¹¥»÷·¶Î§ÄÚ£¨°üÀ¨´¹Ö±¾àÀë£©
+        // ï¿½Ù´Î¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Ğ§ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½Î§ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ë£©
         Vector2 playerPosition = player.transform.position;
         Vector2 enemyPosition = transform.position;
         float verticalDistance = Mathf.Abs(playerPosition.y - enemyPosition.y);
         float verticalAttackTolerance = 0.8f;
 
-        // Èç¹ûÍæ¼ÒÒÑÀë¿ª¹¥»÷·¶Î§£¨Ë®Æ½»ò´¹Ö±·½Ïò£©£¬Ôò²»Ôì³ÉÉËº¦
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¿ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§ï¿½ï¿½Ë®Æ½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ò£©£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½
         if (Mathf.Abs(distanceToPlayer) > attackRange * 1.2f || verticalDistance > verticalAttackTolerance)
         {
-            Debug.Log($"<color=#888888>¹¥»÷Ê§°Ü! Íæ¼ÒÒÑÀë¿ª¹¥»÷·¶Î§¡£XÖá¾àÀë: {distanceToPlayer}, ´¹Ö±¾àÀë: {verticalDistance}</color>");
+            Debug.Log($"<color=#888888>ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¿ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½: {distanceToPlayer}, ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½: {verticalDistance}</color>");
             return;
-        }
-
-        // ¼ì²éÍæ¼ÒÊÇ·ñÓĞÉúÃüÖµ×é¼ş
+        }        // æ£€æŸ¥ç©å®¶æ˜¯å¦æœ‰ç”Ÿå‘½å€¼ç»„ä»¶ï¼Œå…ˆç›´æ¥è·å–ï¼Œå¦‚æœè·å–ä¸åˆ°ï¼Œå°è¯•åœ¨å­å¯¹è±¡ä¸­æŸ¥æ‰¾
         PlayerAttackSystem playerHealth = player.GetComponent<PlayerAttackSystem>();
+        if (playerHealth == null)
+        {
+            // å°è¯•ä»å­å¯¹è±¡è·å–
+            playerHealth = player.GetComponentInChildren<PlayerAttackSystem>();
+            
+            // å¦‚æœè¿˜æ˜¯æ‰¾ä¸åˆ°ï¼Œå°è¯•ä»çˆ¶å¯¹è±¡è·å–
+            if (playerHealth == null)
+            {
+                playerHealth = player.GetComponentInParent<PlayerAttackSystem>();
+                
+                if (playerHealth == null)
+                {
+                    Debug.LogError($"<color=red>Enemy2æ— æ³•æ‰¾åˆ°ç©å®¶çš„PlayerAttackSystemç»„ä»¶! æ— æ³•é€ æˆä¼¤å®³!</color>");
+                }
+            }
+        }
+        
+        // å¦‚æœæ‰¾åˆ°äº†PlayerAttackSystemç»„ä»¶ï¼Œå¯¹ç©å®¶é€ æˆä¼¤å®³
         if (playerHealth != null)
         {
-            // ¶ÔÍæ¼ÒÔì³ÉÉËº¦
+            // å¯¹ç©å®¶é€ æˆä¼¤å®³
             playerHealth.TakeDamage(attackDamage);
-
-            // ¼ÇÂ¼µ½Õ½¶·¹ÜÀíÆ÷
+            
+            // è®°å½•åˆ°æˆ˜æ–—ç®¡ç†å™¨
             if (CombatManager.Instance != null)
             {
                 CombatManager.Instance.LogDamage(gameObject, player, attackDamage);
             }
 
-            Debug.Log($"<color=#FF4500>µĞÈË {gameObject.name} ¹¥»÷ÁËÍæ¼Ò£¬Ôì³É {attackDamage} µãÉËº¦£¡XÖá¾àÀë: {distanceToPlayer}, ´¹Ö±¾àÀë: {verticalDistance}</color>");
+            Debug.Log($"<color=#FF4500>æ•Œäºº {gameObject.name} å¯¹ç©å®¶é€ æˆ {attackDamage} ç‚¹ä¼¤å®³ï¼Xè·ç¦»: {distanceToPlayer}, å‚ç›´è·ç¦»: {verticalDistance}</color>");
         }
     }
 
-    // ½áÊø¹¥»÷×´Ì¬
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
     private void EndAttackState()
     {
         isAttacking = false;
     }
 
-    // ¸üĞÂ¶¯»­Æ÷
+    // ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½
     private void UpdateAnimator()
     {
         if (anim == null) return;
 
-        // ÉèÖÃ³¯Ïò£¨¸ù¾İÍæ¼ÒÎ»ÖÃ£©
+        // ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ò£¨¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ã£ï¿½
         Vector3 currentScale = transform.localScale;
         currentScale.x = distanceToPlayer > 0 ? originScaleX : -originScaleX;
         transform.localScale = currentScale;
 
-        // ¸üĞÂÒÆ¶¯¶¯»­
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
         lastSpeed = rb.linearVelocity.x;
         isMoving = Mathf.Abs(rb.linearVelocity.x) > 0.1f;
         anim.SetBool("isMoving", isMoving);
 
-        // ¸üĞÂ½Ó½ü×´Ì¬
+        // ï¿½ï¿½ï¿½Â½Ó½ï¿½×´Ì¬
         approach = Mathf.Abs(distanceToPlayer) <= attackRange;
         anim.SetBool("approach", approach);
-        // ÉèÖÃ¼¤»î×´Ì¬²ÎÊı
+        // ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½
         anim.SetBool("isActive", isActive);
     }
 
-    // ÔÚ±à¼­Æ÷ÖĞ»æÖÆ¹¥»÷·¶Î§µÄ¿ÉÊÓ»¯Ö¸Ê¾Æ÷
+    // ï¿½Ú±à¼­ï¿½ï¿½ï¿½Ğ»ï¿½ï¿½Æ¹ï¿½ï¿½ï¿½ï¿½ï¿½Î§ï¿½Ä¿ï¿½ï¿½Ó»ï¿½Ö¸Ê¾ï¿½ï¿½
     private void OnDrawGizmos()
     {
-        // »æÖÆË®Æ½¹¥»÷·¶Î§
+        // ï¿½ï¿½ï¿½ï¿½Ë®Æ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§
         Gizmos.color = Color.red;
 
-        // »æÖÆ2D¹¥»÷·¶Î§
-        float verticalAttackTolerance = 0.8f;  // Óë´úÂëÖĞ±£³ÖÒ»ÖÂ
+        // ï¿½ï¿½ï¿½ï¿½2Dï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§
+        float verticalAttackTolerance = 0.8f;  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
         Vector2 center = transform.position;
 
-        // »æÖÆÊµ¼Ê¹¥»÷·¶Î§£¨ÍÖÔ²ĞÎ£©
+        // ï¿½ï¿½ï¿½ï¿½Êµï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½Î§ï¿½ï¿½ï¿½ï¿½Ô²ï¿½Î£ï¿½
         DrawEllipseGizmo(center, attackRange, verticalAttackTolerance, 20);
     }
 
-    // ¸¨Öú·½·¨£º»æÖÆÍÖÔ²
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô²
     private void DrawEllipseGizmo(Vector2 center, float width, float height, int segments)
     {
         float angle = 0f;
@@ -358,16 +385,16 @@ public class Enemy2 : MonoBehaviour
     }
     public void FireBullet()
     {
-        // ÊµÀı»¯×Óµ¯
+        // Êµï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
 
-        // ÉèÖÃ×Óµ¯²ÎÊı
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½
         bullet bulletScript = bullet.GetComponent<bullet>();
         bulletScript.speed = bulletSpeed;
-        bulletScript.direction = AngleToDirection(angle); // ½Ç¶È×ª·½ÏòÏòÁ¿
+        bulletScript.direction = AngleToDirection(angle); // ï¿½Ç¶ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 
-    // ½Ç¶È×ª·½ÏòÏòÁ¿£¨0¶È=ÓÒ£¬90¶È=ÉÏ£©
+    // ï¿½Ç¶ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½=ï¿½Ò£ï¿½90ï¿½ï¿½=ï¿½Ï£ï¿½
     private Vector2 AngleToDirection(float angleDegrees)
     {
         float angleRadians = angleDegrees * Mathf.Deg2Rad;

@@ -1,8 +1,7 @@
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{
-    [Header("基本属性")]
+{    [Header("基本属性")]
     [SerializeField] private int maxHealth = 100; // 最大生命值
     [SerializeField] private int attackDamage = 25; // 攻击伤害
     [SerializeField] private float attackCooldown = 1f; // 攻击冷却时间 (精确为1秒)
@@ -10,6 +9,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform attackPoint; // 攻击判定点
     [SerializeField] private LayerMask playerLayer; // 玩家图层
     [SerializeField] private float attackDelay = 0.3f; // 从攻击动画开始到实际造成伤害的延迟
+    
+    [Header("移动设置")]
+    [SerializeField] private float moveSpeed = 5f; // 移动速度
+    [SerializeField] private float detectionRange = 5f; // 检测玩家的范围
     
     // 组件引用
     private Animator anim;
@@ -163,14 +166,13 @@ public class Enemy : MonoBehaviour
         
         // 计算X轴距离（用于左右移动和朝向判断）
         distanceToPlayer = player.transform.position.x - transform.position.x;
-        
-        // 计算实际2D距离（用于攻击判定）
+          // 计算实际2D距离（用于攻击判定）
         Vector2 playerPosition = player.transform.position;
         Vector2 enemyPosition = transform.position;
         float actualDistance = Vector2.Distance(playerPosition, enemyPosition);
         
-        // 当玩家在一定范围内时激活敌人（使用实际距离判断）
-        isActive = actualDistance < 5f;
+        // 当玩家在检测范围内时激活敌人（使用实际距离判断）
+        isActive = actualDistance < detectionRange;
     }
     
     // 更新敌人移动
@@ -188,19 +190,19 @@ public class Enemy : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }        // 否则向玩家移动
-        else if (Mathf.Abs(distanceToPlayer) < 5f)
+        else if (Mathf.Abs(distanceToPlayer) < detectionRange)
         {
             float moveDirection = distanceToPlayer > 0 ? 1 : -1;
-            float baseSpeed = 5f;
+            float currentSpeed = moveSpeed;
             
             // 检查是否有减速效果
             EnemySlowEffect slowEffect = GetComponent<EnemySlowEffect>();
             if (slowEffect != null)
             {
-                baseSpeed = slowEffect.GetAdjustedSpeed(baseSpeed);
+                currentSpeed = slowEffect.GetAdjustedSpeed(moveSpeed);
             }
             
-            rb.linearVelocity = new Vector2(moveDirection * baseSpeed, rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(moveDirection * currentSpeed, rb.linearVelocity.y);
         }
         else
         {
@@ -273,13 +275,31 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
-        
-        // 检查玩家是否有生命值组件
+          // 检查玩家是否有生命值组件，先直接获取，如果获取不到，尝试在子对象中查找
         PlayerAttackSystem playerHealth = player.GetComponent<PlayerAttackSystem>();
+        if (playerHealth == null)
+        {
+            // 尝试从子对象获取
+            playerHealth = player.GetComponentInChildren<PlayerAttackSystem>();
+            
+            // 如果还是找不到，尝试从父对象获取
+            if (playerHealth == null)
+            {
+                playerHealth = player.GetComponentInParent<PlayerAttackSystem>();
+                
+                if (playerHealth == null)
+                {
+                    Debug.LogError($"<color=red>Enemy无法找到玩家的PlayerAttackSystem组件! 无法造成伤害!</color>");
+                }
+            }
+        }
+        
+        // 如果找到了PlayerAttackSystem组件，对玩家造成伤害
         if (playerHealth != null)
         {
             // 对玩家造成伤害
             playerHealth.TakeDamage(attackDamage);
+            Debug.Log($"<color=orange>敌人 {gameObject.name} 对玩家造成 {attackDamage} 点伤害！</color>");
             
             // 记录到战斗管理器
             if (CombatManager.Instance != null)

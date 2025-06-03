@@ -168,7 +168,7 @@ TextureImporter:
         width: 32
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -190,7 +190,7 @@ TextureImporter:
         width: 34
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -212,7 +212,7 @@ TextureImporter:
         width: 36
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -230,11 +230,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 432
-        y: 50
-        width: 32
-        height: 18
+        y: 42
+        width: 30
+        height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -256,7 +256,7 @@ TextureImporter:
         width: 26
         height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -275,10 +275,10 @@ TextureImporter:
         serializedVersion: 2
         x: 686
         y: 45
-        width: 29
+        width: 32
         height: 34
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -295,12 +295,12 @@ TextureImporter:
       name: Teleport_6
       rect:
         serializedVersion: 2
-        x: 710
-        y: 54
-        width: 8
-        height: 16
+        x: 814
+        y: 52
+        width: 38
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -317,12 +317,12 @@ TextureImporter:
       name: Teleport_7
       rect:
         serializedVersion: 2
-        x: 816
-        y: 64
-        width: 35
-        height: 17
+        x: 935
+        y: 46
+        width: 53
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -339,12 +339,12 @@ TextureImporter:
       name: Teleport_8
       rect:
         serializedVersion: 2
-        x: 819
-        y: 52
-        width: 27
-        height: 24
+        x: 1053
+        y: 45
+        width: 74
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -361,12 +361,12 @@ TextureImporter:
       name: Teleport_9
       rect:
         serializedVersion: 2
-        x: 937
-        y: 46
-        width: 49
-        height: 33
+        x: 1162
+        y: 35
+        width: 107
+        height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -383,12 +383,12 @@ TextureImporter:
       name: Teleport_10
       rect:
         serializedVersion: 2
-        x: 1054
-        y: 48
-        width: 70
-        height: 27
+        x: 1302
+        y: 35
+        width: 86
+        height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -405,12 +405,12 @@ TextureImporter:
       name: Teleport_11
       rect:
         serializedVersion: 2
-        x: 1162
-        y: 37
-        width: 106
-        height: 51
+        x: 1436
+        y: 38
+        width: 82
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -427,12 +427,12 @@ TextureImporter:
       name: Teleport_12
       rect:
         serializedVersion: 2
-        x: 1303
-        y: 34
-        width: 83
-        height: 57
+        x: 1565
+        y: 43
+        width: 74
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -449,12 +449,12 @@ TextureImporter:
       name: Teleport_13
       rect:
         serializedVersion: 2
-        x: 1436
-        y: 36
-        width: 77
-        height: 50
+        x: 1696
+        y: 47
+        width: 69
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -471,12 +471,12 @@ TextureImporter:
       name: Teleport_14
       rect:
         serializedVersion: 2
-        x: 1565
-        y: 43
-        width: 75
-        height: 37
+        x: 1825
+        y: 53
+        width: 67
+        height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -493,12 +493,12 @@ TextureImporter:
       name: Teleport_15
       rect:
         serializedVersion: 2
-        x: 1695
-        y: 47
-        width: 71
-        height: 30
+        x: 1959
+        y: 54
+        width: 49
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -515,12 +515,12 @@ TextureImporter:
       name: Teleport_16
       rect:
         serializedVersion: 2
-        x: 1827
-        y: 54
+        x: 1917
+        y: 104
         width: 63
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -537,12 +537,12 @@ TextureImporter:
       name: Teleport_17
       rect:
         serializedVersion: 2
-        x: 1962
-        y: 59
+        x: 1992
+        y: 110
         width: 151
         height: 9
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -559,12 +559,12 @@ TextureImporter:
       name: Teleport_18
       rect:
         serializedVersion: 2
-        x: 325
-        y: 43
+        x: 329
+        y: 10
         width: 10
         height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5454071, y: 0.4495536}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -581,12 +581,12 @@ TextureImporter:
       name: Teleport_19
       rect:
         serializedVersion: 2
-        x: 433
-        y: 42
+        x: 413
+        y: 0
         width: 29
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -603,12 +603,12 @@ TextureImporter:
       name: Teleport_20
       rect:
         serializedVersion: 2
-        x: 440
-        y: 47
+        x: 429
+        y: 4
         width: 18
         height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -625,7 +625,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 05517e429de21804ab68762c48fae4e0
     internalID: 0
     vertices: []
     indices: 

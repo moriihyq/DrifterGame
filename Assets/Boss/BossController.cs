@@ -131,11 +131,17 @@ public class BossController : MonoBehaviour
             boxCollider.offset = new Vector2(0f, 1.5f);
             Debug.LogWarning("Boss没有碰撞器，添加了默认的BoxCollider2D");
         }
-        
-        // 确保Boss在正确的层级上
+          // 确保Boss在正确的层级和标签上
         if (LayerMask.NameToLayer("Enemy") != -1)
         {
             gameObject.layer = LayerMask.NameToLayer("Enemy");
+        }
+        
+        // 确保Boss有Enemy标签，这对于魔法子弹的碰撞检测很重要
+        if (gameObject.tag != "Enemy")
+        {
+            gameObject.tag = "Enemy";
+            Debug.Log("已将Boss标签设置为'Enemy'以便魔法子弹正确识别");
         }
         
         // 随机生成执行远程攻击前需要的近战攻击次数
