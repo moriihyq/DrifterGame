@@ -7,8 +7,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackCooldown = 1f; // 攻击冷却时间 (精确为1秒)
     [SerializeField] private float attackRange = 1.2f; // 攻击范围
     [SerializeField] private Transform attackPoint; // 攻击判定点
-    [SerializeField] private LayerMask playerLayer; // 玩家图层
-    [SerializeField] private float attackDelay = 0.3f; // 从攻击动画开始到实际造成伤害的延迟
+    [SerializeField] private LayerMask playerLayer; // 玩家图层    [SerializeField] private float attackDelay = 0.3f; // 从攻击动画开始到实际造成伤害的延迟
+    
+    [Header("音效设置")]
+    [SerializeField] private AudioClip attackSound; // 攻击音效
+    [SerializeField] [Range(0f, 1f)] private float attackVolume = 1f; // 攻击音量
+    private AudioVolumeManager audioVolumeManager; // 音量管理器
     
     [Header("移动设置")]
     [SerializeField] private float moveSpeed = 5f; // 移动速度
@@ -79,11 +83,17 @@ public class Enemy : MonoBehaviour
             boxCollider.size = new Vector2(1f, 1f);
             boxCollider.offset = Vector2.zero;
         }
-        
-        // 确保敌人在正确的层级上
+          // 确保敌人在正确的层级上
         if (LayerMask.NameToLayer("Enemy") != -1)
         {
             gameObject.layer = LayerMask.NameToLayer("Enemy");
+        }
+        
+        // 查找音量管理器
+        audioVolumeManager = FindFirstObjectByType<AudioVolumeManager>();
+        if (audioVolumeManager == null)
+        {
+            Debug.LogWarning("Enemy: 未找到AudioVolumeManager，音效将使用默认音量");
         }
     }
       // 敌人受到伤害
@@ -237,11 +247,20 @@ public class Enemy : MonoBehaviour
             nextAttackTime = Time.time + attackCooldown;
         }
     }
-    
-    // 执行攻击
+      // 执行攻击
     private void PerformAttack()
     {
         isAttacking = true;
+          // 播放攻击音效
+        if (attackSound != null)
+        {
+            float finalVolume = attackVolume;
+            if (audioVolumeManager != null)
+            {
+                finalVolume *= audioVolumeManager.GetCurrentVolume();
+            }
+            AudioSource.PlayClipAtPoint(attackSound, transform.position, finalVolume);
+        }
         
         // 触发攻击动画
         if (anim != null)

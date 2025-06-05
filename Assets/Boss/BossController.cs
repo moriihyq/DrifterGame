@@ -17,13 +17,13 @@ public class BossController : MonoBehaviour
     [SerializeField] private LayerMask playerLayer; // 玩家图层
     [SerializeField] private float meleeAttackDelay = 0.4f; // 近战攻击判定延迟
     [SerializeField] private float rangedAttackDelay = 0.8f; // 远程攻击判定延迟
-    
-    [Header("音效设置")]
+      [Header("音效设置")]
     [SerializeField] private AudioSource audioSource; // 音效播放器
     [SerializeField] private AudioClip meleeAttackSound; // 近战攻击音效
     [SerializeField] private AudioClip rangedAttackSound; // 远程攻击音效
     [SerializeField] [Range(0f, 1f)] private float meleeAttackVolume = 1f; // 近战攻击音量
     [SerializeField] [Range(0f, 1f)] private float rangedAttackVolume = 1f; // 远程攻击音量
+    private AudioVolumeManager audioVolumeManager; // 音量管理器
     
     // 组件引用
     private Animator anim;
@@ -143,10 +143,16 @@ public class BossController : MonoBehaviour
             gameObject.tag = "Enemy";
             Debug.Log("已将Boss标签设置为'Enemy'以便魔法子弹正确识别");
         }
-        
-        // 随机生成执行远程攻击前需要的近战攻击次数
+          // 随机生成执行远程攻击前需要的近战攻击次数
         RegenerateAttackPattern();
-    }      void Update()
+        
+        // 查找音量管理器
+        audioVolumeManager = FindFirstObjectByType<AudioVolumeManager>();
+        if (audioVolumeManager == null)
+        {
+            Debug.LogWarning("BossController: 未找到AudioVolumeManager，音效将使用默认音量");
+        }
+    }void Update()
     {
         // 如果Boss已死亡，不执行任何逻辑
         if (isDead) return;
@@ -454,11 +460,14 @@ public class BossController : MonoBehaviour
         {
             anim.SetTrigger("Attack");
         }
-        
-        // 播放近战攻击音效
-        if (audioSource != null && meleeAttackSound != null)
-        {
-            audioSource.PlayOneShot(meleeAttackSound, meleeAttackVolume);
+          // 播放近战攻击音效
+        if (audioSource != null && meleeAttackSound != null)        {
+            float finalVolume = meleeAttackVolume;
+            if (audioVolumeManager != null)
+            {
+                finalVolume *= audioVolumeManager.GetCurrentVolume();
+            }
+            audioSource.PlayOneShot(meleeAttackSound, finalVolume);
             Debug.Log("<color=#FF4500>播放近战攻击音效</color>");
         }
         else
@@ -486,11 +495,14 @@ public class BossController : MonoBehaviour
         {
             anim.SetTrigger("Shoot");
         }
-        
-        // 播放远程攻击音效
+          // 播放远程攻击音效
         if (audioSource != null && rangedAttackSound != null)
-        {
-            audioSource.PlayOneShot(rangedAttackSound, rangedAttackVolume);
+        {            float finalVolume = rangedAttackVolume;
+            if (audioVolumeManager != null)
+            {
+                finalVolume *= audioVolumeManager.GetCurrentVolume();
+            }
+            audioSource.PlayOneShot(rangedAttackSound, finalVolume);
             Debug.Log("<color=#8B0000>播放远程攻击音效</color>");
         }
         else
