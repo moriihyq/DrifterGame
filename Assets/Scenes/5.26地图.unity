@@ -1212,6 +1212,10 @@ MonoBehaviour:
   m_Script: {fileID: 544970019}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetCamera: {fileID: 0}
+  followOffset: {x: 0, y: 0, z: 10}
+  smoothFollow: 0
+  followSpeed: 10
 --- !u!1 &64650312
 GameObject:
   m_ObjectHideFlags: 0
@@ -28734,6 +28738,10 @@ PrefabInstance:
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1604426085362713800, guid: d42fca40bafd0a4448f54a6c7f2c2204, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ba953eb593910d740a7e55103e3bd260, type: 3}
+    - target: {fileID: 1604426085362713800, guid: d42fca40bafd0a4448f54a6c7f2c2204, type: 3}
       propertyPath: attackDamage
       value: 10
       objectReference: {fileID: 0}
@@ -28743,7 +28751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4193692918765864939, guid: d42fca40bafd0a4448f54a6c7f2c2204, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4193692918765864939, guid: d42fca40bafd0a4448f54a6c7f2c2204, type: 3}
       propertyPath: m_SortingLayerID
@@ -85333,12 +85341,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1840175282745474549, guid: dac43bc2293b4db448ae0e4f69679445, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1840175282745474549, guid: dac43bc2293b4db448ae0e4f69679445, type: 3}
       propertyPath: m_SortingLayerID
       value: 584795447
       objectReference: {fileID: 0}
+    - target: {fileID: 5244684083194379810, guid: dac43bc2293b4db448ae0e4f69679445, type: 3}
+      propertyPath: attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ba953eb593910d740a7e55103e3bd260, type: 3}
     - target: {fileID: 6013906026393683142, guid: dac43bc2293b4db448ae0e4f69679445, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.48

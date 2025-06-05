@@ -1,13 +1,12 @@
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{    [Header("基本属性")]
-    [SerializeField] private int maxHealth = 100; // 最大生命值
+{    [Header("基本属性")]    [SerializeField] private int maxHealth = 100; // 最大生命值
     [SerializeField] private int attackDamage = 25; // 攻击伤害
     [SerializeField] private float attackCooldown = 1f; // 攻击冷却时间 (精确为1秒)
     [SerializeField] private float attackRange = 1.2f; // 攻击范围
     [SerializeField] private Transform attackPoint; // 攻击判定点
-    [SerializeField] private LayerMask playerLayer; // 玩家图层    [SerializeField] private float attackDelay = 0.3f; // 从攻击动画开始到实际造成伤害的延迟
+    [SerializeField] private LayerMask playerLayer; // 玩家图层
     
     [Header("音效设置")]
     [SerializeField] private AudioClip attackSound; // 攻击音效
@@ -267,9 +266,8 @@ public class Enemy : MonoBehaviour
         {
             anim.SetTrigger("Attack");
         }
-        
-        // 延迟进行攻击判定
-        Invoke("ApplyAttackDamage", attackDelay);
+          // 延迟进行攻击判定
+        Invoke("ApplyAttackDamage", 0.3f);
         
         // 延迟结束攻击状态
         Invoke("EndAttackState", 0.5f); // 假设攻击动画持续0.5秒左右
