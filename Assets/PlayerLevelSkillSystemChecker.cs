@@ -163,7 +163,7 @@ public class PlayerLevelSkillSystemChecker : MonoBehaviour
         
         Text cooldownText = cooldownTextObj.AddComponent<Text>();
         cooldownText.text = "空中攻击: 0.0s";
-        cooldownText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        cooldownText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         cooldownText.fontSize = 12;
         cooldownText.color = Color.white;
         cooldownText.alignment = TextAnchor.MiddleCenter;
@@ -201,7 +201,7 @@ public class PlayerLevelSkillSystemChecker : MonoBehaviour
         
         Text levelReqText = levelReqTextObj.AddComponent<Text>();
         levelReqText.text = "需要等级3解锁空中攻击";
-        levelReqText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        levelReqText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         levelReqText.fontSize = 16;
         levelReqText.color = Color.yellow;
         levelReqText.alignment = TextAnchor.MiddleCenter;
