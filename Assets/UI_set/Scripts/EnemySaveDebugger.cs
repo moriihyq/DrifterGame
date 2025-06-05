@@ -321,9 +321,16 @@ public class EnemySaveDebugger : MonoBehaviour
     {
         if (EnemySaveAdapter.Instance != null)
         {
-            int oldCount = EnemySaveAdapter.Instance.GetDeadEnemyCount();
-            EnemySaveAdapter.Instance.ClearAllDeathRecords();
-            AddDebugMessage($"🧹 已清理 {oldCount} 个死亡敌人记录");
+            // 使用新的方法清理当前槽位的死亡记录
+            EnemySaveAdapter.Instance.ClearCurrentSlotDeathRecords();
+            AddDebugMessage($"🧹 已清理当前槽位的死亡敌人记录");
+            
+            // 同时清理EnemySaveDataManager的记录
+            if (EnemySaveDataManager.Instance != null)
+            {
+                EnemySaveDataManager.Instance.ClearAllSlots();
+                AddDebugMessage("🧹 已清理所有槽位的死亡记录");
+            }
             
             // 重新初始化敌人
             EnemySaveAdapter.Instance.InitializeEnemies();

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -24,6 +25,13 @@ public class RespawnManager : MonoBehaviour
     [Tooltip("默认复活点位置（当没有激活的复活点时使用）")]
     public Vector3 defaultRespawnPosition = Vector3.zero;
     
+    [Header("场景管理设置")]
+    [Tooltip("主菜单场景名称列表（在这些场景中RespawnManager将被禁用）")]
+    public string[] mainMenuSceneNames = { "MainMenu", "StartMenu", "TitleScreen" };
+    
+    [Tooltip("游戏场景名称列表")]
+    public string[] gameSceneNames = { "Example1", "5.26地图", "可以运行的地图" };
+    
     private static RespawnManager instance;
     public static RespawnManager Instance => instance;
     
@@ -32,10 +40,19 @@ public class RespawnManager : MonoBehaviour
     private PlayerController player;
     private AudioSource audioSource;
     
+    // 场景管理相关变量
+    private bool isInGameScene = true;
+    private float lastPlayerSearchTime = 0f;
+    private float playerSearchInterval = 1f; // 每秒搜索一次玩家，而不是每帧
+    private int playerSearchAttempts = 0;
+    private int maxPlayerSearchAttempts = 5; // 最多尝试5次后停止输出错误日志
+    
     [Header("调试信息")]
     [SerializeField] private bool showDebugInfo = true;
     [SerializeField] private int totalRespawnPoints = 0;
     [SerializeField] private int activatedRespawnPoints = 0;
+    [SerializeField] private string currentSceneName = "";
+    [SerializeField] private bool playerFound = false;
     
     void Awake()
     {
@@ -44,6 +61,9 @@ public class RespawnManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            
+            // 监听场景切换事件
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -60,19 +80,103 @@ public class RespawnManager : MonoBehaviour
         }
     }
     
+    void OnDestroy()
+    {
+        // 取消监听场景切换事件
+        if (instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+    }
+    
+    /// <summary>
+    /// 场景加载时调用
+    /// </summary>
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        currentSceneName = scene.name;
+        isInGameScene = IsGameScene(scene.name);
+        
+        // 重置玩家搜索相关变量
+        player = null;
+        playerFound = false;
+        playerSearchAttempts = 0;
+        lastPlayerSearchTime = 0f;
+        
+        // 清空复活点列表（会在新场景中重新注册）
+        allRespawnPoints.Clear();
+        
+        if (showDebugInfo)
+        {
+            Debug.Log($"[RespawnManager] 场景切换到: {scene.name}, 游戏场景: {isInGameScene}");
+        }
+        
+        if (isInGameScene)
+        {
+            // 延迟初始化，确保场景完全加载
+            Invoke(nameof(DelayedInitialization), 0.5f);
+        }
+    }
+    
+    /// <summary>
+    /// 延迟初始化
+    /// </summary>
+    private void DelayedInitialization()
+    {
+        if (isInGameScene)
+        {
+            FindPlayer();
+            RegisterAllRespawnPoints();
+        }
+    }
+
     void Start()
     {
-        // 查找玩家
-        FindPlayer();
+        // 检查当前场景
+        currentSceneName = SceneManager.GetActiveScene().name;
+        isInGameScene = IsGameScene(currentSceneName);
         
-        // 注册所有复活点
-        RegisterAllRespawnPoints();
+        if (isInGameScene)
+        {
+            // 查找玩家
+            FindPlayer();
+            
+            // 注册所有复活点
+            RegisterAllRespawnPoints();
+        }
     }
     
     void Update()
     {
+        // 只在游戏场景中运行
+        if (!isInGameScene) return;
+        
         // 检查玩家是否掉落出边界
         CheckPlayerBounds();
+    }
+    
+    /// <summary>
+    /// 检查是否为游戏场景
+    /// </summary>
+    private bool IsGameScene(string sceneName)
+    {
+        // 检查是否在游戏场景列表中
+        foreach (string gameScene in gameSceneNames)
+        {
+            if (sceneName.Equals(gameScene, System.StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+        
+        // 检查是否为主菜单场景
+        foreach (string menuScene in mainMenuSceneNames)
+        {
+            if (sceneName.Equals(menuScene, System.StringComparison.OrdinalIgnoreCase) ||
+                sceneName.Contains("Menu") || sceneName.Contains("Title") || sceneName.Contains("Start"))
+                return false;
+        }
+        
+        // 默认假设为游戏场景（除非明确标识为菜单）
+        return true;
     }
     
     /// <summary>
@@ -80,6 +184,13 @@ public class RespawnManager : MonoBehaviour
     /// </summary>
     void FindPlayer()
     {
+        // 只在游戏场景中查找玩家
+        if (!isInGameScene) return;
+        
+        // 控制搜索频率，避免每帧都搜索
+        if (Time.time - lastPlayerSearchTime < playerSearchInterval) return;
+        lastPlayerSearchTime = Time.time;
+        
         if (player == null)
         {
             // 首先尝试通过PlayerController找到玩家
@@ -99,7 +210,7 @@ public class RespawnManager : MonoBehaviour
                     {
                         // 创建一个临时的PlayerController引用，用于位置操作
                         // 这里我们用Transform来代替PlayerController进行位置管理
-                        if (showDebugInfo)
+                        if (showDebugInfo && playerSearchAttempts < maxPlayerSearchAttempts)
                         {
                             Debug.Log("[RespawnManager] 找到PlayerAttackSystem但没有PlayerController，将直接操作Transform");
                         }
@@ -109,28 +220,52 @@ public class RespawnManager : MonoBehaviour
             
             if (player == null)
             {
-                Debug.LogWarning("[RespawnManager] 找不到PlayerController组件！尝试通过Player标签查找...");
+                // 只在有限次数内输出警告，避免刷屏
+                if (playerSearchAttempts < maxPlayerSearchAttempts)
+                {
+                    Debug.LogWarning("[RespawnManager] 找不到PlayerController组件！尝试通过Player标签查找...");
+                }
                 
                 // 最后尝试通过标签查找
                 GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
                 if (playerObj != null)
                 {
                     player = playerObj.GetComponent<PlayerController>();
-                    if (player == null && showDebugInfo)
+                    if (player == null && showDebugInfo && playerSearchAttempts < maxPlayerSearchAttempts)
                     {
                         Debug.LogWarning("[RespawnManager] 找到带Player标签的对象，但没有PlayerController组件");
                     }
                 }
             }
             
-            if (player != null && showDebugInfo)
+            if (player != null)
             {
-                Debug.Log("[RespawnManager] 找到玩家：" + player.name);
+                playerFound = true;
+                if (showDebugInfo)
+                {
+                    Debug.Log("[RespawnManager] ✅ 找到玩家：" + player.name);
+                }
             }
-            else if (showDebugInfo)
+            else
             {
-                Debug.LogError("[RespawnManager] 无法找到玩家对象！请确保玩家有PlayerController组件或Player标签");
+                playerFound = false;
+                playerSearchAttempts++;
+                
+                // 只在有限次数内输出错误，避免刷屏导致卡死
+                if (playerSearchAttempts <= maxPlayerSearchAttempts && showDebugInfo)
+                {
+                    Debug.LogError($"[RespawnManager] 无法找到玩家对象！尝试次数: {playerSearchAttempts}/{maxPlayerSearchAttempts}");
+                    
+                    if (playerSearchAttempts == maxPlayerSearchAttempts)
+                    {
+                        Debug.LogWarning("[RespawnManager] 已达到最大搜索次数，停止输出错误日志以避免卡死");
+                    }
+                }
             }
+        }
+        else
+        {
+            playerFound = true;
         }
     }
     

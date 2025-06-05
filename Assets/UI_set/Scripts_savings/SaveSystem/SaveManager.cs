@@ -80,6 +80,12 @@ public class SaveManager : MonoBehaviour
             return;
         }
         
+        // 设置当前存档槽位
+        if (EnemySaveDataManager.Instance != null)
+        {
+            EnemySaveDataManager.Instance.SetCurrentSaveSlot(slotIndex);
+        }
+        
         GameData gameData = CollectGameData();
         // Update save naming logic
         gameData.saveName = $"SaveSlot{slotIndex + 1}";
@@ -168,6 +174,12 @@ public class SaveManager : MonoBehaviour
         GameData gameData = LoadGame(slotIndex);
         if (gameData != null)
         {
+            // 设置当前存档槽位
+            if (EnemySaveDataManager.Instance != null)
+            {
+                EnemySaveDataManager.Instance.SetCurrentSaveSlot(slotIndex);
+            }
+            
             // Check if we're loading in the same scene
             if (SceneManager.GetActiveScene().name == gameData.sceneName)
             {
@@ -189,6 +201,12 @@ public class SaveManager : MonoBehaviour
         GameData gameData = LoadGame(slotIndex);
         if (gameData != null)
         {
+            // 设置当前存档槽位
+            if (EnemySaveDataManager.Instance != null)
+            {
+                EnemySaveDataManager.Instance.SetCurrentSaveSlot(slotIndex);
+            }
+            
             if (SceneManager.GetActiveScene().name == gameData.sceneName)
             {
                 Debug.Log("Quick loading in current scene");
@@ -704,6 +722,12 @@ public class SaveManager : MonoBehaviour
                 File.Delete(filePath);
                 Debug.Log($"Successfully deleted save file: {filePath}");
                 Debug.Log($"Deleted save in slot {slotIndex}");
+                
+                // 同时删除对应的敌人数据
+                if (EnemySaveDataManager.Instance != null)
+                {
+                    EnemySaveDataManager.Instance.DeleteSlotData(slotIndex);
+                }
             }
             catch (Exception e)
             {

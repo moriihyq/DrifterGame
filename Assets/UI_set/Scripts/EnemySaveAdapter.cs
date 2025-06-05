@@ -17,8 +17,8 @@ public class EnemySaveAdapter : MonoBehaviour
     private List<Enemy> sceneEnemies = new List<Enemy>();
     private Dictionary<string, Enemy> enemyLookup = new Dictionary<string, Enemy>();
     
-    // 死亡敌人记录系统
-    private Dictionary<string, EnemyData> deadEnemiesRecord = new Dictionary<string, EnemyData>();
+    // 死亡敌人记录系统 - 现在由EnemySaveDataManager管理
+    private HashSet<string> currentSlotDeadEnemies = new HashSet<string>();
     
     /// <summary>
     /// 单例实例
@@ -121,20 +121,24 @@ public class EnemySaveAdapter : MonoBehaviour
         
         sceneEnemies.Clear();
         enemyLookup.Clear();
-        // 注意：不再自动清理死亡记录，让RestoreEnemyData来管理
         
-        // 查找场景中所有敌人
-        Enemy[] enemies = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+        // 使用改进的ID生成系统，确保ID一致性
+        var enemyIDMap = ImprovedEnemyIDGenerator.GenerateConsistentEnemyIDs();
         
-        for (int i = 0; i < enemies.Length; i++)
+        // 验证ID唯一性
+        bool isUnique = ImprovedEnemyIDGenerator.ValidateIDUniqueness(enemyIDMap);
+        if (!isUnique)
         {
-            Enemy enemy = enemies[i];
+            Debug.LogError("[EnemySaveAdapter] 敌人ID不唯一，可能导致存档问题！");
+        }
+        
+        foreach (var kvp in enemyIDMap)
+        {
+            Enemy enemy = kvp.Key;
+            string enemyID = kvp.Value;
             
-            // 为敌人分配唯一ID
-            string enemyID = GenerateEnemyID(enemy, i);
-            
-            // 检查这个敌人是否在死亡记录中
-            if (deadEnemiesRecord.ContainsKey(enemyID))
+            // 检查这个敌人是否在当前存档槽位的死亡记录中
+            if (currentSlotDeadEnemies.Contains(enemyID))
             {
                 // 这个敌人应该是死亡状态，立即禁用
                 enemy.gameObject.SetActive(false);
@@ -166,7 +170,7 @@ public class EnemySaveAdapter : MonoBehaviour
         }
         
         if (enableDebugLog)
-            Debug.Log($"[EnemySaveAdapter] 总共初始化了 {sceneEnemies.Count} 个敌人，死亡记录: {deadEnemiesRecord.Count} 个");
+            Debug.Log($"[EnemySaveAdapter] 总共初始化了 {sceneEnemies.Count} 个敌人，死亡记录: {currentSlotDeadEnemies.Count} 个");
     }
     
     /// <summary>
@@ -185,14 +189,25 @@ public class EnemySaveAdapter : MonoBehaviour
     }
     
     /// <summary>
-    /// 清理所有死亡记录（仅在真正重新开始游戏时调用）
+    /// 设置当前存档槽位的死亡记录（由EnemySaveDataManager调用）
     /// </summary>
-    public void ClearAllDeathRecords()
+    public void SetDeathRecordsForCurrentSlot(HashSet<string> deathRecords)
     {
-        deadEnemiesRecord.Clear();
+        currentSlotDeadEnemies = new HashSet<string>(deathRecords);
         
         if (enableDebugLog)
-            Debug.Log("[EnemySaveAdapter] 已清理所有死亡记录");
+            Debug.Log($"[EnemySaveAdapter] 更新当前槽位死亡记录: {currentSlotDeadEnemies.Count} 个敌人");
+    }
+    
+    /// <summary>
+    /// 清理当前槽位的死亡记录
+    /// </summary>
+    public void ClearCurrentSlotDeathRecords()
+    {
+        currentSlotDeadEnemies.Clear();
+        
+        if (enableDebugLog)
+            Debug.Log("[EnemySaveAdapter] 已清理当前槽位死亡记录");
     }
     
     /// <summary>
@@ -200,21 +215,26 @@ public class EnemySaveAdapter : MonoBehaviour
     /// </summary>
     public void RecordEnemyDeath(string enemyID, EnemyData deathData)
     {
-        deadEnemiesRecord[enemyID] = deathData;
+        // 添加到当前槽位的死亡记录
+        currentSlotDeadEnemies.Add(enemyID);
+        
+        // 通知EnemySaveDataManager记录死亡
+        if (EnemySaveDataManager.Instance != null)
+        {
+            EnemySaveDataManager.Instance.RecordEnemyDeath(enemyID);
+        }
         
         if (enableDebugLog)
             Debug.Log($"[EnemySaveAdapter] 记录敌人死亡: {enemyID} 位置: {deathData.position}");
     }
     
     /// <summary>
-    /// 生成敌人唯一ID
+    /// 生成敌人唯一ID - 使用改进的一致性算法
     /// </summary>
     private string GenerateEnemyID(Enemy enemy, int index)
     {
-        // 基于敌人位置和索引生成唯一ID
-        Vector3 pos = enemy.transform.position;
         string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        return $"{sceneName}_Enemy_{index}_{pos.x:F1}_{pos.y:F1}";
+        return ImprovedEnemyIDGenerator.GenerateConsistentID(enemy, index, sceneName);
     }
     
     /// <summary>
@@ -308,14 +328,7 @@ public class EnemySaveAdapter : MonoBehaviour
             }
         }
         
-        // 收集死亡敌人数据
-        foreach (var deadEnemy in deadEnemiesRecord)
-        {
-            enemyDataList.Add(deadEnemy.Value);
-            
-            if (enableDebugLog)
-                Debug.Log($"[EnemySaveAdapter] ✅ 收集死敌人数据: {deadEnemy.Key} (死亡状态)");
-        }
+        // 不再从deadEnemiesRecord收集数据，因为死亡的敌人已经通过SaveableEnemy处理
         
         if (enableDebugLog)
         {
@@ -323,7 +336,7 @@ public class EnemySaveAdapter : MonoBehaviour
             Debug.Log($"[EnemySaveAdapter] 活跃敌人: {activeCount}");
             Debug.Log($"[EnemySaveAdapter] 非活跃敌人: {inactiveCount}");
             Debug.Log($"[EnemySaveAdapter] 死亡敌人(运行时): {deadCount}");
-            Debug.Log($"[EnemySaveAdapter] 死亡敌人(记录): {deadEnemiesRecord.Count}");
+            Debug.Log($"[EnemySaveAdapter] 死亡敌人(记录): {currentSlotDeadEnemies.Count}");
             Debug.Log($"[EnemySaveAdapter] 错误数量: {errorCount}");
             Debug.Log($"[EnemySaveAdapter] 总共收集了 {enemyDataList.Count} 个敌人的数据");
         }
@@ -339,15 +352,21 @@ public class EnemySaveAdapter : MonoBehaviour
         if (enableDebugLog)
             Debug.Log($"[EnemySaveAdapter] 开始恢复 {enemyDataList.Count} 个敌人的数据");
         
-        // 清理当前死亡记录，从存档数据重新构建
-        deadEnemiesRecord.Clear();
+        // 清理当前槽位死亡记录，从存档数据重新构建
+        currentSlotDeadEnemies.Clear();
         
-        // 首先禁用所有现有敌人（包括那些可能在InitializeEnemies中被激活的）
+        // 首先禁用所有现有敌人
         Enemy[] allEnemies = Object.FindObjectsByType<Enemy>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         foreach (Enemy enemy in allEnemies)
         {
             enemy.gameObject.SetActive(false);
         }
+        
+        // 使用改进的ID重新映射系统
+        var remappedEnemies = ImprovedEnemyIDGenerator.RemapSavedEnemyIDs(enemyDataList);
+        
+        if (enableDebugLog)
+            Debug.Log($"[EnemySaveAdapter] ID重新映射结果: {remappedEnemies.Count}/{enemyDataList.Count} 个敌人成功匹配");
         
         // 分析存档数据并分类处理
         List<EnemyData> aliveEnemies = new List<EnemyData>();
@@ -368,10 +387,10 @@ public class EnemySaveAdapter : MonoBehaviour
         if (enableDebugLog)
             Debug.Log($"[EnemySaveAdapter] 存档分析: {aliveEnemies.Count} 个活敌人, {deadEnemies.Count} 个死敌人");
         
-        // 恢复死亡敌人记录
+        // 恢复死亡敌人记录到当前槽位
         foreach (EnemyData deadData in deadEnemies)
         {
-            deadEnemiesRecord[deadData.enemyID] = deadData;
+            currentSlotDeadEnemies.Add(deadData.enemyID);
             
             if (enableDebugLog)
                 Debug.Log($"[EnemySaveAdapter] 恢复死亡敌人记录: {deadData.enemyID}");
@@ -380,15 +399,59 @@ public class EnemySaveAdapter : MonoBehaviour
         // 恢复活着的敌人
         foreach (EnemyData aliveData in aliveEnemies)
         {
-            RestoreSingleEnemy(aliveData);
+            if (remappedEnemies.ContainsKey(aliveData.enemyID))
+            {
+                RestoreSingleEnemyWithMapping(aliveData, remappedEnemies[aliveData.enemyID]);
+            }
+            else
+            {
+                // 使用传统方法作为后备
+                RestoreSingleEnemy(aliveData);
+            }
         }
         
         if (enableDebugLog)
-            Debug.Log($"[EnemySaveAdapter] 敌人数据恢复完成，活敌人: {aliveEnemies.Count}, 死亡记录: {deadEnemiesRecord.Count} 个");
+            Debug.Log($"[EnemySaveAdapter] 敌人数据恢复完成，活敌人: {aliveEnemies.Count}, 死亡记录: {currentSlotDeadEnemies.Count} 个");
     }
     
     /// <summary>
-    /// 恢复单个敌人
+    /// 使用ID映射恢复单个敌人（改进版本）
+    /// </summary>
+    private void RestoreSingleEnemyWithMapping(EnemyData data, Enemy mappedEnemy)
+    {
+        if (mappedEnemy == null)
+        {
+            if (enableDebugLog)
+                Debug.LogWarning($"[EnemySaveAdapter] 映射的敌人为空: {data.enemyID}");
+            return;
+        }
+        
+        // 为映射的敌人添加SaveableEnemy组件
+        SaveableEnemy saveableComponent = mappedEnemy.GetComponent<SaveableEnemy>();
+        if (saveableComponent == null)
+        {
+            saveableComponent = mappedEnemy.gameObject.AddComponent<SaveableEnemy>();
+        }
+        
+        saveableComponent.Initialize(data.enemyID, mappedEnemy);
+        saveableComponent.LoadEnemyData(data);
+        
+        if (data.isActive && data.currentHealth > 0)
+        {
+            mappedEnemy.gameObject.SetActive(true);
+            
+            if (enableDebugLog)
+                Debug.Log($"[EnemySaveAdapter] ✅ 通过映射恢复敌人: {data.enemyID} -> {mappedEnemy.name} (血量: {data.currentHealth}/{data.maxHealth})");
+        }
+        else
+        {
+            if (enableDebugLog)
+                Debug.Log($"[EnemySaveAdapter] 敌人已死亡或非活跃，保持禁用状态: {data.enemyID}");
+        }
+    }
+    
+    /// <summary>
+    /// 恢复单个敌人（传统方法，作为后备）
     /// </summary>
     private void RestoreSingleEnemy(EnemyData data)
     {
@@ -490,7 +553,7 @@ public class EnemySaveAdapter : MonoBehaviour
     /// </summary>
     public int GetDeadEnemyCount()
     {
-        return deadEnemiesRecord.Count;
+        return currentSlotDeadEnemies.Count;
     }
     
     /// <summary>
