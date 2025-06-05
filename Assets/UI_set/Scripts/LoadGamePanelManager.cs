@@ -18,7 +18,7 @@ public class LoadGamePanelManager : MonoBehaviour
     [Header("New Game Features")]
     public Button newGameButton; // Start Game button (loads recent save or starts new)
     public Button forceNewGameButton; // Force New Game button (always starts fresh)
-    public string newGameSceneName = "YourGameSceneName"; // New game scene name
+    public string newGameSceneName = "5.26地图"; // New game scene name
     
     [Header("Save Slot Buttons")]
     public Button[] saveSlots;
@@ -271,12 +271,13 @@ public class LoadGamePanelManager : MonoBehaviour
         if (string.IsNullOrEmpty(newGameSceneName) || newGameSceneName == "YourGameSceneName")
         {
             // Try to auto-detect game scenes - 5.26地图 has highest priority
-            string[] possibleScenes = { "5.26地图", "Example1", "关卡1", "Level1", "GameScene", "MainGameScene", "可以运行的地图" };
+            string[] possibleScenes = { "5.26地图", "可以运行的地图", "5.5 map", "Example1", "关卡1", "Level1", "GameScene", "MainGameScene" };
             foreach (string sceneName in possibleScenes)
             {
                 if (Application.CanStreamedLevelBeLoaded(sceneName))
                 {
                     newGameSceneName = sceneName;
+                    Debug.Log($"LoadGamePanelManager: 自动检测到游戏场景: {sceneName}");
                     break;
                 }
             }
@@ -334,12 +335,13 @@ public class LoadGamePanelManager : MonoBehaviour
         string gameScene = newGameSceneName;
         if (string.IsNullOrEmpty(gameScene) || gameScene == "YourGameSceneName")
         {
-            string[] possibleScenes = { "5.26地图", "Example1", "关卡1", "Level1", "GameScene", "MainGameScene", "可以运行的地图" };
+            string[] possibleScenes = { "5.26地图", "可以运行的地图", "5.5 map", "Example1", "关卡1", "Level1", "GameScene", "MainGameScene" };
             foreach (string sceneName in possibleScenes)
             {
                 if (Application.CanStreamedLevelBeLoaded(sceneName))
                 {
                     gameScene = sceneName;
+                    Debug.Log($"CreateNewSaveToSlot: 自动检测到游戏场景: {sceneName}");
                     break;
                 }
             }

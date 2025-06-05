@@ -120,7 +120,11 @@ public class HealthManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("HealthManager: 未找到玩家对象!");
+            // 在主菜单场景中这是正常的，不需要错误日志
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "MainMenuScene")
+            {
+                Debug.LogWarning("HealthManager: 未找到玩家对象!");
+            }
         }
     }
     

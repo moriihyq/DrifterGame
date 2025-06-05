@@ -110,10 +110,7 @@ public class TrapRespawnPointAnimator : MonoBehaviour
         isActivated = false;
         currentAnimationState = "静止状态";
         
-        if (showDebugInfo)
-        {
-            Debug.Log($"[TrapRespawnPointAnimator] 设置为静止状态：{gameObject.name}");
-        }
+
     }
     
     /// <summary>
@@ -148,10 +145,7 @@ public class TrapRespawnPointAnimator : MonoBehaviour
         
         currentAnimationState = "激活状态";
         
-        if (showDebugInfo)
-        {
-            Debug.Log($"[TrapRespawnPointAnimator] 激活Trap动画：{gameObject.name}");
-        }
+
     }
     
     /// <summary>
@@ -169,10 +163,7 @@ public class TrapRespawnPointAnimator : MonoBehaviour
         // 回到静止状态
         SetIdleState();
         
-        if (showDebugInfo)
-        {
-            Debug.Log($"[TrapRespawnPointAnimator] 停用Trap动画：{gameObject.name}");
-        }
+
     }
     
     /// <summary>
@@ -249,10 +240,7 @@ public class TrapRespawnPointAnimator : MonoBehaviour
         
         SetIdleState();
         
-        if (showDebugInfo)
-        {
-            Debug.Log($"[TrapRespawnPointAnimator] 重置动画状态：{gameObject.name}");
-        }
+
     }
     
     /// <summary>

@@ -49,7 +49,7 @@ public class SaveManager : MonoBehaviour
             Directory.CreateDirectory(saveDirectory);
         }
         
-        Debug.Log($"Save Directory: {saveDirectory}");
+
     }
     
     private void Update()
@@ -98,7 +98,7 @@ public class SaveManager : MonoBehaviour
         {
             string json = JsonUtility.ToJson(gameData, true);
             File.WriteAllText(filePath, json);
-            Debug.Log($"Game saved to slot {slotIndex}");
+
             ShowSaveMessage("Game Saved");
         }
         catch (Exception e)
@@ -113,7 +113,7 @@ public class SaveManager : MonoBehaviour
         // Find the most recently used save slot or use the first slot
         int slotToUse = GetAutoSaveSlot();
         SaveGame(slotToUse);
-        Debug.Log("Auto save completed");
+
     }
     
     private int GetAutoSaveSlot()
@@ -153,7 +153,7 @@ public class SaveManager : MonoBehaviour
             {
                 string json = File.ReadAllText(filePath);
                 GameData gameData = JsonUtility.FromJson<GameData>(json);
-                Debug.Log($"Loaded game from slot {slotIndex}");
+
                 return gameData;
             }
             catch (Exception e)
@@ -164,7 +164,7 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            Debug.Log($"Slot {slotIndex} has no save");
+
             return null;
         }
     }
@@ -184,7 +184,7 @@ public class SaveManager : MonoBehaviour
             if (SceneManager.GetActiveScene().name == gameData.sceneName)
             {
                 // Same scene, apply data immediately
-                Debug.Log("Loading in same scene, applying data immediately");
+
                 ApplyGameData(gameData);
             }
             else
@@ -209,7 +209,7 @@ public class SaveManager : MonoBehaviour
             
             if (SceneManager.GetActiveScene().name == gameData.sceneName)
             {
-                Debug.Log("Quick loading in current scene");
+
                 ApplyGameData(gameData);
                 ShowSaveMessage("Game Loaded");
             }
@@ -224,12 +224,12 @@ public class SaveManager : MonoBehaviour
     
     private System.Collections.IEnumerator LoadGameCoroutine(GameData gameData)
     {
-        Debug.Log($"LoadGameCoroutine started. Target scene from save: {gameData.sceneName}, Current scene: {SceneManager.GetActiveScene().name}");
+
 
         // Load scene
         if (SceneManager.GetActiveScene().name != gameData.sceneName)
         {
-            Debug.Log($"Attempting to load scene: {gameData.sceneName}");
+
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(gameData.sceneName);
 
             if (asyncLoad == null) // 添加这个检查
@@ -240,23 +240,21 @@ public class SaveManager : MonoBehaviour
 
             while (!asyncLoad.isDone)
             {
-                Debug.Log($"Loading progress: {asyncLoad.progress * 100}%");
+
                 yield return null;
             }
-            Debug.Log($"Scene {gameData.sceneName} loaded successfully.");
+
         }
         else
         {
-            Debug.Log("Target scene is the same as current scene. Skipping scene load.");
+
         }
         
         // Wait for one frame to ensure scene is fully loaded
         yield return null;
         
-        Debug.Log("Applying game data...");
         // Apply save data
         ApplyGameData(gameData);
-        Debug.Log("Game data applied.");
     }
     
     private GameData CollectGameData()
@@ -288,7 +286,7 @@ public class SaveManager : MonoBehaviour
                 nextAttackTime = GetPrivateFieldValue<float>(playerAttackSystem, "nextAttackTime")
             };
             
-            Debug.Log($"保存血量数据: {playerAttackSystem.Health}/{playerAttackSystem.MaxHealth}");
+
         }
         else if (playerController != null)
         {
@@ -301,11 +299,11 @@ public class SaveManager : MonoBehaviour
                 isFacingRight = !playerController.GetComponent<SpriteRenderer>().flipX
             };
             
-            Debug.LogWarning("未找到PlayerAttackSystem，使用PlayerController数据");
+
         }
         else
         {
-            Debug.LogError("未找到PlayerAttackSystem和PlayerController！");
+
         }
         
         // Collect enemy data using EnemySaveAdapter
@@ -315,7 +313,7 @@ public class SaveManager : MonoBehaviour
         if (EnemySaveAdapter.Instance != null)
         {
             gameData.enemiesData = EnemySaveAdapter.Instance.CollectEnemyData();
-            Debug.Log($"📦 通过EnemySaveAdapter收集了 {gameData.enemiesData.Count} 个敌人数据");
+
         }
         else
         {
@@ -342,7 +340,7 @@ public class SaveManager : MonoBehaviour
                     }
                 }
             }
-            Debug.LogWarning("⚠️ 未找到EnemySaveAdapter，使用传统方式收集敌人数据");
+
         }
         
         return gameData;
@@ -424,8 +422,6 @@ public class SaveManager : MonoBehaviour
         if (playerAttackSystem != null && gameData.playerData != null)
         {
             // 应用PlayerAttackSystem数据
-            Debug.Log($"🔄 正在应用PlayerAttackSystem数据: {gameData.playerData.currentHealth}/{gameData.playerData.maxHealth}");
-            Debug.Log($"🔄 当前PlayerAttackSystem状态: {playerAttackSystem.Health}/{playerAttackSystem.MaxHealth}");
             
             // 设置位置
             playerAttackSystem.transform.position = gameData.playerData.position;

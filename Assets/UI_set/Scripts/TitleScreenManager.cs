@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement; // 必须引入场景管理命名空间
 public class TitleScreenManager : MonoBehaviour
 {
     // 在 Inspector 中指定要加载的游戏场景名称
-    public string gameSceneName = "YourGameSceneName"; // !!! 修改为你实际的游戏场景名称 !!!
+    public string gameSceneName = "5.26地图"; // 默认游戏场景
     public string mainMenuSceneName = "MainMenuScene"; // 主菜单场景名称
     public GameObject optionsPanel; // 选项菜单面板的引用
     public GameObject loadGamePanel; // 添加LoadGamePanel引用
@@ -32,11 +32,24 @@ public class TitleScreenManager : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("[TitleScreenManager] 脚本已启动 - 开始初始化");
+        
+        // 查找音频管理器
+        if (audioManager == null)
+        {
+            audioManager = FindFirstObjectByType<AudioVolumeManager>();
+            if (audioManager == null)
+            {
+                Debug.LogWarning("未找到音频管理器！");
+            }
+        }
+        
+        Debug.Log($"[TitleScreenManager] 音频管理器状态: {(audioManager != null ? "已找到" : "未找到")}");
+        Debug.Log($"[TitleScreenManager] 当前场景: {UnityEngine.SceneManagement.SceneManager.GetActiveScene().name}");
+        Debug.Log($"[TitleScreenManager] 游戏场景设置: {gameSceneName}");
+        
         // 确保SaveManager存在
         // GameInitializer.EnsureManagersExist(); // 这行应该被注释或删除
-        
-        // 使用新的 API 替换弃用的 FindObjectOfType
-        audioManager = FindFirstObjectByType<AudioVolumeManager>();
         
         // 如果选项面板还没有被分配，尝试通过名称查找
         if (optionsPanel == null)
@@ -84,68 +97,38 @@ public class TitleScreenManager : MonoBehaviour
     // 公开方法，用于绑定到"开始游戏"按钮的 OnClick 事件
     public void StartGame()
     {
-        // 获取第一个可用的游戏场景
-        if (string.IsNullOrEmpty(gameSceneName))
+        Debug.Log("[TitleScreenManager] =================== StartGame() 开始 ===================");
+        
+        // 确保目标场景名正确
+        if (string.IsNullOrEmpty(gameSceneName) || gameSceneName == "YourGameSceneName")
         {
-            // 尝试自动检测游戏场景
-            string[] possibleScenes = { "Example1", "关卡1", "Level1", "GameScene", "可以运行的地图" };
-            foreach (string sceneName in possibleScenes)
-            {
-                if (Application.CanStreamedLevelBeLoaded(sceneName))
-                {
-                    gameSceneName = sceneName;
-                    break;
-                }
-            }
+            gameSceneName = "5.26地图"; // 强制使用已知的场景名
         }
         
-        if (startGameLoadsRecentSave && SaveManager.Instance != null)
-        {
-            // 尝试加载最近的存档
-            var saveInfos = SaveManager.Instance.GetAllSaveInfos();
-            int mostRecentSlot = -1;
-            System.DateTime mostRecentTime = System.DateTime.MinValue;
-            
-            // 查找最近的存档
-            for (int i = 0; i < saveInfos.Count; i++)
-            {
-                if (!saveInfos[i].isEmpty && saveInfos[i].saveTime > mostRecentTime)
-                {
-                    mostRecentTime = saveInfos[i].saveTime;
-                    mostRecentSlot = i;
-                }
-            }
-            
-            if (mostRecentSlot >= 0)
-            {
-                Debug.Log($"加载最近存档（槽位 {mostRecentSlot}），保存时间: {mostRecentTime}");
-                SaveManager.Instance.LoadGameAndApply(mostRecentSlot);
-                return;
-            }
-            else
-            {
-                Debug.Log("未找到存档，开始新游戏");
-            }
-        }
+        Debug.Log($"[TitleScreenManager] 直接加载游戏场景: {gameSceneName}");
         
-        // 默认行为：开始新游戏
-        Debug.Log("开始新游戏，清除自动存档并加载游戏场景: " + gameSceneName);
-        
-        // 清除自动存档槽位（槽位0）以确保是新游戏
-        if (SaveManager.Instance != null)
+        try
         {
-            SaveManager.Instance.DeleteSave(0);
-        }
-        
-        // 加载游戏场景
-        if (!string.IsNullOrEmpty(gameSceneName))
-        {
+            // 直接加载游戏场景，不进行任何存档操作
             SceneManager.LoadScene(gameSceneName);
+            Debug.Log($"[TitleScreenManager] 场景加载调用完成: {gameSceneName}");
         }
-        else
+        catch (System.Exception e)
         {
-            Debug.LogError("未找到可用的游戏场景！请确保在Build Settings中添加了游戏场景。");
+            Debug.LogError($"[TitleScreenManager] 场景加载失败: {e.Message}");
+            // 尝试备用场景
+            try
+            {
+                SceneManager.LoadScene("5.26地图");
+                Debug.Log("[TitleScreenManager] 备用场景加载成功");
+            }
+            catch (System.Exception e2)
+            {
+                Debug.LogError($"[TitleScreenManager] 备用场景也失败: {e2.Message}");
+            }
         }
+        
+        Debug.Log("[TitleScreenManager] =================== StartGame() 完成 ===================");
     }
     
     // 公开方法，用于绑定到"读取游戏"按钮的 OnClick 事件

@@ -748,6 +748,9 @@ public class BossController : MonoBehaviour
         }
     }
     
+    // Boss死亡事件
+    public static event System.Action<BossController> OnBossDefeated;
+    
     // Boss死亡
     private void Die()
     {
@@ -771,9 +774,32 @@ public class BossController : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         rb.isKinematic = true;
         
+        // 触发Boss死亡事件
+        OnBossDefeated?.Invoke(this);
+        
         // Boss可能不会立即销毁，而是有一个死亡动画
         Debug.Log("<color=#FF0000>Boss已死亡！游戏胜利！</color>");
+        
+        // 延迟触发胜利管理器
+        if (GameVictoryManager.Instance != null)
+        {
+            StartCoroutine(DelayedVictoryTrigger());
+        }
     }
+    
+    // 延迟触发胜利
+    private System.Collections.IEnumerator DelayedVictoryTrigger()
+    {
+        yield return new WaitForSeconds(1f);
+        
+        if (GameVictoryManager.Instance != null)
+        {
+            GameVictoryManager.Instance.OnBossDefeated(this);
+        }
+    }
+    
+    // 获取Boss是否死亡的公开属性
+    public bool IsDead => isDead;
     
     // 在编辑器中绘制攻击范围（调试用）
     void OnDrawGizmosSelected()

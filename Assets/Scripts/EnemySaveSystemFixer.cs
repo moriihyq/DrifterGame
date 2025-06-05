@@ -35,16 +35,12 @@ public class EnemySaveSystemFixer : MonoBehaviour
         // 紧急修复热键
         if (Input.GetKeyDown(emergencyFixKey))
         {
-            if (enableDebugLog)
-                Debug.Log("[EnemySaveSystemFixer] 🚨 紧急修复已触发");
             StartCoroutine(EmergencyFix());
         }
         
         // 完全重建热键
         if (Input.GetKeyDown(fullRebuildKey))
         {
-            if (enableDebugLog)
-                Debug.Log("[EnemySaveSystemFixer] 🔧 完全重建已触发");
             StartCoroutine(FullSystemRebuild());
         }
     }
@@ -59,13 +55,7 @@ public class EnemySaveSystemFixer : MonoBehaviour
         yield return new WaitForEndOfFrame();
         yield return new WaitForFixedUpdate();
         
-        if (enableDebugLog)
-            Debug.Log("[EnemySaveSystemFixer] === 开始自动修复 ===");
-        
         yield return StartCoroutine(FullSystemRebuild());
-        
-        if (enableDebugLog)
-            Debug.Log("[EnemySaveSystemFixer] === 自动修复完成 ===");
     }
     
     /// <summary>
@@ -79,8 +69,6 @@ public class EnemySaveSystemFixer : MonoBehaviour
             
             if (DetectSystemProblems())
             {
-                if (enableDebugLog)
-                    Debug.LogWarning("[EnemySaveSystemFixer] 🔍 检测到系统问题，开始修复");
                 yield return StartCoroutine(EmergencyFix());
             }
         }
@@ -94,8 +82,6 @@ public class EnemySaveSystemFixer : MonoBehaviour
         // 检查EnemySaveAdapter
         if (EnemySaveAdapter.Instance == null)
         {
-            if (enableDebugLog)
-                Debug.LogWarning("[EnemySaveSystemFixer] ❌ EnemySaveAdapter实例缺失");
             return true;
         }
         
@@ -105,8 +91,6 @@ public class EnemySaveSystemFixer : MonoBehaviour
         
         if (enemies.Length > 0 && saveableEnemies.Length != enemies.Length)
         {
-            if (enableDebugLog)
-                Debug.LogWarning($"[EnemySaveSystemFixer] ⚠️ 敌人组件数量不匹配: Enemy({enemies.Length}) vs SaveableEnemy({saveableEnemies.Length})");
             return true;
         }
         
@@ -115,8 +99,6 @@ public class EnemySaveSystemFixer : MonoBehaviour
         {
             if (string.IsNullOrEmpty(saveable.GetEnemyID()))
             {
-                if (enableDebugLog)
-                    Debug.LogWarning("[EnemySaveSystemFixer] ⚠️ 发现空的敌人ID");
                 return true;
             }
         }
@@ -129,8 +111,6 @@ public class EnemySaveSystemFixer : MonoBehaviour
     /// </summary>
     private IEnumerator EmergencyFix()
     {
-        if (enableDebugLog)
-            Debug.Log("[EnemySaveSystemFixer] 🚨 开始紧急修复");
         
         // 等待一帧确保稳定性
         yield return null;
@@ -143,9 +123,6 @@ public class EnemySaveSystemFixer : MonoBehaviour
         
         // 3. 验证修复结果
         yield return StartCoroutine(ValidateSystemIntegrity());
-        
-        if (enableDebugLog)
-            Debug.Log("[EnemySaveSystemFixer] ✅ 紧急修复完成");
     }
     
     /// <summary>
@@ -153,8 +130,6 @@ public class EnemySaveSystemFixer : MonoBehaviour
     /// </summary>
     private IEnumerator FullSystemRebuild()
     {
-        if (enableDebugLog)
-            Debug.Log("[EnemySaveSystemFixer] 🔧 开始完全重建存档系统");
         
         // 等待系统稳定
         yield return new WaitForEndOfFrame();
@@ -173,9 +148,6 @@ public class EnemySaveSystemFixer : MonoBehaviour
         
         // 5. 最终验证
         yield return StartCoroutine(ValidateSystemIntegrity());
-        
-        if (enableDebugLog)
-            Debug.Log("[EnemySaveSystemFixer] ✅ 系统重建完成");
     }
     
     /// <summary>
@@ -197,13 +169,11 @@ public class EnemySaveSystemFixer : MonoBehaviour
                 GameObject adapterObject = new GameObject("EnemySaveAdapter");
                 existingAdapter = adapterObject.AddComponent<EnemySaveAdapter>();
                 
-                if (enableDebugLog)
-                    Debug.Log("[EnemySaveSystemFixer] ✅ 已创建新的EnemySaveAdapter对象");
+                
             }
             else
             {
-                if (enableDebugLog)
-                    Debug.Log("[EnemySaveSystemFixer] ✅ 找到现有的EnemySaveAdapter对象");
+                
             }
             
             // 等待实例初始化
@@ -211,8 +181,6 @@ public class EnemySaveSystemFixer : MonoBehaviour
         }
         else
         {
-            if (enableDebugLog)
-                Debug.Log("[EnemySaveSystemFixer] ✅ EnemySaveAdapter实例已存在");
         }
     }
     
@@ -225,8 +193,6 @@ public class EnemySaveSystemFixer : MonoBehaviour
         
         if (existingComponents.Length > 0)
         {
-            if (enableDebugLog)
-                Debug.Log($"[EnemySaveSystemFixer] 🧹 清理 {existingComponents.Length} 个现有SaveableEnemy组件");
             
             foreach (SaveableEnemy component in existingComponents)
             {
@@ -248,8 +214,7 @@ public class EnemySaveSystemFixer : MonoBehaviour
         Enemy[] enemies = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
         int fixedCount = 0;
         
-        if (enableDebugLog)
-            Debug.Log($"[EnemySaveSystemFixer] 🔧 检查 {enemies.Length} 个敌人的SaveableEnemy组件");
+
         
         foreach (Enemy enemy in enemies)
         {
@@ -260,8 +225,7 @@ public class EnemySaveSystemFixer : MonoBehaviour
                 saveableComponent.Initialize(enemyID, enemy);
                 fixedCount++;
                 
-                if (enableDebugLog)
-                    Debug.Log($"[EnemySaveSystemFixer] ✅ 为敌人 {enemy.name} 添加SaveableEnemy组件 (ID: {enemyID})");
+                
             }
             
             // 每处理几个敌人后暂停一帧，避免卡顿
@@ -271,8 +235,7 @@ public class EnemySaveSystemFixer : MonoBehaviour
             }
         }
         
-        if (enableDebugLog)
-            Debug.Log($"[EnemySaveSystemFixer] ✅ 总共修复了 {fixedCount} 个敌人组件");
+
     }
     
     /// <summary>
@@ -282,8 +245,7 @@ public class EnemySaveSystemFixer : MonoBehaviour
     {
         Enemy[] enemies = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
         
-        if (enableDebugLog)
-            Debug.Log($"[EnemySaveSystemFixer] 🏗️ 为 {enemies.Length} 个敌人重建SaveableEnemy组件");
+    
         
         for (int i = 0; i < enemies.Length; i++)
         {
@@ -301,8 +263,7 @@ public class EnemySaveSystemFixer : MonoBehaviour
                 string enemyID = GenerateUniqueEnemyID(enemy, i);
                 saveableComponent.Initialize(enemyID, enemy);
                 
-                if (enableDebugLog)
-                    Debug.Log($"[EnemySaveSystemFixer] ✅ 重建敌人 {enemy.name} 的组件 (ID: {enemyID})");
+                
             }
             
             // 每处理几个敌人后暂停一帧
@@ -320,8 +281,7 @@ public class EnemySaveSystemFixer : MonoBehaviour
     {
         if (EnemySaveAdapter.Instance != null)
         {
-            if (enableDebugLog)
-                Debug.Log("[EnemySaveSystemFixer] 🔄 重新初始化EnemySaveAdapter");
+            
             
             // 等待一帧确保所有SaveableEnemy组件都已添加
             yield return null;
@@ -332,8 +292,7 @@ public class EnemySaveSystemFixer : MonoBehaviour
             // 等待初始化完成
             yield return new WaitForSeconds(0.2f);
             
-            if (enableDebugLog)
-                Debug.Log("[EnemySaveSystemFixer] ✅ EnemySaveAdapter重新初始化完成");
+            
         }
     }
     
@@ -344,8 +303,7 @@ public class EnemySaveSystemFixer : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         
-        if (enableDebugLog)
-            Debug.Log("[EnemySaveSystemFixer] 🔍 验证系统完整性");
+        
         
         // 统计组件数量
         Enemy[] enemies = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
@@ -355,16 +313,9 @@ public class EnemySaveSystemFixer : MonoBehaviour
         bool adapterExists = EnemySaveAdapter.Instance != null;
         int adapterEnemyCount = adapterExists ? EnemySaveAdapter.Instance.GetEnemyCount() : 0;
         
-        // 输出验证结果
-        if (enableDebugLog)
-        {
-            Debug.Log($"[EnemySaveSystemFixer] === 系统状态验证 ===");
-            Debug.Log($"[EnemySaveSystemFixer] Enemy组件: {enemies.Length}");
-            Debug.Log($"[EnemySaveSystemFixer] SaveableEnemy组件: {saveableEnemies.Length}");
-            Debug.Log($"[EnemySaveSystemFixer] EnemyDeathMonitor组件: {deathMonitors.Length}");
-            Debug.Log($"[EnemySaveSystemFixer] EnemySaveAdapter存在: {adapterExists}");
-            Debug.Log($"[EnemySaveSystemFixer] 适配器管理的敌人数量: {adapterEnemyCount}");
-        }
+        // 输出验证结果 
+        
+        
         
         // 检查一致性
         bool systemHealthy = true;
@@ -391,20 +342,8 @@ public class EnemySaveSystemFixer : MonoBehaviour
         // 输出结果
         if (systemHealthy)
         {
-            if (enableDebugLog)
-                Debug.Log("[EnemySaveSystemFixer] ✅ 系统验证通过，存档系统运行正常");
-        }
-        else
-        {
-            if (enableDebugLog)
-            {
-                Debug.LogWarning("[EnemySaveSystemFixer] ⚠️ 系统验证发现问题:");
-                foreach (string issue in issues)
-                {
-                    Debug.LogWarning($"[EnemySaveSystemFixer]   - {issue}");
-                }
-            }
-        }
+        }   
+        
         
         yield return null;
     }
