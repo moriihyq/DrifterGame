@@ -258,15 +258,99 @@ public class PlayerAttackSystem : MonoBehaviour
             animator.SetBool("IsDead", true);
         }
         
-        // 禁用玩家控制器
+        // 触发复活系统
+        if (RespawnManager.Instance != null)
+        {
+            // 延迟一点时间让死亡动画播放，然后复活
+            Invoke("TriggerRespawn", 1f);
+        }
+        else
+        {
+            Debug.LogWarning("[PlayerAttackSystem] 找不到RespawnManager，无法复活！将禁用玩家控制。");
+            // 如果没有复活系统，保持原有逻辑
+            DisablePlayerControls();
+        }
+    }
+    
+    /// <summary>
+    /// 触发复活
+    /// </summary>
+    private void TriggerRespawn()
+    {
+        if (RespawnManager.Instance != null)
+        {
+            // 在复活前重置死亡状态
+            isDead = false;
+            
+            // 重新启用组件
+            this.enabled = true;
+            
+            // 重新启用玩家控制器
+            EnablePlayerControls();
+            
+            // 触发复活
+            RespawnManager.Instance.RespawnPlayer();
+            
+            // 重置动画状态
+            if (animator != null)
+            {
+                animator.SetBool("IsDead", false);
+            }
+            
+            Debug.Log("<color=cyan>[PlayerAttackSystem] 玩家已通过复活系统复活！</color>");
+        }
+    }
+    
+    /// <summary>
+    /// 禁用玩家控制
+    /// </summary>
+    private void DisablePlayerControls()
+    {
+        // 禁用各种可能的玩家控制组件
         PlayerMovement playerMovement = GetComponent<PlayerMovement>();
         if (playerMovement != null)
         {
             playerMovement.enabled = false;
         }
         
+        PlayerController playerController = GetComponent<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.enabled = false;
+        }
+        
         // 禁用当前组件
         this.enabled = false;
+    }
+    
+    /// <summary>
+    /// 启用玩家控制
+    /// </summary>
+    private void EnablePlayerControls()
+    {
+        // 启用各种可能的玩家控制组件
+        PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = true;
+        }
+        
+        PlayerController playerController = GetComponent<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.enabled = true;
+        }
+    }
+    
+    /// <summary>
+    /// 手动复活玩家（用于调试或外部调用）
+    /// </summary>
+    public void Respawn()
+    {
+        if (isDead)
+        {
+            TriggerRespawn();
+        }
     }
     
     // 绘制攻击范围 (仅在编辑器中可见，用于调试)

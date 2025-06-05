@@ -236,12 +236,43 @@ public class PlayerController : MonoBehaviour
             Die();
         }
     }
+    
     void Die()
     {
         // 死亡动画和逻辑
         Debug.Log("Player Died");
         if (animator != null)
             animator.SetTrigger("Die");
+            
+        // 触发复活
+        if (RespawnManager.Instance != null)
+        {
+            // 延迟一点时间让死亡动画播放
+            Invoke("TriggerRespawn", 1f);
+        }
+        else
+        {
+            Debug.LogWarning("[PlayerController] 找不到RespawnManager，无法复活！");
+        }
+    }
+    
+    /// <summary>
+    /// 触发复活
+    /// </summary>
+    void TriggerRespawn()
+    {
+        if (RespawnManager.Instance != null)
+        {
+            RespawnManager.Instance.RespawnPlayer();
+        }
+    }
+    
+    /// <summary>
+    /// 手动复活（用于调试或特殊需求）
+    /// </summary>
+    public void Respawn()
+    {
+        TriggerRespawn();
     }
 
     // 法术类别接口预留
