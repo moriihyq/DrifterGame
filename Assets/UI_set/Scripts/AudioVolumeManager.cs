@@ -279,9 +279,7 @@ public class AudioVolumeManager : MonoBehaviour
         {
             Debug.LogError($"更改音量时出错: {e.Message}");
         }
-    }
-
-    // 应用音量到所有音频源
+    }    // 应用音量到所有音频源
     private void ApplyVolume(float volume)
     {
         try
@@ -296,6 +294,9 @@ public class AudioVolumeManager : MonoBehaviour
             {
                 sfxSource.volume = volume;
             }
+
+            // 通知场景背景音乐控制器音量已改变
+            NotifySceneBackgroundMusicController();
 
             // 更新UI显示
             UpdateVolumeDisplay(volume);
@@ -450,10 +451,19 @@ public class AudioVolumeManager : MonoBehaviour
         
         return 0f;
     }
-    
-    // 检查是否静音
+      // 检查是否静音
     public bool IsMuted()
     {
         return GetCurrentVolume() <= 0f;
     }
-} 
+    
+    // 通知场景背景音乐控制器音量已改变
+    private void NotifySceneBackgroundMusicController()
+    {
+        SceneBackgroundMusicController bgMusicController = FindFirstObjectByType<SceneBackgroundMusicController>();
+        if (bgMusicController != null)
+        {
+            bgMusicController.OnVolumeChanged();
+        }
+    }
+}
