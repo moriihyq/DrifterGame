@@ -9,11 +9,11 @@ public class PlayerAttackSystem : MonoBehaviour
     [SerializeField] private Transform attackPoint; // 攻击判定点
     [SerializeField] private float attackRadius = 3.0f; // 攻击范围半径（固定为3单位）
     [SerializeField] private LayerMask enemyLayers; // 敌人图层
-    
-    [Header("音效设置")]
+      [Header("音效设置")]
     [SerializeField] private AudioSource audioSource; // 音效播放器
     [SerializeField] private AudioClip normalAttackSound; // 普通攻击音效
     [SerializeField] [Range(0f, 1f)] private float normalAttackVolume = 1f; // 普通攻击音量
+    private AudioVolumeManager audioVolumeManager; // 音量管理器
     
     // 公共属性，允许其他脚本修改攻击伤害
     public int AttackDamage 
@@ -68,11 +68,17 @@ public class PlayerAttackSystem : MonoBehaviour
             attackPointObj.transform.localPosition = new Vector3(1f, 0f, 0f); // 在角色前方创建攻击点
             attackPoint = attackPointObj.transform;
         }
-        
-        // 检查enemyLayers设置
+          // 检查enemyLayers设置
         if (enemyLayers.value == 0)
         {
             Debug.LogWarning("enemyLayers未设置！请在Unity编辑器中设置正确的敌人图层");
+        }
+        
+        // 查找音量管理器
+        audioVolumeManager = FindFirstObjectByType<AudioVolumeManager>();
+        if (audioVolumeManager == null)
+        {
+            Debug.LogWarning("PlayerAttackSystem: 未找到AudioVolumeManager，音效将使用默认音量");
         }
     }
     
@@ -107,11 +113,14 @@ public class PlayerAttackSystem : MonoBehaviour
         {
             Debug.LogError("没有找到Animator组件，无法播放攻击动画!");
         }
-        
-        // 播放普通攻击音效
+          // 播放普通攻击音效
         if (audioSource != null && normalAttackSound != null)
-        {
-            audioSource.PlayOneShot(normalAttackSound, normalAttackVolume);
+        {            float finalVolume = normalAttackVolume;
+            if (audioVolumeManager != null)
+            {
+                finalVolume *= audioVolumeManager.GetCurrentVolume();
+            }
+            audioSource.PlayOneShot(normalAttackSound, finalVolume);
         }
         else
         {

@@ -24,6 +24,7 @@ public class MagicBulletSkill : MonoBehaviour
     [Header("音效")]
     [SerializeField] private AudioClip magicBulletSound;
     private AudioSource audioSource;
+    private AudioVolumeManager audioVolumeManager;
 
     // 私有变量
     private bool isOnCooldown = false;
@@ -39,6 +40,13 @@ public class MagicBulletSkill : MonoBehaviour
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        
+        // 查找音频音量管理器
+        audioVolumeManager = FindFirstObjectByType<AudioVolumeManager>();
+        if (audioVolumeManager == null)
+        {
+            Debug.LogWarning("AudioVolumeManager not found in scene. Magic bullet audio will use default volume.");
         }
         
         // 初始化UI
@@ -153,11 +161,14 @@ public class MagicBulletSkill : MonoBehaviour
         {
             playerAnimator.SetTrigger("MagicAttack");
         }
-        
-        // 播放音效
+          // 播放音效
         if (audioSource != null && magicBulletSound != null)
         {
-            audioSource.PlayOneShot(magicBulletSound);
+            float finalVolume = 1.0f;            if (audioVolumeManager != null)
+            {
+                finalVolume *= audioVolumeManager.GetCurrentVolume();
+            }
+            audioSource.PlayOneShot(magicBulletSound, finalVolume);
         }
           // 获取玩家面向方向
         float facingDirection = GetPlayerFacingDirection();
