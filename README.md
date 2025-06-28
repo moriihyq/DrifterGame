@@ -111,20 +111,20 @@ Assets/
 - 包含各种陷阱，如地刺等
 - 背景支持视差滚动效果
 
-⭐ 核心职责与贡献 (My Role & Contributions)
+###⭐ 核心职责与贡献 (My Role & Contributions)
 
 作为本项目的负责人和首席程序员，我非常荣幸能与一支充满才华与热情的团队合作，共同将《Drifter Game》从一个想法变为现实。我负责项目的整体规划、技术架构选型，并主导了多个核心系统的开发。
 我的主要贡献集中在以下几个方面：
-系统架构与集成 (System Architecture & Integration):
+-系统架构与集成 (System Architecture & Integration):
 主导了项目技术框架的选型与集成，确保了各个模块（如战斗、UI、任务系统）能够高效、低耦合地协同工作。
 搭建了游戏的核心事件管理器，以应对复杂的交互逻辑，显著提升了代码的可维护性和扩展性。
-关卡设计与世界构建 (Level Design & World Building):
+-关卡设计与世界构建 (Level Design & World Building):
 负责游戏世界的整体布局与地图拼接，使用 Unity Tilemap 系统构建了所有主要场景。
 实现了场景间的无缝加载与过渡机制，优化了玩家的探索体验。
-核心玩法与交互逻辑 (Core Gameplay & Interaction Logic):
+-核心玩法与交互逻辑 (Core Gameplay & Interaction Logic):
 开发了玩家角色、敌人与地图环境之间复杂的交互系统，包括机关触发、伤害区域、可破坏对象等。
 这为游戏提供了丰富的动态元素，使战斗和探索更具趣味性。
-敌人AI系统 (Enemy AI Systems)
+-敌人AI系统 (Enemy AI Systems)
 
-💖 开发团队 (Our Team)
-一个项目的成功离不开每一位成员的努力。这个游戏是我们智慧和汗水的结晶：
+###💖 开发团队 (Our Team)
+-一个项目的成功离不开每一位成员的努力。这个游戏是我们智慧和汗水的结晶：
